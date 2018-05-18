@@ -1,0 +1,16 @@
+{% load i18n %}
+{% blocktrans with site_name=site.name %}
+Ha recibido este correo para confirmar su cuenta en el sitio {{ site_name }}.
+{% endblocktrans %}
+{% blocktrans %}
+En caso de que se haya tratado de un error, favor de ignorar este correo.
+{% endblocktrans %}
+{% blocktrans %}
+Para activar esta cuenta, de click en el siguiente enlace en los próximos {{ expiration_days }} días:
+{% endblocktrans %}
+
+http://{{site.domain}}{% url 'registration_activate' activation_key %}
+
+{% blocktrans with site_name=site.name %}
+De parte de, Administración de {{ site_name }}
+{% endblocktrans %}

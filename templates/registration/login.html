@@ -1,0 +1,18 @@
+{% extends "registration/registration_base.html" %}
+
+{% load bootstrap4 %}
+{% load i18n %}
+
+{% block content %}
+<h2 class="border-bottom border-gray pb-2 mb-0">Login</h2>
+<form method="post" action="." class="pt-3">
+    {% csrf_token %}
+    {% bootstrap_form form %}
+    {% buttons %}
+        <button type="submit" class="btn btn-primary btn-lg">Ingresar</button>
+    {% endbuttons %}
+</form>
+<p>¿{% trans "No está registrado" %}? <a href="{% url 'registration_register' %}">{% trans "Registrar" %}</a></p>
+<p>¿{% trans "Olvidó su contraseña" %}? <a href="{% url 'accounts:password_reset' %}">{% trans "Restablecer contraseña" %}</a></p>
+
+{% endblock %}

@@ -1,0 +1,23 @@
+[[source]]
+url = "https://pypi.python.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+django = "*"
+djangorestframework = "*"
+whitenoise = "*"
+django-environ = "*"
+pillow = "*"
+django-cors-headers = "*"
+"psycopg2-binary" = "*"
+django-localflavor = "*"
+django-webpack-loader = "*"
+"boto3" = "*"
+django-storages = "*"
+django-imagekit = "*"
+django-registration = "*"
+"django-bootstrap4" = "*"
+
+[dev-packages]
+"flake8" = "*"

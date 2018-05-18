@@ -1,0 +1,10 @@
+{% extends "registration/registration_base.html" %}
+
+{% load bootstrap4 %}
+
+{% block content %}
+<p class="lead">Has cerrado sesión. </p>
+<p><a href="{% url 'auth_login' %}">¿Iniciar sesión de nuevo?</a></p>
+<p><a href="{% url 'home' %}">Volver a inicio</p>
+
+{% endblock %}
