@@ -20,7 +20,9 @@ class Rarity(models.Model):
 
 
 class Department(models.Model):
-    description = models.CharField(max_length=50)
+    name = models.CharField(max_length=50)
+    description = models.CharField(max_length=1000)
+    head = models.CharField(max_length=50)
 
     def __str__(self):
         return self.description
@@ -40,6 +42,7 @@ class Card(models.Model):
     fk_rarity = models.ForeignKey(Rarity, on_delete=models.CASCADE)
     fk_department = models.ForeignKey(Department, on_delete=models.CASCADE)
     active = models.BooleanField(default=True)
+    arrival_date = models.DateField()
 
     def __str__(self):
         return self.name + ' - ' + self.description
