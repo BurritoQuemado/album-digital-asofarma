@@ -27,11 +27,10 @@ def get_cards():
         rarity = rarity + 1
 
         rarity_id = Rarity.objects.get(id=rarity)
-        cards = Card.objects.filter(fk_rarity=rarity_id, active=True)
+        cards = Card.objects.filter(fk_rarity=rarity_id, active=True).values('id')
         # we choose all the cards with the rarity selected
-
         for card in cards:
-            packet_card.append(card)
+            packet_card.append(card['id'])
 
         # we choose one card and finally, put the card in the packet
         packet.append(np.random.choice(packet_card))
@@ -75,7 +74,7 @@ def send_cards(request, target, department=0):
         for codes in new_cards_save():
 
             # encode email to base64
-            html_message.append('<p><a href=http://'+server+'/card/redeem/'+codes+'/'+email+'/>Click para redimir</a></p>')
+            html_message.append('<p><a href=http://'+server+'/cards/redeem/'+codes+'/'+email+'/>Click para redimir</a></p>')
 
         # we send the email with the codes of cards ready for redeem
         html_message = ''.join(map(str, html_message))
