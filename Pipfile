@@ -18,6 +18,7 @@ django-storages = "*"
 django-imagekit = "*"
 django-registration = "*"
 "django-bootstrap4" = "*"
+dev = "*"
 
 [dev-packages]
 "flake8" = "*"

@@ -28,4 +28,7 @@ urlpatterns = [
     path('cuenta/', include('registration.backends.hmac.urls')),
     path('restablecer/', include('accounts.urls')),
     path('admin/', admin.site.urls),
+    #
+    path('seeder/', include('seeder.urls')),    
+    path('cards/', include('cards.urls')),
 ]

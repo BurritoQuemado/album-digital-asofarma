@@ -1,48 +1,232 @@
-from card.models import Rarity, Department, Card
 from random import randint
 from django.http import HttpResponse
 from django.contrib.auth.models import User
-
+from django.db import connection
 
 def populate_database(self):
-    # check if the database was populated
+    departments = [
+        ['Finanzas','Dentro del equipo de Finanzas se encuentran 17 colaboradores, quienes se enfocan en realizar distintas tareas con el objetivo de tener una salud financiera en nuestra compañía y que alcancemos los resultados a final el año. Un logro importante dentro del área, fue la exitosa adopción del proyecto de Transformación de Finanzas - Genpact durante 2017.','ROMERO GUTIERREZ ADRIANA'], 
+        ['IT','Esta área se encuentra liderada por Charly y dos personas de EBS nuestros proveedor externo de servicios de IT. Durante 2017 el equipo hizo posible activar nuestro BCP y contrarrestar los contratiempos que el terremoto de Septiembre ocasionó en México, instalándonos a nueva oficina temporal. Así mismo Charly se encargó de la migración que se realizada del sistema de TMA a Nevada, EUA durante 2017. Actualmente Charly y su equipo tienen el reto de mudar e instalar a todos los empleados en la nueva oficina de CWT México para mediados del 2018.','GARCIA DIAZ CARLOS MANUEL'], 
+        ['Dirección General','Gerardo es el capitán del equipo, que, auxiliado por las distintas áreas de la organización tiene la responsabilidad de guiar y ejecutar que las estrategias y planes para que se hagan realidad. Él es el representante de México y desde su llegada hace dos años hemos logrado cambios muy positivos en el equipo, los cuales se han basado en buscar lo mejor para México. Éstos han permitido que la organización  cumpla con los objetivos globales establecidos y se mantenga la alineación correcta de los empleados mediante motivación, y mostrando día con día su compromiso con el equipo.','VERA PRENDES GERARDO'], 
+        ['Implementaciones','El equipo que se encarga de ejecutar el proceso operativo, el cual puede ser para nuevos clientes, fusión de clientes o separación de los mismos. El área es intermediaria entre el proceso de ventas y la asignación del Program Manager','NA'],
+        ['Marketing','René es el líder de Marketing de productos para la región de habla hispana. A partir de su llegada se han estandarizado procesos relevantes en la imagen de CWT México, así como propuesto ideas y estrategias que han permitido reposicionar a CWT México. Rene ha participado en la organización de varios eventos tanto externos como internos, quien nos ha representado como embajador de marca. Su área está en constante movimiento y él es el responsable para que la imagen, mensajes clave, productos y estrategia de marca de México se encuentre alineada para distinguirnos con nuestros clientes.','MEDELLIN FARIAS RENE '],
+        ['Meeting & Events','M&E es una de las dos  divisiones del negocio y  es la parte dinámica de la organización. M&E son los encargados de convertir las ideas en resultados, trayendo resultados tangibles. El área se encarga de planear, organizar y ejecutar eventos para nuestros clientes y mostrar el lado creativo de la organización. El área está liderada por Amalia, quién  guiada en su experiencia, es la encargada de toda la operación y ejecución de los eventos. Por su parte Ricardo se dedica a la prospección, búsqueda y diversificación de nuevos clientes para M&E.','OLVERA DIAZ AMALIA CEBALLOS ESTRADA RICARDO'],
+        ['Program Management','Alberto tiene la responsabilidad de mantener una relación 1:1 con el cliente. Su equipo es el encargado de escuchar las sugerencias que el cliente tiene respecto a nuestros servicios, para de esta manera siempre mantenerlo satisfecho y funcional con CWT. La figura del Program Manager es el encargado de optimizar los programas de viajes de nuestros clientes mediante la implementación de nuestra tecnología y nuestros servicios. El área de PM durante el  2017 mantuvo una relación con 200 + clientes y obtuvo un porcentaje de retención  de 99.8%','PALMA CORTES ALBERTO'],
+        ['Recursos Humanos','Recursos Humanos se preocupa por el bienestar de la gente analizando nuestro talento interno, proporcionando programas de formación a la medida, atrayendo y reteniendo talentos, desarrollando al personal y analizando nuestros programas y políticas de compensación para que tengamos el mejor equipo. Además, acompañamos la estrategia de negocio con certificaciones y programas que consiguen el alcance de los objetivos. Todo esto en un marco de comunicación efectiva con campañas que mantengan informado a todos nuestros jugadores. Lu, junto con su staff global de Compensaciones, Talent Aquisition y el Shared Service de Recursos Humanos, están para brindar ayuda y apoyo!','GOMEZ PEÑA  LUCIANA'],
+        ['Supplier Management','Leo se encarga de representar a CWT con nuestros proveedores preferenciales. Leo es el responsable de que internamente el equipo  Comercial y de Traveler sevices conozcan cuales son nuestros primary suppliers para que la negociaciones con éstos sean las óptimas.  Leo desarrolla el  relacionamiento y cumplimiento de los porcentajes que tienen que ver con el revenue de suppliers y se enfocan en la fidelización que CWT tiene con éstos, llegando a los números establecidos. Para mantener al personal motivado y con nuestros suppliers preferenciales en su top of mind, Leo internamente realiza eventos para todos los empleados, así como distintas dinámicas al o largo del año.','BORTOLIN  LEONARDO ROBERTO'],
+        ['Traveler Services','Traveler services es el corazón de la organización, el cual se enfoca en ofrecer la mejor atención y personalización al cliente. TS se enfoca en la puesta en marcha de nuestro servicio. La experiencia y atención a cliente hacen que nuestro servicio sea reconocido en el mercado y gran parte de este logro es gracias a los integrantes de Traveler Services.TS a los largo del día tendrá que cumplir con las métricas establecidas y si se tienen un buen manejo de éstas, el personal es remunerado por distintos incentivos globales. Eliseo se encarga de TS en la región de LATAM, así comode la ejecución de distintas estrategías e implementaciones globales.Por su parte Bertha tiene la experiencia para dirigir al equipo y mantener nuestra estrategia de servicio hacía los mismo objetivos.','DUNO CARRILLO ELISEO JESUS SOSA MELENDEZ BERTHA ESPERANZA'],
+        ['Ventas Globales','El equipo de ventas, tiene un gran reto año con año que es llegar a la meta. Durante 2017 el equipo trajo más de 30+ clientes y sobrepasaron el objetivo de ventas.  2018 no es la excepción, y tendrán que llegar al número planteado para cumplir con los objetivos anuales.Durante 2017 el equipo alcanzó $130MUSD. Gabriela es la encargada de las cuentas GPS, y reporta a CWT Americas. Las cuentas que ella busca, cuentan con requisitos especiales para entrar en este rubro (volumen, número de países que participan, trx) A su vez Atziri, quien nos representa en México,  obtuvo un reconocimiento por ser una de las vendedoras más comprometidas a nivel global en CWT durante 2017.','ACEVES LOPEZ GABRIELA'],
+        ['Ventas Locales','El equipo de ventas, tiene un gran reto año con año que es llegar a la meta. Durante 2017 el equipo trajo más de 30+ clientes y sobrepasaron el objetivo de ventas.  2018 no es la excepción, y tendrán que llegar al número planteado para cumplir con los objetivos anuales. Durante 2017 el equipo alcanzó $130MUSD. Gabriela es la encargada de las cuentas GPS, y reporta a CWT Americas. Las cuentas que ella busca, cuentan con requisitos especiales para entrar en este rubro (volumen, número de países que participan, trx) A su vez Atziri, quien nos representa en México,  obtuvo un reconocimiento por ser una de las vendedoras más comprometidas a nivel global en CWT durante 2017.','RANGEL AGUILERA ATZIRI']
+    ]
+    
+    rarity = ['low', 'medium', 'high']
 
-    list_user = User.objects.all().count()
-    if list_user < 20:
-        for user in range(1, 21):
-            user_save = User.objects.create_user('jason'+str(user), 'garcia.robertogarcia+'+str(user)+'@gmail.com', 'johnpassword'+str(user))
-            user_save.is_staff = True
-            user_save.save()
+    cards = [
+        ['CATARINO RAMIREZ ESTELA','1','ANALISTA CONTABLE',True,'2016/09/13',1,'http://static.pulzo.com/images/20180225220341/ficha-juan-cuadrado-896x485.jpg?2ok=1519614733'],
+        ['RIVERA PIÑA ARMANDO','1','ANALISTA DE COBRANZA',True,'2017/08/16',1,'http://static.pulzo.com/images/20180225220341/ficha-juan-cuadrado-896x485.jpg?2ok=1519614733'],
+        ['ACEVEDO JAIMES CLAUDIA ANGELICA','1','ANALISTA DE COBRANZA',True,'2017/08/16',1,'http://static.pulzo.com/images/20180225220341/ficha-juan-cuadrado-896x485.jpg?2ok=1519614733'],
+        ['CRUZ LOPEZ GUILLERMO','1','AUXILIAR CUENTAS POR COBRAR',True,'1993/01/04',1,'http://static.pulzo.com/images/20180225220341/ficha-juan-cuadrado-896x485.jpg?2ok=1519614733'],
+        ['JIMENEZ CABRERA MAGALI LORENA','1','AUXILIAR CUENTAS POR PAGAR',True,'2013/06/24',1,'http://static.pulzo.com/images/20180225220341/ficha-juan-cuadrado-896x485.jpg?2ok=1519614733'],
+        ['VILLANUEVA ORTEGA MARIA PAOLA','1','AUXILIAR CUENTAS POR PAGAR',True,'2017/06/05',1,'http://static.pulzo.com/images/20180225220341/ficha-juan-cuadrado-896x485.jpg?2ok=1519614733'],
+        ['NOLASCO VILLANUEVA JUAN MIGUEL','1','CAJERO',True,'2003/06/01',1,'http://static.pulzo.com/images/20180225220341/ficha-juan-cuadrado-896x485.jpg?2ok=1519614733'],
+        ['BLANCO CORTES JORGE ALBERTO','1','CAJERO',True,'2003/10/16',1,'http://static.pulzo.com/images/20180225220341/ficha-juan-cuadrado-896x485.jpg?2ok=1519614733'],
+        ['FLORES CASADO HUGO','1','CONTRALOR',True,'2016/05/11',1,'http://static.pulzo.com/images/20180225220341/ficha-juan-cuadrado-896x485.jpg?2ok=1519614733'],
+        ['ROMERO GUTIERREZ ADRIANA LORENA','1','DIRECTOR DE ADMON. Y FINANZAS ',True,'2015/06/22',1,'http://static.pulzo.com/images/20180225220341/ficha-juan-cuadrado-896x485.jpg?2ok=1519614733'],
+        ['ONOFRE ZAMUDIO ALMA GUADALUPE','1','GERENTE DE 1  ',True,'2008/09/29',1,'http://static.pulzo.com/images/20180225220341/ficha-juan-cuadrado-896x485.jpg?2ok=1519614733'],
+        ['MONTALVO ROMERO MARIA DEL CARMEN','1','JEFE CUENTAS POR COBRAR',True,'2008/08/05',1,'http://static.pulzo.com/images/20180225220341/ficha-juan-cuadrado-896x485.jpg?2ok=1519614733'],
+        ['LORENZO REYES AMANDA','1','JEFE DE ADMON EN EFECTIVO ',True,'2011/04/26',1,'http://static.pulzo.com/images/20180225220341/ficha-juan-cuadrado-896x485.jpg?2ok=1519614733'],
+        ['ROSALES RAMIREZ EMMA ROSA','1','JEFE DE CUENTAS POR PAGAR',True,'2014/10/03',1,'http://static.pulzo.com/images/20180225220341/ficha-juan-cuadrado-896x485.jpg?2ok=1519614733'],
+        ['MONDRAGON MONDRAGON MARIA GUADALUPE','1','SUPERVISOR CONTABLE',True,'2015/03/17',1,'http://static.pulzo.com/images/20180225220341/ficha-juan-cuadrado-896x485.jpg?2ok=1519614733'],
+        ['GARCIA DIAZ CARLOS MANUEL','2','GERENTE DE 2',True,'2000/08/21',1,'http://static.pulzo.com/images/20180225220341/ficha-juan-cuadrado-896x485.jpg?2ok=1519614733'],
+        ['TORRES VAZQUEZ ANDREA','3','ASISTENTE EJECUTIVA',True,'2016/05/16',1,'http://static.pulzo.com/images/20180225220341/ficha-juan-cuadrado-896x485.jpg?2ok=1519614733'],
+        ['VERA PRENDES GERARDO','3','DIRECTOR GENERAL  ',True,'2016/03/01',1,'http://static.pulzo.com/images/20180225220341/ficha-juan-cuadrado-896x485.jpg?2ok=1519614733'],
+        ['ELIZONDO AYALA GLORIA YUD2H','4','GERENTE DE 4',True,'2012/01/05',1,'http://static.pulzo.com/images/20180225220341/ficha-juan-cuadrado-896x485.jpg?2ok=1519614733'],
+        ['GOMEZ SANCHEZ SONIA','4','GERENTE DE 4',True,'2015/02/23',1,'http://static.pulzo.com/images/20180225220341/ficha-juan-cuadrado-896x485.jpg?2ok=1519614733'],
+        ['CRUZ OLGUIN MONICA','4','GERENTE DE 4',True,'1999/06/28',1,'http://static.pulzo.com/images/20180225220341/ficha-juan-cuadrado-896x485.jpg?2ok=1519614733'],
+        ['LEYVA CRUZ EDER URIEL','4','GERENTE DE 4',True,'2008/08/18',1,'http://static.pulzo.com/images/20180225220341/ficha-juan-cuadrado-896x485.jpg?2ok=1519614733'],
+        ['MORENO GONZALEZ ARGELIA','4','GERENTE DE 4',True,'2014/02/17',1,'http://static.pulzo.com/images/20180225220341/ficha-juan-cuadrado-896x485.jpg?2ok=1519614733'],
+        ['MONSALVO RODRIGUEZ KAREM','4','ONLINE IMPLEMENTATION SPECIALIST',True,'2017/05/02',1,'http://static.pulzo.com/images/20180225220341/ficha-juan-cuadrado-896x485.jpg?2ok=1519614733'],
+        ['QUEVEDO SEQUI ALEJANDRO ENRIQUE','4','PRODUCT DELIVERY MANAGER',True,'2015/08/03',1,'http://static.pulzo.com/images/20180225220341/ficha-juan-cuadrado-896x485.jpg?2ok=1519614733'],
+        ['MEDELLIN FARIAS RENE RAMIRO','5','5 PRODUCT MANAGER',True,'2017/05/16',1,'http://static.pulzo.com/images/20180225220341/ficha-juan-cuadrado-896x485.jpg?2ok=1519614733'],
+        ['GONZALEZ RAMIREZ MARIA ANDREA','6','AUXILIAR ADMINISTRATIVO',True,'2014/01/13',1,'http://static.pulzo.com/images/20180225220341/ficha-juan-cuadrado-896x485.jpg?2ok=1519614733'],
+        ['VILLANUEVA ORTEGA MIRIAM DEYANIRA','6','AUXILIAR ADMINISTRATIVO',True,'2016/03/29',1,'http://static.pulzo.com/images/20180225220341/ficha-juan-cuadrado-896x485.jpg?2ok=1519614733'],
+        ['GARCIA MANCILLA ERIKA GUADALUPE','6','AUXILIAR ADMINISTRATIVO',True,'2018/01/16',1,'http://static.pulzo.com/images/20180225220341/ficha-juan-cuadrado-896x485.jpg?2ok=1519614733'],
+        ['TOLENTINO MARTINEZ NANCY JANET','6','AUXILIAR ADMINISTRATIVO',True,'2017/03/21',1,'http://static.pulzo.com/images/20180225220341/ficha-juan-cuadrado-896x485.jpg?2ok=1519614733'],
+        ['CORPUS PACHECO NORMA','6','COORDINADOR ADMINISTRATIVO',True,'2016/09/01',1,'http://static.pulzo.com/images/20180225220341/ficha-juan-cuadrado-896x485.jpg?2ok=1519614733'],
+        ['MARQUEZ AGUILAR DAVID','6','COORDINADOR SERVICIOS AEREOS M&E',True,'2018/02/06',1,'http://static.pulzo.com/images/20180225220341/ficha-juan-cuadrado-896x485.jpg?2ok=1519614733'],
+        ['PECH BORROMEO JESUS ARTURO','6','COORDINADOR SERVICIOS AEREOS M&E',True,'2014/06/02',1,'http://static.pulzo.com/images/20180225220341/ficha-juan-cuadrado-896x485.jpg?2ok=1519614733'],
+        ['RODRIGUEZ HERRERA BLANCA ROSA','6','COORDINADOR SERVICIOS AEREOS M&E',True,'2016/02/22',1,'http://static.pulzo.com/images/20180225220341/ficha-juan-cuadrado-896x485.jpg?2ok=1519614733'],
+        ['VELAZCO VELASCO GUILLERMO ARTURO','6','COORDINADOR SERVICIOS AEREOS M&E',True,'2016/10/05',1,'http://static.pulzo.com/images/20180225220341/ficha-juan-cuadrado-896x485.jpg?2ok=1519614733'],
+        ['HERNANDEZ TORRES JUAN MANUEL','6','COORDINADOR SERVICIOS TERRESTRES M&E',True,'2017/09/18',1,'http://static.pulzo.com/images/20180225220341/ficha-juan-cuadrado-896x485.jpg?2ok=1519614733'],
+        ['GONZALEZ PALOMARES PAULINA','6','COORDINADOR SERVICIOS TERRESTRES M&E',True,'2018/02/06',1,'http://static.pulzo.com/images/20180225220341/ficha-juan-cuadrado-896x485.jpg?2ok=1519614733'],
+        ['AGUILAR HERNANDEZ 2ZEL','6','COORDINADOR SERVICIOS TERRESTRES M&E',True,'2012/04/09',1,'http://static.pulzo.com/images/20180225220341/ficha-juan-cuadrado-896x485.jpg?2ok=1519614733'],
+        ['HERNANDEZ RODRIGUEZ ESMERALDA','6','COORDINADOR SERVICIOS TERRESTRES M&E',True,'2014/01/13',1,'http://static.pulzo.com/images/20180225220341/ficha-juan-cuadrado-896x485.jpg?2ok=1519614733'],
+        ['GARCIA BECERRA ARIZBETH LILIANA','6','COORDINADOR SERVICIOS TERRESTRES M&E',True,'2014/09/22',1,'http://static.pulzo.com/images/20180225220341/ficha-juan-cuadrado-896x485.jpg?2ok=1519614733'],
+        ['CARCAMO REYES MARIA DEL CARMEN','6','COORDINADOR SERVICIOS TERRESTRES M&E',True,'2016/02/26',1,'http://static.pulzo.com/images/20180225220341/ficha-juan-cuadrado-896x485.jpg?2ok=1519614733'],
+        ['CASTILLO CHRISTY ADRIANA GABRIELA','6','COORDINADOR SERVICIOS TERRESTRES M&E',True,'2016/09/26',1,'http://static.pulzo.com/images/20180225220341/ficha-juan-cuadrado-896x485.jpg?2ok=1519614733'],
+        ['GOMEZ HURTADO JORGE ALEXIS','6','COORDINADOR SERVICIOS TERRESTRES M&E',True,'2016/10/24',1,'http://static.pulzo.com/images/20180225220341/ficha-juan-cuadrado-896x485.jpg?2ok=1519614733'],
+        ['RODRIGUEZ GARCIA GABRIELA','6','COORDINADOR SERVICIOS TERRESTRES M&E',True,'2016/12/01',1,'http://static.pulzo.com/images/20180225220341/ficha-juan-cuadrado-896x485.jpg?2ok=1519614733'],
+        ['GOMEZ ESTRADA GLORIA','6','COORDINADOR SERVICIOS TERRESTRES M&E',True,'2017/02/16',1,'http://static.pulzo.com/images/20180225220341/ficha-juan-cuadrado-896x485.jpg?2ok=1519614733'],
+        ['CAHUANTZI MELENDEZ MAXIMILIANO','6','COORDINADOR SERVICIOS TERRESTRES M&E',True,'2017/05/16',1,'http://static.pulzo.com/images/20180225220341/ficha-juan-cuadrado-896x485.jpg?2ok=1519614733'],
+        ['HERNANDEZ REYES ALEJANDRA','6','COORDINADOR SERVICIOS TERRESTRES M&E',True,'2017/07/03',1,'http://static.pulzo.com/images/20180225220341/ficha-juan-cuadrado-896x485.jpg?2ok=1519614733'],
+        ['CABRERA MORALES CONSUELO','6','COORDINADOR SERVICIOS TERRESTRES M&E',True,'2017/07/03',1,'http://static.pulzo.com/images/20180225220341/ficha-juan-cuadrado-896x485.jpg?2ok=1519614733'],
+        ['FLORES OJEDA TOBIAS','6','COORDINADOR SERVICIOS TERRESTRES M&E',True,'2004/10/04',1,'http://static.pulzo.com/images/20180225220341/ficha-juan-cuadrado-896x485.jpg?2ok=1519614733'],
+        ['DEL OLMO DIAZ ISSIS HEIDI','6','EJECUTIVO COMERCIAL M&E',True,'2013/09/17',1,'http://static.pulzo.com/images/20180225220341/ficha-juan-cuadrado-896x485.jpg?2ok=1519614733'],
+        ['GUZMAN MAYORAL LUIS GONZALO','6','EJECUTIVO COMERCIAL M&E',True,'2018/01/02',1,'http://static.pulzo.com/images/20180225220341/ficha-juan-cuadrado-896x485.jpg?2ok=1519614733'],
+        ['CEBALLOS ESTRADA RICARDO','6','GERENTE COMERCIAL',True,'2017/08/07',1,'http://static.pulzo.com/images/20180225220341/ficha-juan-cuadrado-896x485.jpg?2ok=1519614733'],
+        ['DEL POZO PORTILLO XOCH2L','6','GERENTE DE ESTRATEGIA DE EVENTOS',True,'2013/10/01',1,'http://static.pulzo.com/images/20180225220341/ficha-juan-cuadrado-896x485.jpg?2ok=1519614733'],
+        ['OLVERA DIAZ AMALIA','6','GERENTE DE OPERACIONES M&E',True,'2007/11/01',1,'http://static.pulzo.com/images/20180225220341/ficha-juan-cuadrado-896x485.jpg?2ok=1519614733'],
+        ['DEL VALLE DUARTE MARIANA','6','RSVP COORDINADOR AEREO',True,'2016/02/02',1,'http://static.pulzo.com/images/20180225220341/ficha-juan-cuadrado-896x485.jpg?2ok=1519614733'],
+        ['CABRERA LOPEZ JUAN CARLOS','6','RSVP COORDINADOR AEREO',True,'2016/06/01',1,'http://static.pulzo.com/images/20180225220341/ficha-juan-cuadrado-896x485.jpg?2ok=1519614733'],
+        ['FLORES LOPEZ HARUMI SAYURI','6','RSVP COORDINADOR AEREO',True,'2016/12/26',1,'http://static.pulzo.com/images/20180225220341/ficha-juan-cuadrado-896x485.jpg?2ok=1519614733'],
+        ['ALVARADO MONDRAGON JORGE FERNANDO','6','SUPERVISOR SERVICIOS AEREOS M&E',True,'2013/02/25',1,'http://static.pulzo.com/images/20180225220341/ficha-juan-cuadrado-896x485.jpg?2ok=1519614733'],
+        ['MARTAGON CASTRO NELY LESLY','6','SUPERVISOR SERVICIOS AEREOS M&E',True,'2014/01/13',1,'http://static.pulzo.com/images/20180225220341/ficha-juan-cuadrado-896x485.jpg?2ok=1519614733'],
+        ['ORTIZ MONTEON 2ZEL MONSERRAT','6','SUPERVISOR SERVICIOS TERRESTRES M&E',True,'2011/10/11',1,'http://static.pulzo.com/images/20180225220341/ficha-juan-cuadrado-896x485.jpg?2ok=1519614733'],
+       #['HERRERA TORRES DIANA','PRODUCTO','BUSINESS ANALYST',True,'2012/04/09',1,'http://static.pulzo.com/images/20180225220341/ficha-juan-cuadrado-896x485.jpg?2ok=1519614733'],
+        ['GARCIA LIMA DANIELA FERNANDA','7','ANALISTA INFORMACION Y ESTADIS',True,'2018/03/16',1,'http://static.pulzo.com/images/20180225220341/ficha-juan-cuadrado-896x485.jpg?2ok=1519614733'],
+        ['CABALLERO CASTILLO JAIME','7','ANALISTA INFORMACION Y ESTADIS',True,'2012/05/29',1,'http://static.pulzo.com/images/20180225220341/ficha-juan-cuadrado-896x485.jpg?2ok=1519614733'],
+        ['GARCIA PEÑA RAUL','7','ANALISTA INFORMACION Y ESTADIS',True,'2004/08/02',1,'http://static.pulzo.com/images/20180225220341/ficha-juan-cuadrado-896x485.jpg?2ok=1519614733'],
+        ['MORALES VIZCAYA STEPHANIE MARGAR2A','7','ANALISTA INFORMACION Y ESTADIS',True,'2014/04/02',1,'http://static.pulzo.com/images/20180225220341/ficha-juan-cuadrado-896x485.jpg?2ok=1519614733'],
+        ['PELAEZ CARMONA ALBERTO','7','ANALISTA INFORMACION Y ESTADIS',True,'2017/09/18',1,'http://static.pulzo.com/images/20180225220341/ficha-juan-cuadrado-896x485.jpg?2ok=1519614733'],
+        ['GUZMAN GUZMAN KENIA PATRICIA','7','ASISTENTE DIRECCION',True,'2017/01/02',1,'http://static.pulzo.com/images/20180225220341/ficha-juan-cuadrado-896x485.jpg?2ok=1519614733'],
+        ['VAZQUEZ LOPEZ VERONICA','7','CORPORATE PROGRAM MANAGER',True,'1995/03/06',1,'http://static.pulzo.com/images/20180225220341/ficha-juan-cuadrado-896x485.jpg?2ok=1519614733'],
+        ['PALMA CORTES ALBERTO','7','DIRECTOR DE PROGRAM MANAGER',True,'2016/02/02',1,'http://static.pulzo.com/images/20180225220341/ficha-juan-cuadrado-896x485.jpg?2ok=1519614733'],
+        ['TELLO ARROYAVE OSCAR DANIEL','7','ENTERPRISE PROGRAM MANAGER',True,'2004/02/09',1,'http://static.pulzo.com/images/20180225220341/ficha-juan-cuadrado-896x485.jpg?2ok=1519614733'],
+        ['HURTADO SALAS PAULA','7','PROGRAM MANAGER',True,'2017/12/04',1,'http://static.pulzo.com/images/20180225220341/ficha-juan-cuadrado-896x485.jpg?2ok=1519614733'],
+        ['HERNANDEZ TORRES DAVID','7','PROGRAM MANAGER',True,'2012/02/01',1,'http://static.pulzo.com/images/20180225220341/ficha-juan-cuadrado-896x485.jpg?2ok=1519614733'],
+        ['CHAVEZ DAVILA VIRGINIA','7','PROGRAM MANAGER',True,'2013/06/24',1,'http://static.pulzo.com/images/20180225220341/ficha-juan-cuadrado-896x485.jpg?2ok=1519614733'],
+        ['CONTRERAS RUIZ YUR2ZIN LETICIA','7','PROGRAM MANAGER',True,'2018/01/16',1,'http://static.pulzo.com/images/20180225220341/ficha-juan-cuadrado-896x485.jpg?2ok=1519614733'],
+        ['VAQUERO LUNA ANA LILIA','7','PROGRAM MANAGER',True,'2004/09/13',1,'http://static.pulzo.com/images/20180225220341/ficha-juan-cuadrado-896x485.jpg?2ok=1519614733'],
+        ['CAMPOS ESPEJEL CLAUDIA','7','PROGRAM MANAGER',True,'2010/04/16',1,'http://static.pulzo.com/images/20180225220341/ficha-juan-cuadrado-896x485.jpg?2ok=1519614733'],
+        ['MACALPIN MARTINEZ HORACIO','7','PROGRAM MANAGER',True,'2016/12/26',1,'http://static.pulzo.com/images/20180225220341/ficha-juan-cuadrado-896x485.jpg?2ok=1519614733'],
+        ['MARTINEZ HERNANDEZ AARON ALVAR','7','PROGRAM MANAGER JR',True,'2017/06/05',1,'http://static.pulzo.com/images/20180225220341/ficha-juan-cuadrado-896x485.jpg?2ok=1519614733'],
+        ['ORTEGA OTAÑEZ IRACEMA','7','PROGRAM MANAGER REGIONAL  ',True,'2015/11/10',1,'http://static.pulzo.com/images/20180225220341/ficha-juan-cuadrado-896x485.jpg?2ok=1519614733'],
+        ['PARRALES PELAYO MARIANA','7','PROGRAM MANAGER REGIONAL  ',True,'2012/12/03',1,'http://static.pulzo.com/images/20180225220341/ficha-juan-cuadrado-896x485.jpg?2ok=1519614733'],
+        ['RINCON BARRERA SONIA PIEDAD','7','SMB PROGRAM SERVICE CENTER SUPERVISOR',True,'2004/11/22',1,'http://static.pulzo.com/images/20180225220341/ficha-juan-cuadrado-896x485.jpg?2ok=1519614733'],
+        ['MARTINEZ MENDOZA MARIA DE LOURDES','7','SUPERVISOR',True,'1998/05/18',1,'http://static.pulzo.com/images/20180225220341/ficha-juan-cuadrado-896x485.jpg?2ok=1519614733'],
+        ['GOMEZ PEÑA  LUCIANA','8','GERENTE SR. 8  ',True,'2016/11/01',1,'http://static.pulzo.com/images/20180225220341/ficha-juan-cuadrado-896x485.jpg?2ok=1519614733'],
+        #['IBARRA BLANCAS JOSE ALBERTO','SERVICIOS GENERALES','AUXILIAR SERVICIOS GENERALES',True,'2017/11/13',1,'http://static.pulzo.com/images/20180225220341/ficha-juan-cuadrado-896x485.jpg?2ok=1519614733'],
+        ['BORTOLIN  LEONARDO ROBERTO','9','GERENTE DE 9',True,'2017/05/22',1,'http://static.pulzo.com/images/20180225220341/ficha-juan-cuadrado-896x485.jpg?2ok=1519614733'],
+        ['PEREZ CONTRERAS ESMERALDA JANETTH','10','ASESOR DE 10',True,'2013/07/08',1,'http://static.pulzo.com/images/20180225220341/ficha-juan-cuadrado-896x485.jpg?2ok=1519614733'],
+        ['ALPUIN RAMOS ILSE GABRIELA','10','ASESOR DE 10',True,'2014/06/02',1,'http://static.pulzo.com/images/20180225220341/ficha-juan-cuadrado-896x485.jpg?2ok=1519614733'],
+        ['GARCIA  ROBERTO','10','COORDINADOR ANALISTA RELACION',True,'1992/03/19',1,'http://static.pulzo.com/images/20180225220341/ficha-juan-cuadrado-896x485.jpg?2ok=1519614733'],
+        ['SOSA MELENDEZ BERTHA ESPERANZA','10','DIRECTOR 10',True,'1996/07/11',1,'http://static.pulzo.com/images/20180225220341/ficha-juan-cuadrado-896x485.jpg?2ok=1519614733'],
+        ['CHAGOYA MENDOZA ANA ISABEL','10','EJECUTIVO DE RESERVACIONES',True,'2011/12/19',1,'http://static.pulzo.com/images/20180225220341/ficha-juan-cuadrado-896x485.jpg?2ok=1519614733'],
+        ['ESTRADA GONZALEZ MYRYAM ALHELI','10','EJECUTIVO DE RESERVACIONES',True,'2012/04/09',1,'http://static.pulzo.com/images/20180225220341/ficha-juan-cuadrado-896x485.jpg?2ok=1519614733'],
+        ['HERRERIAS SALGADO CARLOS DE JESUS','10','EJECUTIVO DE RESERVACIONES',True,'2012/04/09',1,'http://static.pulzo.com/images/20180225220341/ficha-juan-cuadrado-896x485.jpg?2ok=1519614733'],
+        ['MIRIEL MENDEZ IZCHEL','10','EJECUTIVO DE RESERVACIONES',True,'2012/04/16',1,'http://static.pulzo.com/images/20180225220341/ficha-juan-cuadrado-896x485.jpg?2ok=1519614733'],
+        ['CORTES RIVERA CATALINA','10','EJECUTIVO DE RESERVACIONES',True,'2012/04/23',1,'http://static.pulzo.com/images/20180225220341/ficha-juan-cuadrado-896x485.jpg?2ok=1519614733'],
+        ['SANCHEZ CARRILLO ERICK ALBERTO','10','EJECUTIVO DE RESERVACIONES',True,'2012/04/23',1,'http://static.pulzo.com/images/20180225220341/ficha-juan-cuadrado-896x485.jpg?2ok=1519614733'],
+        ['PUENTE VARGAS JUAN CARLOS','10','EJECUTIVO DE RESERVACIONES',True,'2012/04/23',1,'http://static.pulzo.com/images/20180225220341/ficha-juan-cuadrado-896x485.jpg?2ok=1519614733'],
+        ['CISNEROS RAMIREZ DANIELA','10','EJECUTIVO DE RESERVACIONES',True,'2012/04/30',1,'http://static.pulzo.com/images/20180225220341/ficha-juan-cuadrado-896x485.jpg?2ok=1519614733'],
+        ['JIMENEZ CORTEZ JUAN CARLOS','10','EJECUTIVO DE RESERVACIONES',True,'2012/05/14',1,'http://static.pulzo.com/images/20180225220341/ficha-juan-cuadrado-896x485.jpg?2ok=1519614733'],
+        ['LUQUE GODINEZ DANIEL','10','EJECUTIVO DE RESERVACIONES',True,'2012/05/14',1,'http://static.pulzo.com/images/20180225220341/ficha-juan-cuadrado-896x485.jpg?2ok=1519614733'],
+        ['RAMIREZ SAAVEDRA MARIA DEL CARMEN','10','EJECUTIVO DE RESERVACIONES',True,'2012/05/21',1,'http://static.pulzo.com/images/20180225220341/ficha-juan-cuadrado-896x485.jpg?2ok=1519614733'],
+        ['OVIEDO PALACIOS RAUL','10','EJECUTIVO DE RESERVACIONES',True,'2012/07/16',1,'http://static.pulzo.com/images/20180225220341/ficha-juan-cuadrado-896x485.jpg?2ok=1519614733'],
+        ['VERDUZCO ALVAREZ MARTIN','10','EJECUTIVO DE RESERVACIONES',True,'2013/06/25',1,'http://static.pulzo.com/images/20180225220341/ficha-juan-cuadrado-896x485.jpg?2ok=1519614733'],
+        ['PEREZ HERRERA JESSICA CONCEPCION','10','EJECUTIVO DE RESERVACIONES',True,'2013/07/16',1,'http://static.pulzo.com/images/20180225220341/ficha-juan-cuadrado-896x485.jpg?2ok=1519614733'],
+        ['GRAJALES OSORIO LEONARDO JOAQUIN','10','EJECUTIVO DE RESERVACIONES',True,'2013/11/11',1,'http://static.pulzo.com/images/20180225220341/ficha-juan-cuadrado-896x485.jpg?2ok=1519614733'],
+        ['CRUZ LLANOS KARLA FABIOLA','10','EJECUTIVO DE RESERVACIONES',True,'2014/01/08',1,'http://static.pulzo.com/images/20180225220341/ficha-juan-cuadrado-896x485.jpg?2ok=1519614733'],
+        ['KIM GOMEZ ADRIAN HUMBERTO','10','EJECUTIVO DE RESERVACIONES',True,'2014/01/08',1,'http://static.pulzo.com/images/20180225220341/ficha-juan-cuadrado-896x485.jpg?2ok=1519614733'],
+        ['LOPEZ DAVALOS KARINA','10','EJECUTIVO DE RESERVACIONES',True,'2014/01/08',1,'http://static.pulzo.com/images/20180225220341/ficha-juan-cuadrado-896x485.jpg?2ok=1519614733'],
+        ['MORA ROMERO TANIA MONSERRAT','10','EJECUTIVO DE RESERVACIONES',True,'2014/02/04',1,'http://static.pulzo.com/images/20180225220341/ficha-juan-cuadrado-896x485.jpg?2ok=1519614733'],
+        ['MEDINA GOVEA JORGE MANUEL','10','EJECUTIVO DE RESERVACIONES',True,'2014/04/14',1,'http://static.pulzo.com/images/20180225220341/ficha-juan-cuadrado-896x485.jpg?2ok=1519614733'],
+        ['VARGAS CORTES ISAI','10','EJECUTIVO DE RESERVACIONES',True,'2014/04/21',1,'http://static.pulzo.com/images/20180225220341/ficha-juan-cuadrado-896x485.jpg?2ok=1519614733'],
+        ['OVIEDO BARRON KARINA','10','EJECUTIVO DE RESERVACIONES',True,'2014/04/28',1,'http://static.pulzo.com/images/20180225220341/ficha-juan-cuadrado-896x485.jpg?2ok=1519614733'],
+        ['GODINEZ CUEVAS ROSALBA','10','EJECUTIVO DE RESERVACIONES',True,'2014/05/05',1,'http://static.pulzo.com/images/20180225220341/ficha-juan-cuadrado-896x485.jpg?2ok=1519614733'],
+        ['SALGADO PEREZ GUADALUPE GABRIELA','10','EJECUTIVO DE RESERVACIONES',True,'2014/07/07',1,'http://static.pulzo.com/images/20180225220341/ficha-juan-cuadrado-896x485.jpg?2ok=1519614733'],
+        ['DE LA CRUZ MEDINA JUAN ANTONIO','10','EJECUTIVO DE RESERVACIONES',True,'2014/10/06',1,'http://static.pulzo.com/images/20180225220341/ficha-juan-cuadrado-896x485.jpg?2ok=1519614733'],
+        ['SANCHEZ FERREIRA JUAN CARLOS','10','EJECUTIVO DE RESERVACIONES',True,'2015/05/04',1,'http://static.pulzo.com/images/20180225220341/ficha-juan-cuadrado-896x485.jpg?2ok=1519614733'],
+        ['BARRERA TORRES JACQUELINE','10','EJECUTIVO DE RESERVACIONES',True,'2015/05/04',1,'http://static.pulzo.com/images/20180225220341/ficha-juan-cuadrado-896x485.jpg?2ok=1519614733'],
+        ['MARTINEZ REYNA ANDREA ELIZABETH','10','EJECUTIVO DE RESERVACIONES',True,'2015/05/04',1,'http://static.pulzo.com/images/20180225220341/ficha-juan-cuadrado-896x485.jpg?2ok=1519614733'],
+        ['TAPIA GONZALEZ EDGAR EULISES','10','EJECUTIVO DE RESERVACIONES',True,'2015/05/04',1,'http://static.pulzo.com/images/20180225220341/ficha-juan-cuadrado-896x485.jpg?2ok=1519614733'],
+        ['PADILLA AGUILAR LUIS JAVIER','10','EJECUTIVO DE RESERVACIONES',True,'2015/05/04',1,'http://static.pulzo.com/images/20180225220341/ficha-juan-cuadrado-896x485.jpg?2ok=1519614733'],
+        ['VEGA SANCHEZ CAROLINA','10','EJECUTIVO DE RESERVACIONES',True,'2015/05/25',1,'http://static.pulzo.com/images/20180225220341/ficha-juan-cuadrado-896x485.jpg?2ok=1519614733'],
+        ['MILLAN OJEDA AISLINN YVONNE','10','EJECUTIVO DE RESERVACIONES',True,'2015/06/15',1,'http://static.pulzo.com/images/20180225220341/ficha-juan-cuadrado-896x485.jpg?2ok=1519614733'],
+        ['AGUILAR SANCHEZ CARLOS ALBERTO','10','EJECUTIVO DE RESERVACIONES',True,'2015/09/01',1,'http://static.pulzo.com/images/20180225220341/ficha-juan-cuadrado-896x485.jpg?2ok=1519614733'],
+        ['GALVAN SOSA HUMBERTO','10','EJECUTIVO DE RESERVACIONES',True,'2016/05/19',1,'http://static.pulzo.com/images/20180225220341/ficha-juan-cuadrado-896x485.jpg?2ok=1519614733'],
+        ['ROMERO PACHECO ESPERANZA','10','EJECUTIVO DE RESERVACIONES',True,'1998/10/05',1,'http://static.pulzo.com/images/20180225220341/ficha-juan-cuadrado-896x485.jpg?2ok=1519614733'],
+        ['MATA TRISTAN LILIA PATRICIA','10','EJECUTIVO DE RESERVACIONES',True,'2016/06/13',1,'http://static.pulzo.com/images/20180225220341/ficha-juan-cuadrado-896x485.jpg?2ok=1519614733'],
+        ['DIEGO MARTINEZ JULIO','10','EJECUTIVO DE RESERVACIONES',True,'2016/07/25',1,'http://static.pulzo.com/images/20180225220341/ficha-juan-cuadrado-896x485.jpg?2ok=1519614733'],
+        ['COLINA RASCON ALEJANDRO','10','EJECUTIVO DE RESERVACIONES',True,'2016/07/25',1,'http://static.pulzo.com/images/20180225220341/ficha-juan-cuadrado-896x485.jpg?2ok=1519614733'],
+        ['CUEVAS OLIVARES MIGUEL EDUARDO','10','EJECUTIVO DE RESERVACIONES',True,'2016/08/01',1,'http://static.pulzo.com/images/20180225220341/ficha-juan-cuadrado-896x485.jpg?2ok=1519614733'],
+        ['GOMEZ VAZQUEZ MARTHA LUCIA','10','EJECUTIVO DE RESERVACIONES',True,'2016/08/15',1,'http://static.pulzo.com/images/20180225220341/ficha-juan-cuadrado-896x485.jpg?2ok=1519614733'],
+        ['FRAUSTO HERNANDEZ TANIA BERENICE','10','EJECUTIVO DE RESERVACIONES',True,'2016/08/15',1,'http://static.pulzo.com/images/20180225220341/ficha-juan-cuadrado-896x485.jpg?2ok=1519614733'],
+        ['MENDEZ ALMARAZ CLAUDIA','10','EJECUTIVO DE RESERVACIONES',True,'2016/08/22',1,'http://static.pulzo.com/images/20180225220341/ficha-juan-cuadrado-896x485.jpg?2ok=1519614733'],
+        ['HERNANDEZ PEREZ MARIA DEL ROSARIO','10','EJECUTIVO DE RESERVACIONES',True,'2016/08/22',1,'http://static.pulzo.com/images/20180225220341/ficha-juan-cuadrado-896x485.jpg?2ok=1519614733'],
+        ['RAMIREZ MARTINEZ DIMPNA DEL CARMEN','10','EJECUTIVO DE RESERVACIONES',True,'2016/10/03',1,'http://static.pulzo.com/images/20180225220341/ficha-juan-cuadrado-896x485.jpg?2ok=1519614733'],
+        ['ESPINOZA GARCIA LAURA','10','EJECUTIVO DE RESERVACIONES',True,'2016/10/31',1,'http://static.pulzo.com/images/20180225220341/ficha-juan-cuadrado-896x485.jpg?2ok=1519614733'],
+        ['MORENO SEGUNDO ANA LAURA','10','EJECUTIVO DE RESERVACIONES',True,'2016/10/31',1,'http://static.pulzo.com/images/20180225220341/ficha-juan-cuadrado-896x485.jpg?2ok=1519614733'],
+        ['MARISCAL SUAREZ GUILLERMO','10','EJECUTIVO DE RESERVACIONES',True,'2017/04/03',1,'http://static.pulzo.com/images/20180225220341/ficha-juan-cuadrado-896x485.jpg?2ok=1519614733'],
+        ['MUNOZ SIFUENTES FRANCISCO JAVIER','10','EJECUTIVO DE RESERVACIONES',True,'2017/04/05',1,'http://static.pulzo.com/images/20180225220341/ficha-juan-cuadrado-896x485.jpg?2ok=1519614733'],
+        ['MORENO CHAVEZ CASANDRA','10','EJECUTIVO DE RESERVACIONES',True,'2017/06/08',1,'http://static.pulzo.com/images/20180225220341/ficha-juan-cuadrado-896x485.jpg?2ok=1519614733'],
+        ['LOPEZ AGUIRRE RICARDO','10','EJECUTIVO DE RESERVACIONES',True,'2017/06/12',1,'http://static.pulzo.com/images/20180225220341/ficha-juan-cuadrado-896x485.jpg?2ok=1519614733'],
+        ['SANCHEZ HERNANDEZ MARIA GUADALUPE','10','EJECUTIVO DE RESERVACIONES',True,'2017/07/06',1,'http://static.pulzo.com/images/20180225220341/ficha-juan-cuadrado-896x485.jpg?2ok=1519614733'],
+        ['ARAGON MARTINEZ LESLIE ARGELIA','10','EJECUTIVO DE RESERVACIONES',True,'2017/08/01',1,'http://static.pulzo.com/images/20180225220341/ficha-juan-cuadrado-896x485.jpg?2ok=1519614733'],
+        ['MALDONADO SOTELO JULIO','10','EJECUTIVO DE RESERVACIONES',True,'2017/09/01',1,'http://static.pulzo.com/images/20180225220341/ficha-juan-cuadrado-896x485.jpg?2ok=1519614733'],
+        ['SANCHEZ ROMERO SERGIO DANIEL','10','EJECUTIVO DE RESERVACIONES',True,'1999/09/13',1,'http://static.pulzo.com/images/20180225220341/ficha-juan-cuadrado-896x485.jpg?2ok=1519614733'],
+        ['GARCIA HERNANDEZ ANTONIO','10','EJECUTIVO DE RESERVACIONES',True,'2000/01/10',1,'http://static.pulzo.com/images/20180225220341/ficha-juan-cuadrado-896x485.jpg?2ok=1519614733'],
+        ['DIAZ JIMENEZ MARIA ELENA','10','EJECUTIVO DE RESERVACIONES',True,'1996/06/24',1,'http://static.pulzo.com/images/20180225220341/ficha-juan-cuadrado-896x485.jpg?2ok=1519614733'],
+        ['BEN2EZ MEDINA LOURDES CONCEPCION','10','EJECUTIVO DE RESERVACIONES',True,'1999/05/16',1,'http://static.pulzo.com/images/20180225220341/ficha-juan-cuadrado-896x485.jpg?2ok=1519614733'],
+        ['MONTES LOPEZ ALMA LETICIA','10','EJECUTIVO DE RESERVACIONES',True,'2000/08/25',1,'http://static.pulzo.com/images/20180225220341/ficha-juan-cuadrado-896x485.jpg?2ok=1519614733'],
+        ['BARROSO HERNANDEZ MARIA ANTONIETA','10','EJECUTIVO DE RESERVACIONES',True,'2004/11/08',1,'http://static.pulzo.com/images/20180225220341/ficha-juan-cuadrado-896x485.jpg?2ok=1519614733'],
+        ['MENDOZA RAMIREZ TERESA','10','EJECUTIVO DE RESERVACIONES',True,'2005/05/25',1,'http://static.pulzo.com/images/20180225220341/ficha-juan-cuadrado-896x485.jpg?2ok=1519614733'],
+        ['MARTINEZ TORRES ROSARIO DEL CARMEN A','10','EJECUTIVO DE RESERVACIONES',True,'2007/10/22',1,'http://static.pulzo.com/images/20180225220341/ficha-juan-cuadrado-896x485.jpg?2ok=1519614733'],
+        ['NAVA LOPEZ DOLORES','10','EJECUTIVO DE RESERVACIONES',True,'2004/03/22',1,'http://static.pulzo.com/images/20180225220341/ficha-juan-cuadrado-896x485.jpg?2ok=1519614733'],
+        ['GARAY BARRERA MARIANA','10','EJECUTIVO DE RESERVACIONES',True,'2014/04/21',1,'http://static.pulzo.com/images/20180225220341/ficha-juan-cuadrado-896x485.jpg?2ok=1519614733'],
+        ['GOMEZ HERNANDEZ ANA LAURA','10','EJECUTIVO DE RESERVACIONES',True,'2014/04/21',1,'http://static.pulzo.com/images/20180225220341/ficha-juan-cuadrado-896x485.jpg?2ok=1519614733'],
+        ['ROMERO PEREZ YOLANDA','10','EJECUTIVO DE RESERVACIONES',True,'2000/12/13',1,'http://static.pulzo.com/images/20180225220341/ficha-juan-cuadrado-896x485.jpg?2ok=1519614733'],
+        ['NAJERA HERNANDEZ ANA ISABEL','10','EJECUTIVO DE RESERVACIONES',True,'1997/09/17',1,'http://static.pulzo.com/images/20180225220341/ficha-juan-cuadrado-896x485.jpg?2ok=1519614733'],
+        ['ULLOA VILLARREAL NORMA OLIMPIA','10','EJECUTIVO DE RESERVACIONES',True,'1998/12/03',1,'http://static.pulzo.com/images/20180225220341/ficha-juan-cuadrado-896x485.jpg?2ok=1519614733'],
+        ['TORRES OCAÑA MARTIN DE JESUS','10','EJECUTIVO DE RESERVACIONES',True,'2004/02/13',1,'http://static.pulzo.com/images/20180225220341/ficha-juan-cuadrado-896x485.jpg?2ok=1519614733'],
+        ['ALATORRE VAZQUEZ ANABELL','10','EJECUTIVO DE RESERVACIONES',True,'2005/01/03',1,'http://static.pulzo.com/images/20180225220341/ficha-juan-cuadrado-896x485.jpg?2ok=1519614733'],
+        ['MARTINEZ SIERRA HUMBERTO','10','ENTRENADOR',True,'1993/04/01',1,'http://static.pulzo.com/images/20180225220341/ficha-juan-cuadrado-896x485.jpg?2ok=1519614733'],
+        ['IBARRA SANTIAGO OSCAR ALEJANDRO','10','JEFE DE EQUIPO',True,'2012/08/27',1,'http://static.pulzo.com/images/20180225220341/ficha-juan-cuadrado-896x485.jpg?2ok=1519614733'],
+        ['MONTERO RODAL JUAN GUALBERTO','10','JEFE DE EQUIPO',True,'2015/05/04',1,'http://static.pulzo.com/images/20180225220341/ficha-juan-cuadrado-896x485.jpg?2ok=1519614733'],
+        ['AMEZQU2A GUILLEN SILVIA','10','JEFE DE EQUIPO',True,'2012/04/16',1,'http://static.pulzo.com/images/20180225220341/ficha-juan-cuadrado-896x485.jpg?2ok=1519614733'],
+        ['BAEZ PEÑA JESUS','10','JEFE DE EQUIPO',True,'1997/11/01',1,'http://static.pulzo.com/images/20180225220341/ficha-juan-cuadrado-896x485.jpg?2ok=1519614733'],
+        ['DAVILA REYES MAYRA ANGELICA','10','JEFE DE EQUIPO',True,'2000/04/03',1,'http://static.pulzo.com/images/20180225220341/ficha-juan-cuadrado-896x485.jpg?2ok=1519614733'],
+        ['ALCALA LUNA CARLOTA MARIA EUGENIA','10','JEFE DE EQUIPO',True,'2001/02/01',1,'http://static.pulzo.com/images/20180225220341/ficha-juan-cuadrado-896x485.jpg?2ok=1519614733'],
+        ['LOPEZ CONTRERAS CIRO','10','JEFE DE EQUIPO',True,'2002/03/11',1,'http://static.pulzo.com/images/20180225220341/ficha-juan-cuadrado-896x485.jpg?2ok=1519614733'],
+        ['SAAVEDRA FLORES NANCY','10','JEFE DE EQUIPO',True,'2006/11/21',1,'http://static.pulzo.com/images/20180225220341/ficha-juan-cuadrado-896x485.jpg?2ok=1519614733'],
+        ['HERNANDEZ VERDUGO EVELIA','10','JEFE DE EQUIPO',True,'2004/06/16',1,'http://static.pulzo.com/images/20180225220341/ficha-juan-cuadrado-896x485.jpg?2ok=1519614733'],
+        ['NAVARRO RODRIGUEZ LORENA ELIZABETH','10','JEFE DE EQUIPO',True,'2005/01/10',1,'http://static.pulzo.com/images/20180225220341/ficha-juan-cuadrado-896x485.jpg?2ok=1519614733'],
+        ['VELAZCO SILVA JOSE CUTBERTO','10','JEFE DE EQUIPO',True,'2006/02/07',1,'http://static.pulzo.com/images/20180225220341/ficha-juan-cuadrado-896x485.jpg?2ok=1519614733'],
+        ['JUAREZ MARTINEZ CRISTOPHER ISAAC','10','JEFE DE EQUIPO',True,'2006/05/02',1,'http://static.pulzo.com/images/20180225220341/ficha-juan-cuadrado-896x485.jpg?2ok=1519614733'],
+        ['HERNANDEZ TORRES ISRAEL','10','SUPERVISOR',True,'2012/05/14',1,'http://static.pulzo.com/images/20180225220341/ficha-juan-cuadrado-896x485.jpg?2ok=1519614733'],
+        ['FRANCO  ELIA VERONICA','10','SUPERVISOR',True,'2003/02/24',1,'http://static.pulzo.com/images/20180225220341/ficha-juan-cuadrado-896x485.jpg?2ok=1519614733'],
+        ['ROSAS BARRERA DIANA EVA','10','SUPERVISOR',True,'2003/12/09',1,'http://static.pulzo.com/images/20180225220341/ficha-juan-cuadrado-896x485.jpg?2ok=1519614733'],
+        ['COLIN SERVIN SOCORRO DALIA','10','SUPERVISOR',True,'2001/04/02',1,'http://static.pulzo.com/images/20180225220341/ficha-juan-cuadrado-896x485.jpg?2ok=1519614733'],
+        ['RATNAYAKA GONZALEZ NEIL AMARASIRI','10','SUPERVISOR',True,'2008/07/14',1,'http://static.pulzo.com/images/20180225220341/ficha-juan-cuadrado-896x485.jpg?2ok=1519614733'],
+        ['DUNO CARRILLO ELISEO JESUS','10','VICEPRESIDENTE 10 LATAM ',True,'2014/10/06',1,'http://static.pulzo.com/images/20180225220341/ficha-juan-cuadrado-896x485.jpg?2ok=1519614733'],
+        ['RANGEL AGUILERA ATZIRI AMEYALLY','12','DIRECTOR DE 12',True,'2016/11/14',1,'http://static.pulzo.com/images/20180225220341/ficha-juan-cuadrado-896x485.jpg?2ok=1519614733'],
+        ['ACEVES LOPEZ GABRIELA ROSALBA','11','DIRECTOR DE 12 REGIONAL',True,'2014/02/24',1,'http://static.pulzo.com/images/20180225220341/ficha-juan-cuadrado-896x485.jpg?2ok=1519614733'],
+        ['CRUZ MEJIA CHRISTIAN','12','EJECUTIVO DE 12',True,'2018/01/02',1,'http://static.pulzo.com/images/20180225220341/ficha-juan-cuadrado-896x485.jpg?2ok=1519614733'],
+        ['RUIZ CRUZ GLADIS ANAID','12','EJECUTIVO DE 12',True,'2017/01/02',1,'http://static.pulzo.com/images/20180225220341/ficha-juan-cuadrado-896x485.jpg?2ok=1519614733'],
+        ['SANTILLAN MENDEZ KARLA VANESSA','12','PROPOSAL MANAGER SPECIALIST',True,'2003/06/01',1,'http://static.pulzo.com/images/20180225220341/ficha-juan-cuadrado-896x485.jpg?2ok=1519614733']
+    ]
 
-    list_rarity = Rarity.objects.all().count()
-    if list_rarity < 3:
-        rarity = ['low', 'medium', 'high']
-        for value in rarity:
-            r = Rarity(description=value)
-            r.save()
-        list_departments = Department.objects.all().count()
-
-        departments = ['Management', 'Finance', 'Technology', 'Human', 'Resources']
-        total_departments = len(departments)
-
-        if list_departments <= total_departments:
-
-            for value in departments:
-                d = Department(description=value)
-                d.save()
-
-        list_cards = Card.objects.all().count()
-
-        if list_cards < 200:
-            for x in range(1, 200):
-                c = Card(
-                    name='name ' + str(x),
-                    order=1,
-                    description='description ' + str(x),
-                    photo='http://static.pulzo.com/images/20180225220341/ficha-juan-cuadrado-896x485.jpg?itok=1519614733',
-                    fk_rarity=Rarity.objects.get(id=randint(1, 3)),
-                    fk_department=Department.objects.get(id=randint(1, total_departments))
-                )
-                c.save()
+    with connection.cursor() as cursor:
+        #fill departments
+        cursor.execute("SELECT COUNT(id) FROM cards_department")
+        total = cursor.fetchone()
+        if total[0] < 12:
+            for i in range(len(departments)):
+                cursor.execute("INSERT INTO cards_department (name,description,head) VALUES (%s,%s,%s)", [ departments[i][0], departments[i][1], 
+                departments[i][2] ])
+        
+        #fill rarity type
+        cursor.execute("SELECT COUNT(id) FROM cards_rarity")
+        total = cursor.fetchone()
+        if total[0] < 3:
+            for i in range(len(rarity)):
+                cursor.execute("INSERT INTO cards_rarity (description) VALUES (%s)",[ rarity[i] ])
+        #fill users
+        cursor.execute("SELECT COUNT(id) FROM cards_card")
+        total = cursor.fetchone()
+        if total[0] < 183:
+            for i in range(len(cards)):
+                cursor.execute("INSERT INTO cards_card (name,fk_department_id,description,active,arrival_date,order_card,photo,fk_rarity_id ) VALUES (%s,%s,%s,%s,%s,%s,%s,%s)",
+                [ cards[i][0],cards[i][1],cards[i][2],cards[i][3],cards[i][4],cards[i][5],cards[i][6],randint(1, 3)  ])
 
     return HttpResponse('Seed done')

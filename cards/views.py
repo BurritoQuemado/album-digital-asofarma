@@ -4,11 +4,15 @@ from .models import Card, Code, Rarity
 import string
 import random
 from django.core.mail import send_mail
-from django.contrib.auth.models import User
+from accounts.models import User
 import base64
 from django.conf import settings
+import environ
 from django.http import JsonResponse
 
+root = environ.Path(__file__) - 2
+env = environ.Env(DEBUG=(bool, True), ALLOWED_HOSTS=(list, []),)  # set default values and casting
+environ.Env.read_env(root('.env'))  # reading .env file
 
 def get_cards():
     # opening connection with the database
@@ -19,7 +23,7 @@ def get_cards():
     for card_number in range(1, total_cards + 1):
         # We get de rarity of the card and after we will choose a card in that category
         # if we wish change the probability we need change the values in the p
-        rarity = np.random.choice(3, p=[settings.PROBABILITY_LOW, settings.PROBABILITY_MEDIUM, settings.PROBABILITY_HIGH])
+        rarity = np.random.choice(3, p=[env('PROBABILITY_LOW'), env('PROBABILITY_MEDIUM'), env('PROBABILITY_HIGH')])
         rarity = rarity + 1
 
         rarity_id = Rarity.objects.get(id=rarity)

@@ -22,7 +22,7 @@ class Rarity(models.Model):
 class Department(models.Model):
     name = models.CharField(max_length=50)
     description = models.CharField(max_length=1000)
-    head = models.CharField(max_length=50)
+    head = models.CharField(max_length=250)
 
     def __str__(self):
         return self.description
@@ -30,7 +30,7 @@ class Department(models.Model):
 
 class Card(models.Model):
     name = models.CharField(max_length=100)
-    order = models.IntegerField()
+    order_card = models.IntegerField()
     description = models.CharField(max_length=300)
     photo = models.ImageField(upload_to=get_file_path, null=True, blank=True)
     photo_thumbnail = ImageSpecField(
