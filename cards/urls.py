@@ -5,6 +5,7 @@ app_name = 'cards'
 
 urlpatterns = [
     path('', views.new_cards_save, name='index'),
+    path('<slug:slug>/', views.CardList.as_view(), name='card_list'),
     path('send/<slug:target>/', views.send_cards, name='send'),
     path('send/<slug:target>/<slug:department>', views.send_cards, name='send'),
     path('redeem/<slug:code>/<str:user>/', views.users_cards_save_email, name='redeem_email'),

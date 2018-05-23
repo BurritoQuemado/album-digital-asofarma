@@ -19,6 +19,7 @@ django-imagekit = "*"
 django-registration = "*"
 "django-bootstrap4" = "*"
 dev = "*"
+numpy = "*"
 
 [dev-packages]
 "flake8" = "*"

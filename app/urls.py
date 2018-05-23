@@ -29,6 +29,6 @@ urlpatterns = [
     path('restablecer/', include('accounts.urls')),
     path('admin/', admin.site.urls),
     #
-    path('seeder/', include('seeder.urls')),    
+    path('seeder/', include('seeder.urls')),
     path('cards/', include('cards.urls')),
 ]

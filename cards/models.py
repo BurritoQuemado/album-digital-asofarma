@@ -4,6 +4,7 @@ from django.db import models
 from accounts.models import User
 from imagekit.models import ImageSpecField
 from imagekit.processors import ResizeToFill
+from django.utils.text import slugify
 
 
 def get_file_path(instance, filename):
@@ -14,21 +15,34 @@ def get_file_path(instance, filename):
 
 class Rarity(models.Model):
     description = models.CharField(max_length=50)
+    slug = models.SlugField(unique=True)
 
     def __str__(self):
         return self.description
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify(self.description)
+        super().save(*args, **kwargs)
 
 
 class Department(models.Model):
     name = models.CharField(max_length=50)
     description = models.CharField(max_length=1000)
     head = models.CharField(max_length=250)
+    slug = models.SlugField(unique=True)
 
     def __str__(self):
-        return self.description
+        return self.name
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify(self.name)
+        super().save(*args, **kwargs)
 
 
 class Card(models.Model):
+    is_badge = models.BooleanField(default=False)
     name = models.CharField(max_length=100)
     order_card = models.IntegerField()
     description = models.CharField(max_length=300)
@@ -41,6 +55,7 @@ class Card(models.Model):
     )
     fk_rarity = models.ForeignKey(Rarity, on_delete=models.CASCADE)
     fk_department = models.ForeignKey(Department, on_delete=models.CASCADE)
+    wave = models.IntegerField(default=1)
     active = models.BooleanField(default=True)
     arrival_date = models.DateField()
 

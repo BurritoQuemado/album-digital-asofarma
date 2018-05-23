@@ -1,18 +1,33 @@
 from django.http import HttpResponse
 import numpy as np
-from .models import Card, Code, Rarity
+from .models import Card, Code, Rarity, Department
+from django.views.generic.list import ListView
 import string
 import random
 from django.core.mail import send_mail
 from accounts.models import User
 import base64
-from django.conf import settings
 import environ
 from django.http import JsonResponse
 
 root = environ.Path(__file__) - 2
 env = environ.Env(DEBUG=(bool, True), ALLOWED_HOSTS=(list, []),)  # set default values and casting
 environ.Env.read_env(root('.env'))  # reading .env file
+
+
+class CardList(ListView):
+    template_name = 'cards/cards_list.html'
+    model = Card
+    paginate_by = 10
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['department'] = Department.objects.get(slug=self.kwargs['slug'])
+        return context
+
+    def get_queryset(self, *args, **kwargs):
+        return Card.objects.filter(fk_department__slug=self.kwargs['slug']).order_by('description')
+
 
 def get_cards():
     # opening connection with the database

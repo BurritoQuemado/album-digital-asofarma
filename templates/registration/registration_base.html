@@ -5,12 +5,14 @@
 {% load i18n %}
 
 {% block body_block %}
-<div class="row pt-2 text-dark bg-worldcup round-corner justify-content-md-center">
-    <div class="col-md-12">
-        <div class="my-3 p-3">
-            {% bootstrap_messages %}
-            {% block content %}
-            {% endblock %}
+<div class="container">
+    <div class="row text-dark justify-content-md-center">
+        <div class="col-md-12">
+            <div class="my-3 p-3">
+                {% bootstrap_messages %}
+                {% block content %}
+                {% endblock %}
+            </div>
         </div>
     </div>
 </div>

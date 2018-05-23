@@ -81,6 +81,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'cards.context.departments',
             ],
         },
     },
@@ -180,7 +181,7 @@ AUTH_USER_MODEL = 'accounts.User'
 
 # Login
 LOGIN_REDIRECT_URL = '/'
-LOGIN_URL = '/login'
+LOGIN_URL = '/cuenta/login'
 
 # Site
 SITE_ID = 1
