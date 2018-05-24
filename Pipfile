@@ -16,10 +16,9 @@ django-webpack-loader = "*"
 "boto3" = "*"
 django-storages = "*"
 django-imagekit = "*"
-django-registration = "*"
 "django-bootstrap4" = "*"
-dev = "*"
 numpy = "*"
+django-registration-redux = "*"
 
 [dev-packages]
 "flake8" = "*"

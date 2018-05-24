@@ -38,6 +38,8 @@ ALLOWED_HOSTS = env('ALLOWED_HOSTS')
 # Application definition
 
 INSTALLED_APPS = [
+    'django.contrib.sites',
+    'registration',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -214,3 +216,4 @@ STATIC_URL = '/static/'
 # Django-Registration
 
 ACCOUNT_ACTIVATION_DAYS = 14
+REGISTRATION_AUTO_LOGIN = True
