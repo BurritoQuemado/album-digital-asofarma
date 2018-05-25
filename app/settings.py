@@ -58,6 +58,7 @@ INSTALLED_APPS = [
     'storages',
     'bootstrap4',
     'imagekit',
+    'mail_templated'
 ]
 
 MIDDLEWARE = [

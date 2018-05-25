@@ -3,7 +3,7 @@ import random
 import datetime
 import base64
 import numpy as np
-# from mail_templated import send_mail
+from mail_templated import send_mail
 from django.http import JsonResponse
 from django.conf import settings
 from django.contrib.sites.shortcuts import get_current_site
@@ -12,9 +12,6 @@ from accounts.models import User
 from .models import Card, Code, Rarity, Department
 from django.views.generic.list import ListView
 from django.views.generic.edit import UpdateView
-from django.core.mail import EmailMultiAlternatives
-from django.template.loader import get_template, render_to_string
-from django.template import Context
 
 
 class EmailSaveView(UpdateView):
@@ -134,44 +131,18 @@ def send_cards(request):
         site = get_current_site(request)
         now = datetime.datetime.now()
 
-        # send_mail(
-        #     'email/send_pack.html',
-        #     {
-        #         'name': user.full_name,
-        #         'codes': codes,
-        #         'email': email,
-        #         'site': site,
-        #         'time': now
-        #     },
-        #     settings.DEFAULT_FROM_EMAIL,
-        #     [user.email]
-        # )
-
-        plaintext = get_template('email/send_pack.txt')
-        htmly = get_template('email/send_pack.html')
-
-        ctx = {
-            'name': user.full_name,
-            'codes': codes,
-            'email': email,
-            'site': site,
-            'time': now
-        }
-
-        message = render_to_string('email/send_pack.html', ctx)
-
-        text_content = plaintext.render(d)
-        html_content = htmly.render(d)
-
-        msg = EmailMultiAlternatives(
-            'Este es tu paquete de cartas: ',
-            text_content,
+        send_mail(
+            'email/send_pack.html',
+            {
+                'name': user.full_name,
+                'codes': codes,
+                'email': email,
+                'site': site,
+                'time': now
+            },
             settings.DEFAULT_FROM_EMAIL,
             [user.email]
         )
-
-        msg.attach_alternative(html_content, "text/html")
-        msg.send()
 
     data = {'success': 'OK'}
     return JsonResponse(data)

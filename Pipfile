@@ -20,7 +20,7 @@ django-imagekit = "*"
 numpy = "*"
 django-registration-redux = "*"
 django-ses = "*"
-django-templated-mail = "*"
+django-mail-templated = "*"
 
 [dev-packages]
 "flake8" = "*"
