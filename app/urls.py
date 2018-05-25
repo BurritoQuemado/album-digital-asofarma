@@ -17,7 +17,7 @@ from django.contrib import admin
 from django.urls import path
 from django.views.generic.base import TemplateView
 from django.conf.urls import include
-from registration.backends.hmac.views import RegistrationView
+from registration.backends.default.views import RegistrationView
 from accounts.forms import RegistrationForm
 
 urlpatterns = [
@@ -25,10 +25,10 @@ urlpatterns = [
     path('cuenta/register/', RegistrationView.as_view(
             form_class=RegistrationForm
         ), name='registration_register'),
-    path('cuenta/', include('registration.backends.hmac.urls')),
+    path('cuenta/', include('registration.backends.default.urls')),
     path('restablecer/', include('accounts.urls')),
     path('admin/', admin.site.urls),
-    #
+    path('admin/django-ses/', include('django_ses.urls')),
     path('seeder/', include('seeder.urls')),
     path('cards/', include('cards.urls')),
 ]

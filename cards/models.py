@@ -62,6 +62,9 @@ class Card(models.Model):
     def __str__(self):
         return self.name + ' - ' + self.description
 
+    def html_template(self):
+        return 'cards/types/%s.html' % (self.fk_department.slug)
+
 
 class Code(models.Model):
     code = models.CharField(max_length=200, unique=True)

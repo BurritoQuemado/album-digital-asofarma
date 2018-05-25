@@ -1,57 +1,178 @@
+.header-description
+    padding 20px 30px
+    background: rgba($white, 0.6)
+    p
+        font-family: 'antenna'
+        font-size 1em
+    h2
+        font-family: 'avenir'
+        font-weight: bold
+        // color #E92429
+        color $primary
 
-.feather {
-  width: 16px;
-  height: 16px;
-  vertical-align: text-bottom;
-}
+.album-background
+    background-position: center top
+    background-repeat: no-repeat
+    background-size: 100%
+    min-height calc(100vh - 60px)
 
-/*
- * Sidebar
- */
+.it
+    @extend .album-background
+    background-image: url('../../assets/images/it@2x.png')
+    background-color: #420D2E
 
-.sidebar {
-    position: fixed;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  z-index: 100; /* Behind the navbar */
-  padding: 0;
-  box-shadow: inset -1px 0 0 rgba(0, 0, 0, .1);
-}
+.finanzas
+    @extend .album-background
+    background-image: url('../../assets/images/finanzas@2x.png')
+    background-color: #231F20
 
-.sidebar-sticky {
-  position: -webkit-sticky;
-  position: sticky;
-  top: 48px; /* Height of navbar */
-  height: calc(100vh - 48px);
-  padding-top: .5rem;
-  overflow-x: hidden;
-  overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
-}
+.direccion-general
+    @extend .album-background
+    background-image: url('../../assets/images/direccion-general@2x.png')
+    background-color: #705009
 
-.sidebar .nav-link {
-  font-weight: 500;
-  color: #333;
-}
+.implementaciones
+    @extend .album-background
+    background-image: url('../../assets/images/implementaciones@2x.png')
+    background-color: #2F1A45
 
-.sidebar .nav-link .feather {
-  margin-right: 4px;
-  color: #999;
-}
+.marketing
+    @extend .album-background
+    background-image: url('../../assets/images/marketing@2x.png')
+    background-color: #14301B
 
-.sidebar .nav-link.active {
-  color: $primary;
-}
+.meeting-events
+    @extend .album-background
+    background-image: url('../../assets/images/meeting-events@2x.png')
+    background-color: #211645
 
-.sidebar .nav-link:hover .feather,
-.sidebar .nav-link.active .feather {
-  color: inherit;
-}
+.program-management
+    @extend .album-background
+    background-image: url('../../assets/images/program-management@2x.png')
+    background-color: #6B0F1A
 
-.sidebar-heading {
-  font-size: .75rem;
-  text-transform: uppercase;
-}
+.recursos-humanos
+    @extend .album-background
+    background-image: url('../../assets/images/recursos-humanos@2x.png')
+    background-color: #0F1235
 
-.navbar
-    z-index 101
+.supplier-management
+    @extend .album-background
+    background-image: url('../../assets/images/supplier-management@2x.png')
+    background-color: #07263A
+
+.traveler-services
+    @extend .album-background
+    background-image: url('../../assets/images/traveler-services@2x.png')
+    background-color: #003E52
+
+.ventas
+    @extend .album-background
+    background-image: url('../../assets/images/ventas@2x.png')
+    background-color: #7C082C
+
+.Card
+    &--Full
+        size 100%
+        position relative
+        &--Body
+            position: absolute
+            top: 0
+            left: 0
+            width 100%
+            &--Title
+                position absolute
+                left 20px
+                top 88%
+                color $black
+                z-index 10
+                width: 68%
+                p
+                    margin 0
+                    letter-spacing: -0.1px
+                    font-family: 'antenna'
+                    &.title
+                        font-size: 11px;
+                        font-weight: bold;
+                        line-height: 10px;
+                        margin: 0;
+                        border-bottom 1px solid $black
+                        padding-bottom 2px
+                    &.department
+                        font-size: 10px;
+                        margin: 0;
+                        font-weight: bold;
+                        color $grey
+                    &.description
+                        font-size: 9px;
+                        margin: 0;
+                        text-transform: capitalize;
+                        line-height: 1px;
+                        color $grey
+            &--Back
+                width: 100%
+                position absolute
+                top: 0
+                left: 0
+                z-index 10
+                svg
+                    border 2px solid $black
+                    position: absolute
+                    left 0
+                    top: 0
+                    width: 100%
+        &:before
+            content: ''
+            padding-top: 128%
+            display: block
+
+    &--Empty
+        size 100%
+        position relative
+        &--Body
+            position: absolute
+            top: 0
+            left: 0
+            width 100%
+            &--Back
+                width: 100%
+                position absolute
+                top: 0
+                left: 0
+                z-index 10
+                svg
+                    border 2px solid $black
+                    position: absolute
+                    left 0
+                    top: 0
+                    width: 100%
+            &--Shield
+                width: 60%
+                position absolute
+                center both
+                color $black
+                z-index 10
+                svg
+                    position: absolute
+                    left 0
+                    center vertical
+                    width: 100%
+            &--Title
+                position absolute
+                center both
+                color $black
+                z-index 10
+            &--Name
+                center both
+                top 88%
+                color $black
+                z-index 10
+                font-weight: bold
+                text-align center
+                width: 75%
+                font-size 12px
+                line-height: 12px
+        &:before
+            content: ''
+            padding-top: 130%
+            display: block

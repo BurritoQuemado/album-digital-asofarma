@@ -19,6 +19,8 @@ django-imagekit = "*"
 "django-bootstrap4" = "*"
 numpy = "*"
 django-registration-redux = "*"
+django-ses = "*"
+django-templated-mail = "*"
 
 [dev-packages]
 "flake8" = "*"

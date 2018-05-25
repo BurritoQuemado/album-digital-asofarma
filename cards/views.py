@@ -1,44 +1,77 @@
-from django.http import HttpResponse
-import numpy as np
-from .models import Card, Code, Rarity, Department
-from django.views.generic.list import ListView
 import string
 import random
-from django.core.mail import send_mail
-from accounts.models import User
+import datetime
 import base64
-import environ
+import numpy as np
+# from mail_templated import send_mail
 from django.http import JsonResponse
+from django.conf import settings
+from django.contrib.sites.shortcuts import get_current_site
+from .forms import EmailSaveForm
+from accounts.models import User
+from .models import Card, Code, Rarity, Department
+from django.views.generic.list import ListView
+from django.views.generic.edit import UpdateView
+from django.core.mail import EmailMultiAlternatives
+from django.template.loader import get_template, render_to_string
+from django.template import Context
 
-root = environ.Path(__file__) - 2
-env = environ.Env(DEBUG=(bool, True), ALLOWED_HOSTS=(list, []),)  # set default values and casting
-environ.Env.read_env(root('.env'))  # reading .env file
+
+class EmailSaveView(UpdateView):
+    model = Code
+    form_class = EmailSaveForm
+    template_name = 'cards/card_save_email.html'
+    success_url = '/'  # reverse_lazy('card')
+    success_message = 'Se ha guardado la carta a tu álbum'
+
+    def get_object(self, queryset=None):
+        obj = Code.objects.get(code=self.kwargs['code'])
+        return obj
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        code = Code.objects.get(code=self.kwargs['code'])
+        context['card'] = code.fk_card
+        return context
+
+    def form_valid(self, form):
+        self.object = form.save(commit=False)
+        email = base64.b64decode(self.kwargs['email'])
+        email = email.decode("utf-8")
+        user = User.objects.get(email=email)
+
+        # the users redeem the codes or change the codes
+        self.object.fk_user = user
+        self.object.save()
+        return super().form_valid(form)
 
 
 class CardList(ListView):
     template_name = 'cards/cards_list.html'
     model = Card
-    paginate_by = 10
+    paginate_by = 12
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['department'] = Department.objects.get(slug=self.kwargs['slug'])
+        context['badge'] = Card.objects.get(fk_department__slug=self.kwargs['slug'], is_badge=True)
         return context
 
     def get_queryset(self, *args, **kwargs):
-        return Card.objects.filter(fk_department__slug=self.kwargs['slug']).order_by('description')
+        cards = Card.objects.filter(fk_department__slug=self.kwargs['slug'], is_badge=False).order_by('id')
+        return cards
 
 
 def get_cards():
     # opening connection with the database
     packet = []
     packet_card = []
-    total_cards = 7
+    total_cards = 5
     # number of the cards in the packet
     for card_number in range(1, total_cards + 1):
         # We get de rarity of the card and after we will choose a card in that category
         # if we wish change the probability we need change the values in the p
-        rarity = np.random.choice(3, p=[env('PROBABILITY_LOW'), env('PROBABILITY_MEDIUM'), env('PROBABILITY_HIGH')])
+        rarity = np.random.choice(4, p=[settings.PROBABILITY_SPECIAL, settings.PROBABILITY_LOW, settings.PROBABILITY_MEDIUM, settings.PROBABILITY_HIGH])
         rarity = rarity + 1
 
         rarity_id = Rarity.objects.get(id=rarity)
@@ -53,12 +86,32 @@ def get_cards():
     return packet
 
 
+def id_generator(size=8, chars=string.ascii_uppercase + string.digits):
+    return ''.join(random.choice(chars) for _ in range(size))
+
+
+def code_save():
+    """ A function to generate a 8 character code and see if it has been used and contains naughty words."""
+    code = id_generator()  # create one
+    code_is_wrong = True
+    while code_is_wrong:  # keep checking until we have a valid code
+        code_is_wrong = False
+        other_objs_with_code = Code.objects.filter(code=code)
+        if len(other_objs_with_code) > 0:
+            # if any other objects have current code
+            code_is_wrong = True
+        if code_is_wrong:
+            # create another code and check it again
+            code = id_generator()
+    return code
+
+
 def new_cards_save():
     packet_codes = []
 
     for card in get_cards():
         # we generate the code of the card
-        code = random_string(20)
+        code = code_save()
         packet_codes.append(code)
         # we save the packet of cards
         c = Code(code=code, fk_card=Card.objects.get(id=card), )
@@ -67,33 +120,58 @@ def new_cards_save():
     return packet_codes
 
 
-def send_cards(request, target, department=0):
+def send_cards(request):
     # we expect the target, and department in case the target be users we send
     # the email to all the users if not we select the target with the info send in the other parameters
-    subject = 'Envio de cartas'
-    from_email = 'jason@gnuin0.com'
-    message = 'This is my test message'
-    server = request.META['HTTP_HOST']
 
-    if target == 'users':
-        # send the email to all the users
-        list_users = User.objects.filter(is_staff=False, is_superuser=False, is_active=True).values_list('email')
-    else:
-        return HttpResponse('The option its incorrect')
+    list_users = User.objects.filter(is_staff=False, is_superuser=False, is_active=True)
 
-    for user_email in list_users:
-        email = base64.b64encode(bytes(user_email[0], 'utf-8'))
+    for user in list_users:
+        email = base64.b64encode(bytes(user.email, 'utf-8'))
         email = email.decode("utf-8")
-        html_message = []
 
-        for codes in new_cards_save():
+        codes = new_cards_save()
+        site = get_current_site(request)
+        now = datetime.datetime.now()
 
-            # encode email to base64
-            html_message.append('<p><a href=http://'+server+'/cards/redeem/'+codes+'/'+email+'/>Click para redimir</a></p>')
+        # send_mail(
+        #     'email/send_pack.html',
+        #     {
+        #         'name': user.full_name,
+        #         'codes': codes,
+        #         'email': email,
+        #         'site': site,
+        #         'time': now
+        #     },
+        #     settings.DEFAULT_FROM_EMAIL,
+        #     [user.email]
+        # )
 
-        # we send the email with the codes of cards ready for redeem
-        html_message = ''.join(map(str, html_message))
-        send_mail(subject, message, from_email, user_email, fail_silently=False, html_message=html_message)
+        plaintext = get_template('email/send_pack.txt')
+        htmly = get_template('email/send_pack.html')
+
+        ctx = {
+            'name': user.full_name,
+            'codes': codes,
+            'email': email,
+            'site': site,
+            'time': now
+        }
+
+        message = render_to_string('email/send_pack.html', ctx)
+
+        text_content = plaintext.render(d)
+        html_content = htmly.render(d)
+
+        msg = EmailMultiAlternatives(
+            'Este es tu paquete de cartas: ',
+            text_content,
+            settings.DEFAULT_FROM_EMAIL,
+            [user.email]
+        )
+
+        msg.attach_alternative(html_content, "text/html")
+        msg.send()
 
     data = {'success': 'OK'}
     return JsonResponse(data)
@@ -104,11 +182,11 @@ def users_cards_save_email(request, code, user):
     try:
         email = base64.b64decode(user)
         email = email.decode("utf-8")
-        user = list(User.objects.filter(email=email).values_list('id'))
+        user = User.objects.get(email=email)
 
         # the users redeem the codes or change the codes
         update_code = Code.objects.get(code=code)
-        update_code.fk_user = User.objects.get(id=user[0][0])
+        update_code.fk_user = user
         update_code.save()
 
         data = {'success': 'OK'}

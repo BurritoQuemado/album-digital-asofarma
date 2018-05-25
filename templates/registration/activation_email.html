@@ -1,0 +1,17 @@
+{% extends "email/base.html" %}
+
+{% block body_content %}
+<p style="font-family:Arial, sans-serif;font-size:14px;line-height:28px;text-align:center;color:#55575d;">
+    Ha recibido este correo para confirmar su cuenta en el sitio {{ site_name }}.
+    En caso de que se haya tratado de un error, favor de ignorar este correo.
+</p>
+<p style="font-family:Arial, sans-serif;font-size:14px;line-height:28px;text-align:center;color:#55575d;">
+   Para activar esta cuenta, de click en el siguiente enlace en los próximos {{ expiration_days }} días:
+</p>
+
+<p style="font-family:Arial, sans-serif;font-size:14px;line-height:28px;text-align:center;color:#55575d;">
+    <a style="color:#f26950" href="http://{{site.domain}}{% url 'registration_activate' activation_key %}">
+        {{site.domain}}{% url 'registration_activate' activation_key %}
+    </a>
+</p>
+{% endblock %}

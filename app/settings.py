@@ -38,7 +38,7 @@ ALLOWED_HOSTS = env('ALLOWED_HOSTS')
 # Application definition
 
 INSTALLED_APPS = [
-    'django.contrib.sites',
+    # 'django.contrib.sites',
     'registration',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     'accounts',
     'cards',
     # libs
+    'django_ses',
     'webpack_loader',
     'localflavor',
     'rest_framework',
@@ -189,11 +190,12 @@ LOGIN_URL = '/cuenta/login'
 SITE_ID = 1
 
 # Email Configuration
-EMAIL_USE_TLS = True
-EMAIL_HOST = 'smtp.sendgrid.net'
-EMAIL_PORT = 587
-EMAIL_HOST_USER = 'apikey'
-EMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD')
+EMAIL_BACKEND = 'django_ses.SESBackend'
+# EMAIL_USE_TLS = True
+# EMAIL_HOST = 'smtp.sendgrid.net'
+# EMAIL_PORT = 587
+# EMAIL_HOST_USER = 'apikey'
+# EMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD')
 DEFAULT_FROM_EMAIL = env('DEFAULT_FROM_EMAIL')
 
 # AWS S3
@@ -217,3 +219,9 @@ STATIC_URL = '/static/'
 
 ACCOUNT_ACTIVATION_DAYS = 14
 REGISTRATION_AUTO_LOGIN = True
+
+
+PROBABILITY_LOW = env('PROBABILITY_LOW')
+PROBABILITY_MEDIUM = env('PROBABILITY_MEDIUM')
+PROBABILITY_HIGH = env('PROBABILITY_HIGH')
+PROBABILITY_SPECIAL = env('PROBABILITY_SPECIAL')

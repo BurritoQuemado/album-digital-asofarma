@@ -1,11 +1,49 @@
 @import '~styles/stylus/vars'
 
-// @font-face
-//   font-family: '****';
-//   font-path: '../../assets/fonts/****';
-//   font-weight: normal;
-//   font-style: normal;
+@font-face
+  font-family: 'antenna';
+  font-path: '../../assets/fonts/AntennaCond-Bold';
+  font-weight: bold;
+  font-style: normal;
 
+@font-face
+  font-family: 'antenna';
+  font-path: '../../assets/fonts/AntennaCond-Medium';
+  font-weight: normal;
+  font-style: normal;
+
+@font-face
+  font-family: 'avenir';
+  font-path: '../../assets/fonts/AvenirLTStd-Heavy';
+  font-weight: bold;
+  font-style: normal;
+
+@font-face
+  font-family: 'avenir';
+  font-path: '../../assets/fonts/AvenirLTStd-Book';
+  font-weight: normal;
+  font-style: normal;
+
+@font-face
+  font-family: 'din';
+  font-path: '../../assets/fonts/DIN Pro Bold';
+  font-weight: normal;
+  font-style: normal;
+
+
+html
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale
+
+
+body
+    font-family: 'avenir'
+    font-weight: normal
+    font-size 15px
+
+h1, h2, h3
+    font-family: 'antenna';
+    font-weight: bold
 
 .main-menu
     background $big-stone
