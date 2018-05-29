@@ -1,5 +1,30 @@
 {% extends "base.html" %}
 
 {% block body_block %}
-<h1>Home</h1>
+<div class="container my-4">
+    <div class="jumbotron">
+        <div class="row">
+            <div class="col-md-6">
+                <p class="lead display-4">Bienvenido a tu álbum digital</p>
+            </div>
+            <div class="col-md-6">
+                {% if user.is_authenticated %}
+                <p class="lead">
+                    <a class="btn btn-primary btn-lg" href="{% url 'cards:card_list' pk=user.id slug='portada' %}" role="button">Ir a mi álbum</a>
+                </p>
+                {% else %}
+                <p class="lead">
+                    <a class="btn btn-primary btn-lg" href="{% url 'registration_register' %}" role="button">Registrarse</a>
+                </p>
+                <p>
+                    ¿Tiene cuenta?, <a href="{% url 'auth_login' %}" role="button">Iniciar Sesión</a>
+                </p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    <div class="embed-responsive embed-responsive-16by9">
+        <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/t9Bn5Sv-Xd8?rel=0&showinfo=0&controls=0" allowfullscreen></iframe>
+    </div>
+</div>
 {% endblock %}

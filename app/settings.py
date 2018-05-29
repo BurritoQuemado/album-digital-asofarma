@@ -58,7 +58,8 @@ INSTALLED_APPS = [
     'storages',
     'bootstrap4',
     'imagekit',
-    'mail_templated'
+    'mail_templated',
+    'import_export',
 ]
 
 MIDDLEWARE = [
@@ -130,7 +131,7 @@ TIME_ZONE = 'America/Mexico_City'
 
 USE_I18N = True
 
-USE_L10N = True
+USE_L10N = False
 
 USE_TZ = True
 

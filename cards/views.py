@@ -4,17 +4,26 @@ import datetime
 import base64
 import numpy as np
 from mail_templated import send_mail
+from django.urls import reverse_lazy
 from django.http import JsonResponse
 from django.conf import settings
 from django.contrib.sites.shortcuts import get_current_site
-from .forms import EmailSaveForm
+from django.contrib.messages.views import SuccessMessageMixin
+from .forms import EmailSaveForm, AddCodeForm
 from accounts.models import User
 from .models import Card, Code, Rarity, Department
 from django.views.generic.list import ListView
-from django.views.generic.edit import UpdateView
+from django.views.generic.edit import UpdateView, FormView
+from django.views.generic.base import TemplateView
+from django.utils.decorators import method_decorator
+from django.contrib.auth.decorators import login_required
+from django.http import HttpResponseRedirect
+
+decorators = [login_required]
 
 
-class EmailSaveView(UpdateView):
+@method_decorator(decorators, name='dispatch')
+class EmailSaveView(SuccessMessageMixin, UpdateView):
     model = Code
     form_class = EmailSaveForm
     template_name = 'cards/card_save_email.html'
@@ -43,19 +52,66 @@ class EmailSaveView(UpdateView):
         return super().form_valid(form)
 
 
+@method_decorator(decorators, name='dispatch')
+class AddCodeView(SuccessMessageMixin, FormView):
+    template_name = 'cards/card_save_form.html'
+    form_class = AddCodeForm
+    success_url = reverse_lazy('cards:form_save')
+    success_message = "Se ha guardado la carta en tu álbum"
+
+    def form_valid(self, form):
+        user = self.request.user
+        code = Code.objects.get(code=form.cleaned_data['code'])
+        code.fk_user = user
+        code.save()
+        return super().form_valid(form)
+
+
+class CoverView(TemplateView):
+
+    template_name = 'cards/card_cover.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['user'] = User.objects.get(pk=self.kwargs['pk'])
+        cards = Card.objects.all().order_by('id')
+        codes = Code.objects.filter(fk_user_id=self.kwargs['pk']).values('fk_card').distinct()
+        context['codes'] = codes.count()
+        context['total'] = cards.count()
+        return context
+
+
 class CardList(ListView):
     template_name = 'cards/cards_list.html'
     model = Card
     paginate_by = 12
 
+    def get(self, *args, **kwargs):
+        try:
+            User.objects.get(id=kwargs['pk'], is_staff=False, is_superuser=False)
+        except User.DoesNotExist:
+            return HttpResponseRedirect('/')
+        return super(CardList, self).get(*args, **kwargs)
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['department'] = Department.objects.get(slug=self.kwargs['slug'])
         context['badge'] = Card.objects.get(fk_department__slug=self.kwargs['slug'], is_badge=True)
+        context['user'] = User.objects.get(pk=self.kwargs['pk'])
+        cards = Card.objects.all().order_by('id')
+        codes = Code.objects.filter(fk_user_id=self.kwargs['pk']).values('fk_card').distinct()
+        context['codes'] = codes.count()
+        context['total'] = cards.count()
+        # context['percentage'] = codes.count() * 100 / cards.count()
         return context
 
     def get_queryset(self, *args, **kwargs):
         cards = Card.objects.filter(fk_department__slug=self.kwargs['slug'], is_badge=False).order_by('id')
+        for card in cards:
+            codes = Code.objects.filter(fk_user_id=self.kwargs['pk'], fk_card=card)
+            if codes.exists():
+                card.obtained = True
+                card.codes = codes
         return cards
 
 

@@ -29,10 +29,14 @@
   overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
 }
 
-.sidebar .nav-link {
-  font-weight: 500;
+.sidebar .nav-link
+  font-weight: bold;
   color: #333;
-}
+  font-size 14px
+  &.info
+      color $primary
+      padding-top 0
+      padding-bottom 0
 
 .sidebar .nav-link .feather {
   margin-right: 4px;

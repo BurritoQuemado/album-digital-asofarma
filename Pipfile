@@ -21,6 +21,7 @@ numpy = "*"
 django-registration-redux = "*"
 django-ses = "*"
 django-mail-templated = "*"
+django-import-export = "*"
 
 [dev-packages]
 "flake8" = "*"

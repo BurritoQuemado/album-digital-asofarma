@@ -40,6 +40,9 @@ class Department(models.Model):
             self.slug = slugify(self.name)
         super().save(*args, **kwargs)
 
+    def svg_template(self):
+        return 'assets/logos/%s.svg' % (self.slug)
+
 
 class Card(models.Model):
     is_badge = models.BooleanField(default=False)

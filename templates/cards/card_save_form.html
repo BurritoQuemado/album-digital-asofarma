@@ -1,0 +1,14 @@
+{% extends "registration/registration_base.html" %}
+
+{% load bootstrap4 %}
+
+{% block content %}
+<h2 class="border-bottom border-gray pb-2 mb-0">Agregar código a álbum</h2>
+<form action="" method="post" class="pt-3">
+    {% csrf_token %}
+    {% bootstrap_form form %}
+    {% buttons %}
+        <button type="submit" class="btn btn-primary btn-lg">Agregar</button>
+    {% endbuttons %}
+</form>
+{% endblock %}

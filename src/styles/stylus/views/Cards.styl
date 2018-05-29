@@ -10,6 +10,11 @@
         // color #E92429
         color $primary
 
+.nav-item
+    p
+        margin 0
+
+
 .album-background
     background-position: center top
     background-repeat: no-repeat
@@ -71,10 +76,76 @@
     background-image: url('../../assets/images/ventas@2x.png')
     background-color: #7C082C
 
+.svg-logo-sidebar
+    display inline-block
+    width 18px
+
+.bg-worldcup
+    background-image: url('../../assets/images/background.jpg')
+    background-repeat: no-repeat
+    background-position: center
+    background-size: cover
+
+.Cover
+    min-height calc(100vh - 60px)
+    .row
+        flex-direction: column;
+    &--Header
+        margin 0 auto
+        lost-utility clearfix
+        img
+            width 100%
+            max-width 120px
+    &--Logo
+        lost-utility clearfix
+        margin 20px auto
+        img
+            width 100%
+            max-width 250px
+    &--User
+        text-align: center
+        font-family: 'din'
+        font-weight: bold
+        color: $white
+        text-transform: uppercase
+        margin 150px auto 0 auto
+        padding: 25px 30px
+        .Title
+            font-size 2em
+        .Progress
+            font-size 1.2em
+            color $primary
+        p
+            margin 0
+    &--Logos
+        lost-utility clearfix
+        margin 20px auto
+        img
+            width 100%
+            max-width 400px
+    &--Aeromexico
+        lost-utility clearfix
+        margin 0px auto
+        background: #D1D3D4
+        padding: 20px 30px
+        width 100%
+        img
+            max-width 200px
+            margin 0px auto
+            display: block
 .Card
     &--Full
         size 100%
         position relative
+        &--Footer
+            background: rgba($white, 0.5)
+            padding: 10px 15px
+            font-size 8px
+            font-weight: bold
+            text-transform: uppercase
+            font-family: 'din'
+            &--Quantity
+                margin-bottom 7px
         &--Body
             position: absolute
             top: 0

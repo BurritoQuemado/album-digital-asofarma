@@ -30,5 +30,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('admin/django-ses/', include('django_ses.urls')),
     path('seeder/', include('seeder.urls')),
-    path('cards/', include('cards.urls')),
+    path('album/', include('cards.urls')),
 ]

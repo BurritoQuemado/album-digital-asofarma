@@ -246,18 +246,18 @@ def populate_database(self):
         Rarity.objects.update_or_create(description=rarity[i])
 
     # fill users
-    for i in range(len(cards)):
-        department = Department.objects.get(name=cards[i][2])
-        rarity = Rarity.objects.get(description=cards[i][0]) if cards[i][0] is not None else Rarity.objects.get(id=randint(3, 4))
-        Card.objects.update_or_create(
-            name=cards[i][1],
-            fk_department=department,
-            description=cards[i][3],
-            active=True,
-            arrival_date=cards[i][4],
-            order_card=i,
-            fk_rarity=rarity,
-            wave=randint(1, 2)
-        )
+    # for i in range(len(cards)):
+    #     department = Department.objects.get(name=cards[i][2])
+    #     rarity = Rarity.objects.get(description=cards[i][0]) if cards[i][0] is not None else Rarity.objects.get(id=randint(3, 4))
+    #     Card.objects.update_or_create(
+    #         name=cards[i][1],
+    #         fk_department=department,
+    #         description=cards[i][3],
+    #         active=True,
+    #         arrival_date=cards[i][4],
+    #         order_card=i,
+    #         fk_rarity=rarity,
+    #         wave=randint(1, 2)
+    #     )
 
     return HttpResponse('Seed done')
