@@ -24,7 +24,7 @@ def get_cards():
         rarity = rarity + 1
 
         rarity_id = Rarity.objects.get(id=rarity)
-        cards = Card.objects.filter(fk_rarity=rarity_id, active=True).values('id')
+        cards = Card.objects.filter(fk_rarity=rarity_id, active=True, wave=1).values('id')
         # we choose all the cards with the rarity selected
         for card in cards:
             packet_card.append(card['id'])
