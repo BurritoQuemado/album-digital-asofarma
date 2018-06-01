@@ -21,8 +21,7 @@ class Rarity(models.Model):
         return self.description
 
     def save(self, *args, **kwargs):
-        if not self.slug:
-            self.slug = slugify(self.description)
+        self.slug = slugify(self.description)
         super().save(*args, **kwargs)
 
 
@@ -36,8 +35,7 @@ class Department(models.Model):
         return self.name
 
     def save(self, *args, **kwargs):
-        if not self.slug:
-            self.slug = slugify(self.name)
+        self.slug = slugify(self.name)
         super().save(*args, **kwargs)
 
     def svg_template(self):
@@ -52,7 +50,7 @@ class Card(models.Model):
     photo = models.ImageField(upload_to=get_file_path, null=True, blank=True)
     photo_thumbnail = ImageSpecField(
         source='photo',
-        processors=[ResizeToFill(100, 50)],
+        processors=[ResizeToFill(450, 560)],
         format='JPEG',
         options={'quality': 80}
     )
@@ -67,6 +65,12 @@ class Card(models.Model):
 
     def html_template(self):
         return 'cards/types/%s.html' % (self.fk_department.slug)
+
+    def img_template(self):
+        return 'assets/badges/%s.png' % (self.fk_department.slug)
+
+    def ribbon_template(self):
+        return 'assets/ribbons/%s.png' % (self.fk_department.slug)
 
 
 class Code(models.Model):

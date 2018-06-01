@@ -1,0 +1,33 @@
+.main-menu
+    background $big-stone
+    border-bottom: 4px $primary solid
+    .nav-item
+        text-transform: uppercase
+        font-family: 'din'
+        font-size 0.9em
+
+.logo-aeromexico-menu
+    display inline-block
+    margin 0.25rem 0.5rem
+    +mobile()
+        margin 0.5rem 0
+.Menu
+    display: none
+    background: $big-stone
+    size 100%
+    padding: 10px 20px
+    color: $white
+    +mobile()
+        display: block
+    &--Information
+        font-size 0.8em
+        text-transform: uppercase
+        margin-bottom: 15px
+        padding-bottom: 10px
+        border-bottom: 1px solid $primary
+        span
+            display: block
+    &--Buttons
+        span
+            display inline-block
+            width: 50px

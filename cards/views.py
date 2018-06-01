@@ -1,23 +1,15 @@
-import string
-import random
-import datetime
 import base64
-import numpy as np
-from mail_templated import send_mail
-from django.urls import reverse_lazy
-from django.http import JsonResponse
-from django.conf import settings
-from django.contrib.sites.shortcuts import get_current_site
+from django.urls import reverse_lazy, reverse
+from django.shortcuts import get_object_or_404
 from django.contrib.messages.views import SuccessMessageMixin
 from .forms import EmailSaveForm, AddCodeForm
 from accounts.models import User
-from .models import Card, Code, Rarity, Department
+from .models import Card, Code, Department
 from django.views.generic.list import ListView
 from django.views.generic.edit import UpdateView, FormView
-from django.views.generic.base import TemplateView
+from django.views.generic.detail import DetailView
 from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponseRedirect
 
 decorators = [login_required]
 
@@ -27,8 +19,10 @@ class EmailSaveView(SuccessMessageMixin, UpdateView):
     model = Code
     form_class = EmailSaveForm
     template_name = 'cards/card_save_email.html'
-    success_url = '/'  # reverse_lazy('card')
     success_message = 'Se ha guardado la carta a tu álbum'
+
+    def get_success_url(self, **kwargs):
+        return reverse('cards:card_cover', kwargs={'pk': self.request.user.id})
 
     def get_object(self, queryset=None):
         obj = Code.objects.get(code=self.kwargs['code'])
@@ -46,7 +40,6 @@ class EmailSaveView(SuccessMessageMixin, UpdateView):
         email = email.decode("utf-8")
         user = User.objects.get(email=email)
 
-        # the users redeem the codes or change the codes
         self.object.fk_user = user
         self.object.save()
         return super().form_valid(form)
@@ -56,7 +49,7 @@ class EmailSaveView(SuccessMessageMixin, UpdateView):
 class AddCodeView(SuccessMessageMixin, FormView):
     template_name = 'cards/card_save_form.html'
     form_class = AddCodeForm
-    success_url = reverse_lazy('cards:form_save')
+    success_url = reverse_lazy('cards:redeem')
     success_message = "Se ha guardado la carta en tu álbum"
 
     def form_valid(self, form):
@@ -67,13 +60,12 @@ class AddCodeView(SuccessMessageMixin, FormView):
         return super().form_valid(form)
 
 
-class CoverView(TemplateView):
-
+class CoverView(DetailView):
+    model = User
     template_name = 'cards/card_cover.html'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['user'] = User.objects.get(pk=self.kwargs['pk'])
         cards = Card.objects.all().order_by('id')
         codes = Code.objects.filter(fk_user_id=self.kwargs['pk']).values('fk_card').distinct()
         context['codes'] = codes.count()
@@ -86,17 +78,15 @@ class CardList(ListView):
     model = Card
     paginate_by = 12
 
-    def get(self, *args, **kwargs):
-        try:
-            User.objects.get(id=kwargs['pk'], is_staff=False, is_superuser=False)
-        except User.DoesNotExist:
-            return HttpResponseRedirect('/')
-        return super(CardList, self).get(*args, **kwargs)
-
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['department'] = Department.objects.get(slug=self.kwargs['slug'])
-        context['badge'] = Card.objects.get(fk_department__slug=self.kwargs['slug'], is_badge=True)
+        badge = Card.objects.get(fk_department__slug=self.kwargs['slug'], is_badge=True)
+        badge_codes = Code.objects.filter(fk_user_id=self.kwargs['pk'], fk_card=badge)
+        if badge_codes.exists():
+            badge.obtained = True
+            badge.codes = badge_codes
+        context['badge'] = badge
         context['user'] = User.objects.get(pk=self.kwargs['pk'])
         cards = Card.objects.all().order_by('id')
         codes = Code.objects.filter(fk_user_id=self.kwargs['pk']).values('fk_card').distinct()
@@ -106,6 +96,7 @@ class CardList(ListView):
         return context
 
     def get_queryset(self, *args, **kwargs):
+        get_object_or_404(User, pk=self.kwargs['pk'])
         cards = Card.objects.filter(fk_department__slug=self.kwargs['slug'], is_badge=False).order_by('id')
         for card in cards:
             codes = Code.objects.filter(fk_user_id=self.kwargs['pk'], fk_card=card)
@@ -113,138 +104,3 @@ class CardList(ListView):
                 card.obtained = True
                 card.codes = codes
         return cards
-
-
-def get_cards():
-    # opening connection with the database
-    packet = []
-    packet_card = []
-    total_cards = 5
-    # number of the cards in the packet
-    for card_number in range(1, total_cards + 1):
-        # We get de rarity of the card and after we will choose a card in that category
-        # if we wish change the probability we need change the values in the p
-        rarity = np.random.choice(4, p=[settings.PROBABILITY_SPECIAL, settings.PROBABILITY_LOW, settings.PROBABILITY_MEDIUM, settings.PROBABILITY_HIGH])
-        rarity = rarity + 1
-
-        rarity_id = Rarity.objects.get(id=rarity)
-        cards = Card.objects.filter(fk_rarity=rarity_id, active=True).values('id')
-        # we choose all the cards with the rarity selected
-        for card in cards:
-            packet_card.append(card['id'])
-
-        # we choose one card and finally, put the card in the packet
-        packet.append(np.random.choice(packet_card))
-
-    return packet
-
-
-def id_generator(size=8, chars=string.ascii_uppercase + string.digits):
-    return ''.join(random.choice(chars) for _ in range(size))
-
-
-def code_save():
-    """ A function to generate a 8 character code and see if it has been used and contains naughty words."""
-    code = id_generator()  # create one
-    code_is_wrong = True
-    while code_is_wrong:  # keep checking until we have a valid code
-        code_is_wrong = False
-        other_objs_with_code = Code.objects.filter(code=code)
-        if len(other_objs_with_code) > 0:
-            # if any other objects have current code
-            code_is_wrong = True
-        if code_is_wrong:
-            # create another code and check it again
-            code = id_generator()
-    return code
-
-
-def new_cards_save():
-    packet_codes = []
-
-    for card in get_cards():
-        # we generate the code of the card
-        code = code_save()
-        packet_codes.append(code)
-        # we save the packet of cards
-        c = Code(code=code, fk_card=Card.objects.get(id=card), )
-        c.save()
-    # return the packet of cards
-    return packet_codes
-
-
-def send_cards(request):
-    # we expect the target, and department in case the target be users we send
-    # the email to all the users if not we select the target with the info send in the other parameters
-
-    list_users = User.objects.filter(is_staff=False, is_superuser=False, is_active=True)
-
-    for user in list_users:
-        email = base64.b64encode(bytes(user.email, 'utf-8'))
-        email = email.decode("utf-8")
-
-        codes = new_cards_save()
-        site = get_current_site(request)
-        now = datetime.datetime.now()
-
-        send_mail(
-            'email/send_pack.html',
-            {
-                'name': user.full_name,
-                'codes': codes,
-                'email': email,
-                'site': site,
-                'time': now
-            },
-            settings.DEFAULT_FROM_EMAIL,
-            [user.email]
-        )
-
-    data = {'success': 'OK'}
-    return JsonResponse(data)
-
-
-def users_cards_save_email(request, code, user):
-    # we decode the string in base64 and we search with the code and with email and we try to redeem the code
-    try:
-        email = base64.b64decode(user)
-        email = email.decode("utf-8")
-        user = User.objects.get(email=email)
-
-        # the users redeem the codes or change the codes
-        update_code = Code.objects.get(code=code)
-        update_code.fk_user = user
-        update_code.save()
-
-        data = {'success': 'OK'}
-        return JsonResponse(data)
-    except Exception as e:
-        data = {'success': "FAIL"}
-        return JsonResponse(data)
-
-
-def users_cards_save_session(request, code, user):
-    # we decode the string in base64 and we search with the code and with email and we try to redeem the code
-    try:
-        if request.user.id > 1:
-            # the users redeem the codes or change the codes
-            update_code = Code.objects.get(code=code)
-            update_code.fk_user = User.objects.get(id=request.user.id)
-            update_code.save()
-
-            data = {'success': 'OK'}
-            return JsonResponse(data)
-
-        data = {'success': "FAIL"}
-        return JsonResponse(data)
-    except Exception as e:
-        data = {'success': "FAIL"}
-        return JsonResponse(data)
-
-
-def random_string(length):
-    """
-    :param length: Size of the card string
-    :return: Random string
-    """
-    return ''.join(random.choice(string.ascii_letters) for m in range(length))

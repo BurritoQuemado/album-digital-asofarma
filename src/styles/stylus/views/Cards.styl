@@ -7,7 +7,6 @@
     h2
         font-family: 'avenir'
         font-weight: bold
-        // color #E92429
         color $primary
 
 .nav-item
@@ -21,9 +20,9 @@
     background-size: 100%
     min-height calc(100vh - 60px)
 
-.it
+.desarrollos-informaticos
     @extend .album-background
-    background-image: url('../../assets/images/it@2x.png')
+    background-image: url('../../assets/images/desarrollos-informaticos@2x.png')
     background-color: #420D2E
 
 .finanzas
@@ -36,9 +35,9 @@
     background-image: url('../../assets/images/direccion-general@2x.png')
     background-color: #705009
 
-.implementaciones
+.implementacion
     @extend .album-background
-    background-image: url('../../assets/images/implementaciones@2x.png')
+    background-image: url('../../assets/images/implementacion@2x.png')
     background-color: #2F1A45
 
 .marketing
@@ -138,14 +137,12 @@
         size 100%
         position relative
         &--Footer
-            background: rgba($white, 0.5)
+            background: rgba($white, 0.8)
             padding: 10px 15px
-            font-size 8px
+            font-size 10px
             font-weight: bold
             text-transform: uppercase
             font-family: 'din'
-            &--Quantity
-                margin-bottom 7px
         &--Body
             position: absolute
             top: 0
@@ -180,12 +177,37 @@
                         text-transform: capitalize;
                         line-height: 1px;
                         color $grey
+            &--Quantity
+                position: absolute
+                top: -10px
+                right: -10px
+                border-radius: 50%
+                size 50px
+                z-index 11
+                background $primary
+                cursor pointer
+                span
+                    center both
+                    color $white
+                    font-weight: bold
+                    font-size 1.2em
             &--Back
                 width: 100%
                 position absolute
                 top: 0
                 left: 0
                 z-index 10
+                &--Ribbon
+                    position: absolute
+                    top 1px
+                    right 1px
+                    width 18%
+                &--Photo
+                    border 2px solid $black
+                    position: absolute
+                    left 0
+                    top: 0
+                    width: 100%
                 svg
                     border 2px solid $black
                     position: absolute

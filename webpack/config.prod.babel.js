@@ -15,7 +15,7 @@ module.exports = base({
     devtool: 'hidden-source-map',
     output: {
         path: path.resolve(__dirname, '..', 'dist'),
-        filename: '[name].js?[hash]',
+        filename: '[name]-[hash].js',
         publicPath: '/static/',
     },
     optimization: {
@@ -91,7 +91,7 @@ module.exports = base({
         new MiniCssExtractPlugin({
             // Options similar to the same options in webpackOptions.output
             // both options are optional
-            filename: '[name].css?[hash]',
+            filename: '[name]-[hash].css',
             allChunks: true,
         }),
         // Set the process.env to production so React includes the production

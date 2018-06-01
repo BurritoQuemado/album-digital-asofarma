@@ -33,21 +33,24 @@
                     </li>
                     {% if user.is_authenticated %}
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'cards:card_list' pk=user.id slug='portada' %}"><i class="fas fa-sign-out-alt"></i> Mi Álbum</a>
+                        <a class="nav-link" href="{% url 'cards:card_list' pk=user.id slug='portada' %}"><i class="fas fa-sign-out-alt"></i> Mi álbum</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'auth_logout' %}"><i class="fas fa-sign-out-alt"></i> Cerrar Sesión</a>
+                        <a class="nav-link" href="{% url 'cards:redeem' %}"><i class="fas fa-sign-out-alt"></i> Agregar tarjeta</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'auth_logout' %}"><i class="fas fa-sign-out-alt"></i> Cerrar sesión</a>
                     </li>
                     {% else %}
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'registration_register' %}"><i class="fas fa-user-plus"></i> Registro</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'auth_login' %}"><i class="fas fa-sign-in-alt"></i> Iniciar Sesión</a>
+                        <a class="nav-link" href="{% url 'auth_login' %}"><i class="fas fa-sign-in-alt"></i> Iniciar esión</a>
                     </li>
                     {% endif %}
                     <li class="nav-item">
-                        <img src="{% static 'assets/logo_aeromexico_alt.svg' %}" height="25" class="d-inline-block mt-1 ml-2" alt="">
+                        <img src="{% static 'assets/logo_aeromexico_alt.svg' %}" height="25" class="logo-aeromexico-menu" alt="">
                     </li>
                 </ul>
             </div>
@@ -56,24 +59,6 @@
 
     {% block body_block %}
     {% endblock %}
-    <div class="container">
-        <footer class="pt-4 my-md-5 pt-md-5 border-top">
-        <div class="row text-center">
-          <div class="col-12 col-md">
-            <img class="mb-2" src="{% static 'assets/logo_cwt.svg' %}" alt="" width="140">
-            <small class="d-block mb-3 text-muted">© 2017-2018</small>
-          </div>
-        </div>
-        <div class="row text-center">
-          <div class="col-12 col-md">
-            <ul class="list-unstyled text-small">
-                <li><span class="text-muted">Todos los derechos reservados</span></li>
-                <li><span class="text-muted">® Polar Multimedia</span></li>
-            </ul>
-          </div>
-        </div>
-      </footer>
-    </div>
 
     {% render_bundle 'vendors' 'js' %}
     {% render_bundle 'main' 'js' %}

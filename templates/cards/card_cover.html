@@ -1,11 +1,15 @@
 {% extends "cards/cards_base.html" %}
 {% load static %}
+{% load bootstrap4 %}
 {% block content %}
 <div class="container-fluid ">
     <div class="row justify-content-center">
         {% include 'cards/cards_sidebar.html' with departments=departments %}
         <main role="main" class="col-md-10 col-lg-10 offset-md-2 offset-lg-2 Cover bg-worldcup">
             <div class="row mb-4">
+                <div class="container mb-4">
+                    {% bootstrap_messages %}
+                </div>
                 <div class="Cover--Header">
                     <img class="responsive" src="{% static 'assets/cover/album_banner_ribbon.png' %}">
                 </div>
@@ -25,6 +29,24 @@
             </div>
         </main>
     </div>
+</div>
+<div class="container">
+    <footer class="pt-4 pt-md-5 border-top">
+        <div class="row text-center">
+            <div class="col-md-10 col-lg-10 offset-md-2 offset-lg-2 ">
+                <img class="mb-2" src="{% static 'assets/logo_cwt.svg' %}" alt="" width="140">
+                <small class="d-block mb-3 text-muted">© 2017-2018</small>
+            </div>
+        </div>
+        <div class="row text-center">
+            <div class="col-md-10 col-lg-10 offset-md-2 offset-lg-2 ">
+                <ul class="list-unstyled text-small">
+                    <li><span class="text-muted">Todos los derechos reservados</span></li>
+                    <li><span class="text-muted">® Polar Multimedia</span></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
 </div>
 
 {% endblock %}

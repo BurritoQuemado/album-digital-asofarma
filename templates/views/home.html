@@ -1,30 +1,45 @@
 {% extends "base.html" %}
-
+{% load static %}
 {% block body_block %}
 <div class="container my-4">
     <div class="jumbotron">
-        <div class="row">
-            <div class="col-md-6">
-                <p class="lead display-4">Bienvenido a tu álbum digital</p>
-            </div>
-            <div class="col-md-6">
-                {% if user.is_authenticated %}
-                <p class="lead">
-                    <a class="btn btn-primary btn-lg" href="{% url 'cards:card_list' pk=user.id slug='portada' %}" role="button">Ir a mi álbum</a>
-                </p>
-                {% else %}
-                <p class="lead">
-                    <a class="btn btn-primary btn-lg" href="{% url 'registration_register' %}" role="button">Registrarse</a>
-                </p>
-                <p>
-                    ¿Tiene cuenta?, <a href="{% url 'auth_login' %}" role="button">Iniciar Sesión</a>
-                </p>
-                {% endif %}
-            </div>
-        </div>
+        <h2 class="text-center">Bienvenido a tu álbum digital</h2>
+        {% if user.is_authenticated %}
+        <p class="text-center">
+            ¿Desea ir a su álbum digital?
+        </p>
+        <p class="lead text-center">
+            <a class="btn btn-primary btn-lg" href="{% url 'cards:card_list' pk=user.id slug='portada' %}" role="button">Ir a mi álbum</a>
+        </p>
+        {% else %}
+        <p class="lead text-center">
+            <a class="btn btn-primary btn-lg" href="{% url 'registration_register' %}" role="button">Registrarse</a>
+        </p>
+        <p class="text-center">
+            ¿Tiene cuenta? <a href="{% url 'auth_login' %}" role="button">Inicie sesión</a>
+        </p>
+        {% endif %}
     </div>
     <div class="embed-responsive embed-responsive-16by9">
         <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/t9Bn5Sv-Xd8?rel=0&showinfo=0&controls=0" allowfullscreen></iframe>
     </div>
+</div>
+<div class="container">
+    <footer class="pt-4 my-md-5 pt-md-5 border-top">
+        <div class="row text-center">
+            <div class="col-12 col-md">
+                <img class="mb-2" src="{% static 'assets/logo_cwt.svg' %}" alt="" width="140">
+                <small class="d-block mb-3 text-muted">© 2017-2018</small>
+            </div>
+        </div>
+        <div class="row text-center">
+            <div class="col-12 col-md">
+                <ul class="list-unstyled text-small">
+                    <li><span class="text-muted">Todos los derechos reservados</span></li>
+                    <li><span class="text-muted">® Polar Multimedia</span></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
 </div>
 {% endblock %}
