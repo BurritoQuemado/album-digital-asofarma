@@ -1,25 +1,26 @@
 {% extends "base.html" %}
 {% load static %}
 {% block body_block %}
-<div class="container my-4">
-    <div class="jumbotron">
-        <h2 class="text-center">Bienvenido a tu álbum digital</h2>
+<div class="bg-welcome">
+    <div class="container pt-3 pb-2 mb-4">
         {% if user.is_authenticated %}
-        <p class="text-center">
-            ¿Desea ir a su álbum digital?
-        </p>
+        <h4 class="text-center">Hola, {{user.full_name}}</h4>
         <p class="lead text-center">
-            <a class="btn btn-primary btn-lg" href="{% url 'cards:card_list' pk=user.id slug='portada' %}" role="button">Ir a mi álbum</a>
+            <a class="btn btn-dark" href="{% url 'cards:card_list' pk=user.id slug='portada' %}" role="button">Ir a mi álbum</a>
         </p>
         {% else %}
+        <h2 class="text-center">Bienvenido a tu álbum digital</h2>
         <p class="lead text-center">
-            <a class="btn btn-primary btn-lg" href="{% url 'registration_register' %}" role="button">Registrarse</a>
+            <a class="btn btn-dark" href="{% url 'registration_register' %}" role="button">Registrarse</a>
         </p>
         <p class="text-center">
-            ¿Tiene cuenta? <a href="{% url 'auth_login' %}" role="button">Inicie sesión</a>
+            ¿Tiene cuenta? <a class="text-dark" href="{% url 'auth_login' %}" role="button">Inicie sesión</a>
         </p>
         {% endif %}
+
     </div>
+</div>
+<div class="container">
     <div class="embed-responsive embed-responsive-16by9">
         <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/t9Bn5Sv-Xd8?rel=0&showinfo=0&controls=0" allowfullscreen></iframe>
     </div>
