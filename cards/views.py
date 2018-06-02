@@ -1,5 +1,6 @@
 import base64
-from django.urls import reverse_lazy, reverse
+import math
+from django.urls import reverse
 from django.shortcuts import get_object_or_404
 from django.contrib.messages.views import SuccessMessageMixin
 from .forms import EmailSaveForm, AddCodeForm
@@ -23,7 +24,16 @@ class EmailSaveView(SuccessMessageMixin, UpdateView):
 
     def get_success_url(self, **kwargs):
         code = Code.objects.get(code=self.kwargs['code'])
-        return reverse('cards:card_list', kwargs={'pk': self.request.user.id, 'slug': code.fk_card.fk_department.slug}) + '#' + str(code.fk_card.id)
+        cards = Card.objects.filter(fk_department__slug=code.fk_card.fk_department.slug).order_by('id')
+        page = 0
+        if cards.count() > 12:
+            for index, card in enumerate(cards):
+                if code.fk_card.id is card.id:
+                    page = index
+        if page > 0:
+            return reverse('cards:card_list', kwargs={'pk': self.request.user.id, 'slug': code.fk_card.fk_department.slug}) + '?page=' + str(int(math.ceil(page / 12))) + '#' + str(code.fk_card.id)
+        else:
+            return reverse('cards:card_list', kwargs={'pk': self.request.user.id, 'slug': code.fk_card.fk_department.slug}) + '#' + str(code.fk_card.id)
 
     def get_object(self, queryset=None):
         obj = Code.objects.get(code=self.kwargs['code'])
@@ -54,16 +64,16 @@ class AddCodeView(SuccessMessageMixin, FormView):
 
     def get_success_url(self, **kwargs):
         code = Code.objects.get(code=self.form.cleaned_data['code'])
-        # cards = Card.objects.filter(fk_department__slug=code.fk_card.fk_department.slug)
-        # page = 0
-        # if cards.count() > 12:
-        #     for index, card in enumerate(cards):
-        #         if code.fk_card.id is card.id:
-        #             page = index
-        # if page > 0:
-        #     return reverse('cards:card_list', kwargs={'pk': self.request.user.id, 'slug': code.fk_card.fk_department.slug}) + '?' + str(cards.count() / page)
-        # else:
-        return reverse('cards:card_list', kwargs={'pk': self.request.user.id, 'slug': code.fk_card.fk_department.slug}) + '#' + str(code.fk_card.id)
+        cards = Card.objects.filter(fk_department__slug=code.fk_card.fk_department.slug).order_by('id')
+        page = 0
+        if cards.count() > 12:
+            for index, card in enumerate(cards):
+                if code.fk_card.id is card.id:
+                    page = index
+        if page > 0:
+            return reverse('cards:card_list', kwargs={'pk': self.request.user.id, 'slug': code.fk_card.fk_department.slug}) + '?page=' + str(int(math.ceil(page / 12))) + '#' + str(code.fk_card.id)
+        else:
+            return reverse('cards:card_list', kwargs={'pk': self.request.user.id, 'slug': code.fk_card.fk_department.slug}) + '#' + str(code.fk_card.id)
 
     def form_valid(self, form):
         self.form = form
@@ -84,6 +94,7 @@ class CoverView(DetailView):
         codes = Code.objects.filter(fk_user_id=self.kwargs['pk']).values('fk_card').distinct()
         context['codes'] = codes.count()
         context['total'] = cards.count()
+        context['album_user'] = User.objects.get(pk=self.kwargs['pk'])
         departments = Department.objects.all().order_by('id')
         for department in departments:
             department_codes = Code.objects.filter(fk_user_id=self.kwargs['pk'], fk_card__fk_department=department)
@@ -103,7 +114,6 @@ class CardList(ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['department'] = Department.objects.get(slug=self.kwargs['slug'])
         badge = Card.objects.get(fk_department__slug=self.kwargs['slug'], is_badge=True)
         badge_codes = Code.objects.filter(fk_user_id=self.kwargs['pk'], fk_card=badge)
         if badge_codes.exists():
@@ -117,9 +127,10 @@ class CardList(ListView):
             else:
                 department.codes = 0
             department.cards = Card.objects.filter(fk_department=department).count()
+        context['department'] = Department.objects.get(slug=self.kwargs['slug'])
         context['departments'] = departments
         context['badge'] = badge
-        context['user'] = User.objects.get(pk=self.kwargs['pk'])
+        context['album_user'] = User.objects.get(pk=self.kwargs['pk'])
         cards = Card.objects.all().order_by('id')
         codes = Code.objects.filter(fk_user_id=self.kwargs['pk']).values('fk_card').distinct()
         context['codes'] = codes.count()

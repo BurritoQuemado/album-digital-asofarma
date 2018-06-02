@@ -6,7 +6,7 @@
     <div class="row justify-content-center">
         {% include 'cards/cards_sidebar.html' with departments=departments %}
         <main role="main" class="col-md-9 col-lg-8 offset-md-1 offset-lg-2 pt-3 px-4">
-            <div class="container my-2">
+            <div class="my-2">
                 {% bootstrap_messages %}
             </div>
             {% if page_obj.number is 1 %}

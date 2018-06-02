@@ -14,7 +14,7 @@ $(() => {
             const $anchor = $(`#Card-${hash}`).offset()
             console.log($anchor)
             $('html, body').animate({
-                scrollTop: $anchor.top - (window.innerHeight / 2),
+                scrollTop: $anchor.top - (window.innerHeight / 4),
             }, 500)
             const uri = window.location.toString()
             if (uri.indexOf('#') > 0) {

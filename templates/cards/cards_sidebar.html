@@ -1,19 +1,26 @@
 {% load static %}
 <nav class="Menu">
     <div class="Menu--Information">
-        <span class="Name"><strong>Nombre:</strong> {{user.full_name}}</span>
+        <span class="Name"><strong>Nombre:</strong> {{album_user.full_name}}</span>
         <span class="Progress"><strong>Avance:</strong> {{codes}}/{{total}}</span>
     </div>
     <div class="Menu--Buttons">
         <span>
-            <a href="{% url 'cards:card_list' pk=user.id slug='portada' %}">
+            <a href="{% url 'cards:card_list' pk=album_user.id slug='portada' %}">
                 <img src="{% static 'assets/logos/portada.svg' %}" width="50">
+                <div>
+                    <strong>Portada</strong>
+                </div>
             </a>
         </span>
         {% for department in departments %}
         <span>
-            <a href="{% url 'cards:card_list' pk=user.id slug=department.slug %}">
+            <a href="{% url 'cards:card_list' pk=album_user.id slug=department.slug %}">
                 <img src="{% static department.svg_template %}" width="50">
+                <div>
+                    <strong>{{department.name}}</strong>
+                    ({{department.codes}}/{{department.cards}})
+                </div>
             </a>
         </span>
         {% endfor %}
@@ -27,7 +34,7 @@
         <ul class="nav flex-column">
             <li class="nav-item">
                 <p class="nav-link info">
-                    <strong>Nombre:</strong> {{user.full_name}}
+                    <strong>Nombre:</strong> {{album_user.full_name}}
                 </p>
             </li>
             <li class="nav-item">
@@ -41,16 +48,16 @@
         </h6>
         <ul class="nav flex-column">
             <li class="nav-item">
-                <a class="nav-link department" href="{% url 'cards:card_list' pk=user.id slug='portada' %}">
+                <a class="nav-link department" href="{% url 'cards:card_list' pk=album_user.id slug='portada' %}">
                     <div class="svg-logo-sidebar">
                         <img src="{% static 'assets/logos/portada.svg' %}">
                     </div>
-                    Portada
+                    <strong>Portada</strong>
                 </a>
             </li>
             {% for department in departments %}
             <li class="nav-item">
-                <a class="nav-link department" href="{% url 'cards:card_list' pk=user.id slug=department.slug %}">
+                <a class="nav-link department" href="{% url 'cards:card_list' pk=album_user.id slug=department.slug %}">
                     <div class="svg-logo-sidebar">
                         <img src="{% static department.svg_template %}">
                     </div>
