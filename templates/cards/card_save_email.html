@@ -7,13 +7,7 @@
     <h2 class="border-bottom border-gray pb-2 mb-0 ">Guardar en álbum, {{email}}</h2>
     <div class="row my-3">
         <div class="col-md-4 mb-4 mx-auto">
-            <div class="Card--Full">
-                <div class="Card--Full--Body">
-                    <div class="Card--Full--Body--Back">
-                        {% include card.html_template with card=card %}
-                    </div>
-                </div>
-            </div>
+            {% include 'cards/types/card.html' with card=card %}
         </div>
     </div>
     <form method="post" action="." class="pt-3">

@@ -54,7 +54,8 @@
                     <div class="svg-logo-sidebar">
                         <img src="{% static department.svg_template %}">
                     </div>
-                    {{department.name}}
+                    <strong>{{department.name}}</strong>
+                    ({{department.codes}}/{{department.cards}})
                 </a>
             </li>
             {% endfor %}

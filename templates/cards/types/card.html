@@ -1,9 +1,11 @@
 {% load static %}
 <div class="Card--Full">
-    <div class="Card--Full--Body">
+    <div class="Card--Full--Body" id="Card-{{card.id}}">
+        {% if card.codes %}
         <div class="Card--Full--Body--Quantity Card-Quantity" data-id="{{card.id}}">
             <span>{{card.codes.count}}</span>
         </div>
+        {% endif %}
         <div class="Card--Full--Body--Back">
             {% if card.is_badge %}
             <img class="Card--Full--Body--Back--Photo" src="{% static card.img_template %}">

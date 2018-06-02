@@ -22,7 +22,8 @@ class EmailSaveView(SuccessMessageMixin, UpdateView):
     success_message = 'Se ha guardado la carta a tu álbum'
 
     def get_success_url(self, **kwargs):
-        return reverse('cards:card_cover', kwargs={'pk': self.request.user.id})
+        code = Code.objects.get(code=self.kwargs['code'])
+        return reverse('cards:card_list', kwargs={'pk': self.request.user.id, 'slug': code.fk_card.fk_department.slug}) + '#' + str(code.fk_card.id)
 
     def get_object(self, queryset=None):
         obj = Code.objects.get(code=self.kwargs['code'])
@@ -49,10 +50,23 @@ class EmailSaveView(SuccessMessageMixin, UpdateView):
 class AddCodeView(SuccessMessageMixin, FormView):
     template_name = 'cards/card_save_form.html'
     form_class = AddCodeForm
-    success_url = reverse_lazy('cards:redeem')
     success_message = "Se ha guardado la carta en tu álbum"
 
+    def get_success_url(self, **kwargs):
+        code = Code.objects.get(code=self.form.cleaned_data['code'])
+        # cards = Card.objects.filter(fk_department__slug=code.fk_card.fk_department.slug)
+        # page = 0
+        # if cards.count() > 12:
+        #     for index, card in enumerate(cards):
+        #         if code.fk_card.id is card.id:
+        #             page = index
+        # if page > 0:
+        #     return reverse('cards:card_list', kwargs={'pk': self.request.user.id, 'slug': code.fk_card.fk_department.slug}) + '?' + str(cards.count() / page)
+        # else:
+        return reverse('cards:card_list', kwargs={'pk': self.request.user.id, 'slug': code.fk_card.fk_department.slug}) + '#' + str(code.fk_card.id)
+
     def form_valid(self, form):
+        self.form = form
         user = self.request.user
         code = Code.objects.get(code=form.cleaned_data['code'])
         code.fk_user = user
@@ -70,6 +84,15 @@ class CoverView(DetailView):
         codes = Code.objects.filter(fk_user_id=self.kwargs['pk']).values('fk_card').distinct()
         context['codes'] = codes.count()
         context['total'] = cards.count()
+        departments = Department.objects.all().order_by('id')
+        for department in departments:
+            department_codes = Code.objects.filter(fk_user_id=self.kwargs['pk'], fk_card__fk_department=department)
+            if department_codes.exists():
+                department.codes = department_codes.count()
+            else:
+                department.codes = 0
+            department.cards = Card.objects.filter(fk_department=department).count()
+        context['departments'] = departments
         return context
 
 
@@ -86,6 +109,15 @@ class CardList(ListView):
         if badge_codes.exists():
             badge.obtained = True
             badge.codes = badge_codes
+        departments = Department.objects.all().order_by('id')
+        for department in departments:
+            department_codes = Code.objects.filter(fk_user_id=self.kwargs['pk'], fk_card__fk_department=department)
+            if department_codes.exists():
+                department.codes = department_codes.count()
+            else:
+                department.codes = 0
+            department.cards = Card.objects.filter(fk_department=department).count()
+        context['departments'] = departments
         context['badge'] = badge
         context['user'] = User.objects.get(pk=self.kwargs['pk'])
         cards = Card.objects.all().order_by('id')
