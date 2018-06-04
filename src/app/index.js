@@ -12,7 +12,8 @@ $(() => {
         setTimeout(() => {
             const hash = window.location.hash.substring(1)
             const $anchor = $(`#Card-${hash}`).offset()
-            console.log($anchor)
+            $(`#Card-${hash}`).addClass('NewCard')
+            // console.log($anchor)
             $('html, body').animate({
                 scrollTop: $anchor.top - (window.innerHeight / 4),
             }, 500)

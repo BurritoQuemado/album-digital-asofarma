@@ -13,78 +13,6 @@
     p
         margin 0
 
-
-.album-background
-    background-position: center top
-    background-repeat: no-repeat
-    background-size: 100%
-    min-height calc(100vh - 60px)
-
-.desarrollos-informaticos
-    @extend .album-background
-    background-image: url('../../assets/images/desarrollos-informaticos@2x.png')
-    background-color: #420D2E
-
-.finanzas
-    @extend .album-background
-    background-image: url('../../assets/images/finanzas@2x.png')
-    background-color: #231F20
-
-.direccion-general
-    @extend .album-background
-    background-image: url('../../assets/images/direccion-general@2x.png')
-    background-color: #705009
-
-.implementacion
-    @extend .album-background
-    background-image: url('../../assets/images/implementacion@2x.png')
-    background-color: #2F1A45
-
-.marketing
-    @extend .album-background
-    background-image: url('../../assets/images/marketing@2x.png')
-    background-color: #14301B
-
-.meeting-events
-    @extend .album-background
-    background-image: url('../../assets/images/meeting-events@2x.png')
-    background-color: #211645
-
-.program-management
-    @extend .album-background
-    background-image: url('../../assets/images/program-management@2x.png')
-    background-color: #6B0F1A
-
-.recursos-humanos
-    @extend .album-background
-    background-image: url('../../assets/images/recursos-humanos@2x.png')
-    background-color: #0F1235
-
-.supplier-management
-    @extend .album-background
-    background-image: url('../../assets/images/supplier-management@2x.png')
-    background-color: #07263A
-
-.traveler-services
-    @extend .album-background
-    background-image: url('../../assets/images/traveler-services@2x.png')
-    background-color: #003E52
-
-.ventas
-    @extend .album-background
-    background-image: url('../../assets/images/ventas@2x.png')
-    background-color: #7C082C
-
-.svg-logo-sidebar
-    display inline-block
-    width 18px
-
-.bg-worldcup
-    background-image: url('../../assets/images/background.jpg')
-    background-repeat: no-repeat
-    background-position: center
-    background-size: cover
-
 .Cover
     min-height calc(100vh - 60px)
     .row
@@ -132,6 +60,14 @@
             max-width 200px
             margin 0px auto
             display: block
+
+@keyframes glowing {
+  0% { box-shadow: 0 0 -20px #ffeb3b; }
+  40% { box-shadow: 0 0 100px #ffeb3b; }
+  60% { box-shadow: 0 0 100px #ffeb3b; }
+  100% { box-shadow: 0 0 -20px #ffeb3b; }
+}
+
 .Card
     &--Full
         size 100%
@@ -148,6 +84,9 @@
             top: 0
             left: 0
             width 100%
+            &.NewCard
+                svg, .CardPhoto
+                    animation: glowing 2000ms infinite
             &--Title
                 position absolute
                 left 20px

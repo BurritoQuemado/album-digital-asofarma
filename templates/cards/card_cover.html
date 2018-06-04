@@ -2,14 +2,19 @@
 {% load static %}
 {% load bootstrap4 %}
 {% block content %}
-<div class="container-fluid ">
+<div class="container-fluid">
     <div class="row justify-content-center">
         {% include 'cards/cards_sidebar.html' with departments=departments %}
         <main role="main" class="col-md-10 col-lg-10 offset-md-2 offset-lg-2 Cover bg-worldcup">
-            <div class="row mb-4">
-                <div class="container mb-4">
-                    {% bootstrap_messages %}
+            {% if user.is_authenticated and user.id is not album_user.id %}
+            <div class="row mb-3">
+                <div class="OtherUser">
+                    <span>Estás visualizando el álbum de {{album_user.full_name}}, para ir a tu álbum da <a href="{% url 'cards:card_list' pk=user.id slug='portada' %}">click aquí.</a></span>
                 </div>
+            </div>
+            {% endif %}
+            <div class="row mb-4">
+                {% bootstrap_messages %}
                 <div class="Cover--Header">
                     <img class="responsive" src="{% static 'assets/cover/album_banner_ribbon.png' %}">
                 </div>

@@ -5,76 +5,86 @@
 <div class="container-fluid {{department.slug}}">
     <div class="row justify-content-center">
         {% include 'cards/cards_sidebar.html' with departments=departments %}
-        <main role="main" class="col-md-9 col-lg-8 offset-md-1 offset-lg-2 pt-3 px-4">
-            <div class="my-2">
-                {% bootstrap_messages %}
-            </div>
-            {% if page_obj.number is 1 %}
-            <div class="row mb-4">
-                <div class="col-md-8 mb-4 header-description">
-                    <h2>{{department.name}}</h2>
-                    <p>{{department.description}}</p>
-                </div>
-                <div class="col-md-4 mb-4">
-                    {% if badge.obtained %}
-                    {% include 'cards/types/card.html' with card=badge %}
-                    {% else %}
-                    {% include 'cards/types/empty.html' with card=badge %}
-                    {% endif %}
+        <main role="main" class="col-md-10 col-lg-10 offset-md-2 offset-lg-2 CardsList">
+            {% if user.is_authenticated and user.id is not album_user.id %}
+            <div class="row mb-3">
+                <div class="OtherUser">
+                    <span>Estás visualizando el álbum de {{album_user.full_name}}, para ir a tu álbum da <a href="{% url 'cards:card_list' pk=user.id slug='portada' %}">click aquí.</a></span>
                 </div>
             </div>
             {% endif %}
-
-            <div class="row mb-4">
-                {% for card in object_list %}
-                <div class="col-md-4 mb-4">
-                    {% if card.obtained %}
-                    {% include 'cards/types/card.html' with card=card %}
-                    {% else %}
-                    {% include 'cards/types/empty.html' with card=card %}
+            <div class="row mt-3">
+                <div class="col-md-10 offset-md-1 offset-lg-1">
+                    {% bootstrap_messages %}
+                    {% if page_obj.number is 1 %}
+                    <div class="row mb-4">
+                        <div class="col-md-8 mb-4">
+                            <div class="header-description">
+                                <h2>{{department.name}}</h2>
+                                <p>{{department.description}}</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4 mb-4">
+                            {% if badge.obtained %}
+                            {% include 'cards/types/card.html' with card=badge %}
+                            {% else %}
+                            {% include 'cards/types/empty.html' with card=badge %}
+                            {% endif %}
+                        </div>
+                    </div>
+                    {% endif %}
+                    <div class="row mb-4">
+                        {% for card in object_list %}
+                        <div class="col-md-4 mb-4">
+                            {% if card.obtained %}
+                            {% include 'cards/types/card.html' with card=card %}
+                            {% else %}
+                            {% include 'cards/types/empty.html' with card=card %}
+                            {% endif %}
+                        </div>
+                        {% if forloop.counter|divisibleby:3 %}
+                    </div>
+                    <div class="row mb-4">
+                        {% endif %}
+                        {% endfor %}
+                    </div>
+                    {% if is_paginated %}
+                    <nav aria-label="Page navigation example">
+                        <ul class="pagination justify-content-center">
+                            {% if page_obj.has_previous %}
+                            <li class="page-item">
+                                <a class="page-link" href="?page={{ page_obj.previous_page_number }}">&laquo;</a>
+                            </li>
+                            {% else %}
+                            <li class="page-item disabled">
+                                <span class="page-link">&laquo;</span>
+                            </li>
+                            {% endif %}
+                            {% for i in paginator.page_range %}
+                            {% if page_obj.number is i %}
+                            <li class="page-item disabled">
+                                <span class="page-link">{{ i }} <span class="sr-only">(current)</span></span>
+                            </li>
+                            {% else %}
+                            <li class="page-item">
+                                <a class="page-link" href="?page={{ i }}">{{ i }}</a>
+                            </li>
+                            {% endif %}
+                            {% endfor %}
+                            {% if page_obj.has_next %}
+                            <li>
+                                <a class="page-link" href="?page={{ page_obj.next_page_number }}">&raquo;</a>
+                            </li>
+                            {% else %}
+                            <li class="page-item disabled">
+                                <span class="page-link">&raquo;</span>
+                            </li>
+                            {% endif %}
+                        </ul>
+                    </nav>
                     {% endif %}
                 </div>
-                {% if forloop.counter|divisibleby:3 %}
             </div>
-            <div class="row mb-4">
-                {% endif %}
-                {% endfor %}
-            </div>
-            {% if is_paginated %}
-            <nav aria-label="Page navigation example">
-                <ul class="pagination justify-content-center">
-                    {% if page_obj.has_previous %}
-                    <li class="page-item">
-                        <a class="page-link" href="?page={{ page_obj.previous_page_number }}">&laquo;</a>
-                    </li>
-                    {% else %}
-                    <li class="page-item disabled">
-                        <span class="page-link">&laquo;</span>
-                    </li>
-                    {% endif %}
-                    {% for i in paginator.page_range %}
-                    {% if page_obj.number is i %}
-                    <li class="page-item disabled">
-                        <span class="page-link">{{ i }} <span class="sr-only">(current)</span></span>
-                    </li>
-                    {% else %}
-                    <li class="page-item">
-                        <a class="page-link" href="?page={{ i }}">{{ i }}</a>
-                    </li>
-                    {% endif %}
-                    {% endfor %}
-                    {% if page_obj.has_next %}
-                    <li>
-                        <a class="page-link" href="?page={{ page_obj.next_page_number }}">&raquo;</a>
-                    </li>
-                    {% else %}
-                    <li class="page-item disabled">
-                        <span class="page-link">&raquo;</span>
-                    </li>
-                    {% endif %}
-                </ul>
-            </nav>
-            {% endif %}
         </main>
     </div>
 </div>

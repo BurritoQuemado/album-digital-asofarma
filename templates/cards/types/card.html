@@ -8,10 +8,10 @@
         {% endif %}
         <div class="Card--Full--Body--Back">
             {% if card.is_badge %}
-            <img class="Card--Full--Body--Back--Photo" src="{% static card.img_template %}">
+            <img class="Card--Full--Body--Back--Photo CardPhoto" src="{% static card.img_template %}">
             {% else %}
             {% if card.photo %}
-            <img class="Card--Full--Body--Back--Photo" src="{{ card.photo_thumbnail.url }}" />
+            <img class="Card--Full--Body--Back--Photo CardPhoto" src="{{ card.photo_thumbnail.url }}" />
             {% else %}
             <img src="" />
             {% endif %}

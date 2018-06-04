@@ -87,6 +87,7 @@ class AddCodeView(SuccessMessageMixin, FormView):
 class CoverView(DetailView):
     model = User
     template_name = 'cards/card_cover.html'
+    context_object_name = 'user_object'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
