@@ -3,7 +3,7 @@ import math
 from django.urls import reverse
 from django.shortcuts import get_object_or_404
 from django.contrib.messages.views import SuccessMessageMixin
-from .forms import EmailSaveForm, AddCodeForm
+from .forms import EmailSaveForm, AddCodeForm, SendCodeForm
 from accounts.models import User
 from .models import Card, Code, Department
 from django.views.generic.list import ListView
@@ -51,6 +51,39 @@ class EmailSaveView(SuccessMessageMixin, UpdateView):
         email = email.decode("utf-8")
         user = User.objects.get(email=email)
 
+        self.object.fk_user = user
+        self.object.save()
+        return super().form_valid(form)
+
+
+@method_decorator(decorators, name='dispatch')
+class SendCodeView(SuccessMessageMixin, UpdateView):
+    model = Code
+    template_name = 'cards/card_send_code.html'
+    form_class = SendCodeForm
+    success_message = "Se ha enviado la carta con éxito"
+
+    def get_success_url(self, **kwargs):
+        return reverse('cards:card_cover', kwargs={'pk': self.request.user.id})
+
+    def get_object(self, queryset=None):
+        obj = get_object_or_404(Code, code=self.kwargs['code'], fk_user=self.request.user)
+        return obj
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        code = Code.objects.get(code=self.kwargs['code'])
+        context['card'] = code.fk_card
+        return context
+
+    def get_form_kwargs(self):
+        kwargs = super(SendCodeView, self).get_form_kwargs()
+        kwargs.update({'current_user': self.request.user})
+        return kwargs
+
+    def form_valid(self, form):
+        self.object = form.save(commit=False)
+        user = form.cleaned_data['user']
         self.object.fk_user = user
         self.object.save()
         return super().form_valid(form)

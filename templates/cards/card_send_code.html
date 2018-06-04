@@ -1,0 +1,23 @@
+{% extends "registration/registration_base.html" %}
+
+{% load bootstrap4 %}
+
+{% block content %}
+<div class="text-center">
+    <h2 class="border-bottom border-gray pb-2 mb-0">Enviar tarjeta</h2>
+    <div class="row">
+        <div class="col-md-4 mb-4 mt-4 mx-auto">
+            {% include 'cards/types/card.html' with card=card %}
+        </div>
+    </div>
+    <div class="col-md-6 offset-md-3">
+        <form action="" method="post" class="pt-3">
+            {% csrf_token %}
+            {% bootstrap_form form %}
+            {% buttons %}
+            <button type="submit" class="btn btn-primary btn-lg">Enviar</button>
+            {% endbuttons %}
+        </form>
+    </div>
+</div>
+{% endblock %}
