@@ -25,7 +25,7 @@
         {% for code in card.codes %}
         <div class="Card--Full--Footer--Code">
             <span>{{code}}</span>
-            <a class="btn btn-primary" href="{% url 'cards:send_code' code=code %}">Enviar Código</a>
+            <a href="{% url 'cards:send_code' code=code %}">Enviar Código</a>
         </div>
         {% endfor %}
     </div>

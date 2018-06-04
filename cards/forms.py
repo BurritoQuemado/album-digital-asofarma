@@ -49,7 +49,7 @@ class SendCodeForm(forms.ModelForm):
             is_active=True,
             is_staff=False,
             is_superuser=False,
-        ).exclude(id=user.id)
+        ).exclude(id=user.id).order_by('first_name')
 
     def clean(self):
         cleaned_data = super().clean()

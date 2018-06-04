@@ -73,18 +73,33 @@
         size 100%
         position relative
         &--Footer
-            background: rgba($white, 0.8)
+            background: rgba($primary, 0.8)
             padding: 10px 15px
-            span
-                font-family: 'din'
-                font-weight: bold
-                font-size 0.8em
-            .btn
-                font-family: 'avenir'
-                font-weight: normal
-                padding 0.3em 0.3em
-                line-height: 0.5rem;
-                font-size 0.8em
+            &--Code
+                color $white
+                lost-utility clearfix
+                padding 0 5px
+                span
+                    font-family: 'din'
+                    font-weight: bold
+                    font-size 0.8em
+                    line-height: 0.5rem
+                    border: 1px solid $white
+                    padding 4px 7px 4px 5px
+                    margin: 0
+                    display inline-block
+                    margin-right: -5px;
+                a
+                    display inline-block
+                    margin-right: -5px;
+                    font-family: 'din'
+                    font-weight: normal
+                    line-height: 0.5rem
+                    font-size 0.8em
+                    padding 5px 7px 5px 5px
+                    color $primary
+                    background $white
+                    margin 0
         &--Body
             position: absolute
             top: 0

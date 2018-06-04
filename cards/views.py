@@ -24,7 +24,7 @@ class EmailSaveView(SuccessMessageMixin, UpdateView):
 
     def get_success_url(self, **kwargs):
         code = Code.objects.get(code=self.kwargs['code'])
-        cards = Card.objects.filter(fk_department__slug=code.fk_card.fk_department.slug).order_by('id')
+        cards = Card.objects.filter(fk_department__slug=code.fk_card.fk_department.slug, active=True).order_by('id')
         page = 0
         if cards.count() > 12:
             for index, card in enumerate(cards):
@@ -97,7 +97,7 @@ class AddCodeView(SuccessMessageMixin, FormView):
 
     def get_success_url(self, **kwargs):
         code = Code.objects.get(code=self.form.cleaned_data['code'])
-        cards = Card.objects.filter(fk_department__slug=code.fk_card.fk_department.slug).order_by('id')
+        cards = Card.objects.filter(fk_department__slug=code.fk_card.fk_department.slug, active=True).order_by('id')
         page = 0
         if cards.count() > 12:
             for index, card in enumerate(cards):
@@ -124,7 +124,7 @@ class CoverView(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        cards = Card.objects.all().order_by('id')
+        cards = Card.objects.filter(active=True).order_by('id')
         codes = Code.objects.filter(fk_user_id=self.kwargs['pk']).values('fk_card').distinct()
         context['codes'] = codes.count()
         context['total'] = cards.count()
@@ -136,7 +136,7 @@ class CoverView(DetailView):
                 department.codes = department_codes.count()
             else:
                 department.codes = 0
-            department.cards = Card.objects.filter(fk_department=department).count()
+            department.cards = Card.objects.filter(fk_department=department, active=True).count()
         context['departments'] = departments
         return context
 
@@ -148,7 +148,7 @@ class CardList(ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        badge = Card.objects.get(fk_department__slug=self.kwargs['slug'], is_badge=True)
+        badge = Card.objects.get(fk_department__slug=self.kwargs['slug'], is_badge=True, active=True)
         badge_codes = Code.objects.filter(fk_user_id=self.kwargs['pk'], fk_card=badge)
         if badge_codes.exists():
             badge.obtained = True
@@ -165,7 +165,7 @@ class CardList(ListView):
         context['departments'] = departments
         context['badge'] = badge
         context['album_user'] = User.objects.get(pk=self.kwargs['pk'])
-        cards = Card.objects.all().order_by('id')
+        cards = Card.objects.filter(active=True).order_by('id')
         codes = Code.objects.filter(fk_user_id=self.kwargs['pk']).values('fk_card').distinct()
         context['codes'] = codes.count()
         context['total'] = cards.count()
@@ -174,7 +174,7 @@ class CardList(ListView):
 
     def get_queryset(self, *args, **kwargs):
         get_object_or_404(User, pk=self.kwargs['pk'])
-        cards = Card.objects.filter(fk_department__slug=self.kwargs['slug'], is_badge=False).order_by('id')
+        cards = Card.objects.filter(fk_department__slug=self.kwargs['slug'], is_badge=False, active=True).order_by('id')
         for card in cards:
             codes = Code.objects.filter(fk_user_id=self.kwargs['pk'], fk_card=card)
             if codes.exists():
