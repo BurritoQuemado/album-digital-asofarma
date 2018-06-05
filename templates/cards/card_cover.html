@@ -2,49 +2,47 @@
 {% load static %}
 {% load bootstrap4 %}
 {% block content %}
-<div class="container-fluid">
-    <div class="row justify-content-center">
-        {% include 'cards/cards_sidebar.html' with departments=departments %}
-        <main role="main" class="col-md-10 col-lg-10 offset-md-2 offset-lg-2 Cover bg-worldcup">
-            {% if user.is_authenticated and user.id is not album_user.id %}
-            <div class="row mb-3">
-                <div class="OtherUser">
-                    <span>Estás visualizando el álbum de {{album_user.full_name}}, para ir a tu álbum da <a href="{% url 'cards:card_list' pk=user.id slug='portada' %}">click aquí.</a></span>
-                </div>
+<div class="Album-Container">
+    {% include 'cards/cards_sidebar.html' with departments=departments %}
+    <main role="main" class="Cover bg-worldcup">
+        {% if user.is_authenticated and user.id is not album_user.id %}
+        <div class="ExternalAdvice">
+            <div class="OtherUser">
+                <span>Estás visualizando el álbum de {{album_user.full_name}}, para ir a tu álbum da <a href="{% url 'cards:card_list' pk=user.id slug='portada' %}">click aquí.</a></span>
             </div>
-            {% endif %}
-            <div class="row mb-4">
-                {% bootstrap_messages %}
-                <div class="Cover--Header">
-                    <img class="responsive" src="{% static 'assets/cover/album_banner_ribbon.png' %}">
-                </div>
-                <div class="Cover--Logo">
-                    <img class="responsive" src="{% static 'assets/cover/album_banner_logo.png' %}">
-                </div>
-                <div class="Cover--User">
-                    <p class="Title">{{user.full_name}}</p>
-                    <p class="Progress">Avance: {{codes}}/{{total}}</p>
-                </div>
-                <div class="Cover--Logos">
-                    <img class="responsive" src="{% static 'assets/cover/logos.svg' %}">
-                </div>
-                <div class="Cover--Aeromexico">
-                    <img class="responsive" src="{% static 'assets/logo_aeromexico.svg' %}">
-                </div>
+        </div>
+        {% endif %}
+        <div class="Cover--Container">
+            {% bootstrap_messages %}
+            <div class="Cover--Header">
+                <img class="responsive" src="{% static 'assets/cover/album_banner_ribbon.png' %}">
             </div>
-        </main>
-    </div>
+            <div class="Cover--Logo">
+                <img class="responsive" src="{% static 'assets/cover/album_banner_logo.png' %}">
+            </div>
+            <div class="Cover--User">
+                <p class="Title">{{user.full_name}}</p>
+                <p class="Progress">Avance: {{codes}}/{{total}}</p>
+            </div>
+            <div class="Cover--Logos">
+                <img class="responsive" src="{% static 'assets/cover/logos.svg' %}">
+            </div>
+            <div class="Cover--Aeromexico">
+                <img class="responsive" src="{% static 'assets/logo_aeromexico.svg' %}">
+            </div>
+        </div>
+    </main>
 </div>
 <div class="container">
-    <footer class="pt-4 pt-md-5 border-top">
+    <footer class="pt-4 mb-md-5 pt-md-5">
         <div class="row text-center">
-            <div class="col-md-10 col-lg-10 offset-md-2 offset-lg-2 ">
-                <img class="mb-2" src="{% static 'assets/logo_cwt.svg' %}" alt="" width="140">
+            <div class="col-12 col-md">
+                <img class="mb-2" src="{% static 'assets/logo_cwt.svg' %}" alt="" width="140" height="23.4">
                 <small class="d-block mb-3 text-muted">© 2017-2018</small>
             </div>
         </div>
         <div class="row text-center">
-            <div class="col-md-10 col-lg-10 offset-md-2 offset-lg-2 ">
+            <div class="col-12 col-md">
                 <ul class="list-unstyled text-small">
                     <li><span class="text-muted">Todos los derechos reservados</span></li>
                     <li><span class="text-muted">® Polar Multimedia</span></li>

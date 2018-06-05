@@ -11,13 +11,15 @@
     margin 0.25rem 0.5rem
     +mobile()
         margin 0.5rem 0
-.Menu
+
+
+.MobileSidebar
     display: none
     background: $big-stone
     size 100%
     padding: 10px 20px
     color: $white
-    +mobile()
+    +below($tablet)
         display: block
     &--Information
         font-size 0.8em

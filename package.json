@@ -8,6 +8,7 @@
     "build": "npm run clean && npm run build:webpack",
     "build:webpack": "webpack --mode production --colors --config webpack/config.prod.babel.js",
     "dev": "npm run clean && npm run dev:webpack & python manage.py runserver",
+    "test": "npm run clean && npm run dev:webpack & python manage.py runserver 0.0.0.0:8000",
     "dev:webpack": "webpack --mode development --watch --progress --colors --config webpack/config.dev.babel.js"
   },
   "author": "",

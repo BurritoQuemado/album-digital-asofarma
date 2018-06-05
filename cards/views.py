@@ -160,7 +160,7 @@ class CardList(ListView):
                 department.codes = department_codes.count()
             else:
                 department.codes = 0
-            department.cards = Card.objects.filter(fk_department=department).count()
+            department.cards = Card.objects.filter(fk_department=department, active=True).count()
         context['department'] = Department.objects.get(slug=self.kwargs['slug'])
         context['departments'] = departments
         context['badge'] = badge

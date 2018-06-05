@@ -9,57 +9,93 @@
         font-weight: bold
         color $primary
 
-.nav-item
-    p
-        margin 0
-
-.Cover
-    min-height calc(100vh - 60px)
-    .row
-        flex-direction: column;
-    &--Header
-        margin 0 auto
-        lost-utility clearfix
-        img
-            width 100%
-            max-width 120px
-    &--Logo
-        lost-utility clearfix
-        margin 20px auto
-        img
-            width 100%
-            max-width 250px
-    &--User
-        text-align: center
-        font-family: 'din'
-        font-weight: bold
-        color: $white
-        text-transform: uppercase
-        margin 150px auto 0 auto
-        padding: 25px 30px
-        .Title
-            font-size 2em
-        .Progress
-            font-size 1.2em
-            color $primary
-        p
-            margin 0
-    &--Logos
-        lost-utility clearfix
-        margin 20px auto
-        img
-            width 100%
-            max-width 400px
-    &--Aeromexico
-        lost-utility clearfix
-        margin 0px auto
-        background: #D1D3D4
-        padding: 20px 30px
-        width 100%
-        img
-            max-width 200px
-            margin 0px auto
+.Album-Container
+    lost-utility clearfix
+    padding-bottom 20px
+    .Card-List
+        lost-column 6/8 2 0
+        &--Container
+            padding 20px 0
+        +below($tablet)
+            lost-column 1 1 0
+    .Sidebar
+        lost-column 2/8 2 0
+        +below($tablet)
+            lost-column 1 1 0
+        .DesktopSidebar
             display: block
+            +below($tablet)
+                display: none
+            ul
+                padding-left: 0;
+                margin-bottom: 0;
+                list-style: none;
+            .Nav--Link
+                color: #333;
+                font-size 14px
+                padding: .2rem 1rem;
+                display block
+                margin 0
+                &:hover
+                    text-decoration: none;
+                &.info
+                    color $primary
+                    padding-top 0
+                    padding-bottom 0
+    .Cover
+        min-height calc(100vh - 60px)
+        lost-column 6/8 2 0
+        .alert
+            margin: 20px 25px;
+        &--Header
+            margin 0 auto
+            lost-utility clearfix
+            img
+                width 100%
+                max-width 120px
+                display: block
+                margin 0 auto
+        &--Logo
+            lost-utility clearfix
+            margin 20px auto
+            img
+                width 100%
+                max-width 250px
+                display: block
+                margin 0 auto
+        &--User
+            text-align: center
+            font-family: 'din'
+            font-weight: bold
+            color: $white
+            text-transform: uppercase
+            margin 150px auto 0 auto
+            padding: 25px 30px
+            .Title
+                font-size 2em
+            .Progress
+                font-size 1.2em
+                color $primary
+            p
+                margin 0
+        &--Logos
+            lost-utility clearfix
+            margin 20px auto
+            img
+                width 100%
+                max-width 400px
+                display: block
+                margin 0 auto
+        &--Aeromexico
+            lost-utility clearfix
+            margin 0px auto
+            background: #D1D3D4
+            padding: 20px 30px
+            width 100%
+            img
+                max-width 200px
+                margin 0px auto
+                display: block
 
 @keyframes glowing {
   0% { box-shadow: 0 0 -20px #ffeb3b; }
@@ -70,21 +106,20 @@
 
 .Card
     &--Full
-        size 100%
+        width 100%
         position relative
         &--Footer
-            background: rgba($primary, 0.8)
-            padding: 10px 15px
+            background: rgba($white, 0.8)
+            padding: 10px 10px
             &--Code
-                color $white
                 lost-utility clearfix
-                padding 0 5px
                 span
                     font-family: 'din'
                     font-weight: bold
                     font-size 0.8em
                     line-height: 0.5rem
-                    border: 1px solid $white
+                    border: 1px solid $primary
+                    color: $primary
                     padding 4px 7px 4px 5px
                     margin: 0
                     display inline-block
@@ -97,13 +132,11 @@
                     line-height: 0.5rem
                     font-size 0.8em
                     padding 5px 7px 5px 5px
-                    color $primary
-                    background $white
+                    color $white
+                    background $primary
                     margin 0
         &--Body
-            position: absolute
-            top: 0
-            left: 0
+            position: absolute 0
             width 100%
             &.NewCard
                 svg, .CardPhoto
@@ -153,9 +186,7 @@
                     font-size 1.2em
             &--Back
                 width: 100%
-                position absolute
-                top: 0
-                left: 0
+                position: absolute 0
                 z-index 10
                 &--Ribbon
                     position: absolute
@@ -164,41 +195,37 @@
                     width 18%
                 &--Photo
                     border 2px solid $black
-                    position: absolute
-                    left 0
-                    top: 0
+                    position: absolute 0
                     width: 100%
                 svg
-                    border 2px solid $black
-                    position: absolute
-                    left 0
-                    top: 0
-                    width: 100%
+                    // border 2px solid $black
+                    // position: absolute 0
+                    // size: 100%
+                    position relative
+                    display block
+                    top 0
+                    width 100%
         &:before
             content: ''
             padding-top: 128%
             display: block
 
     &--Empty
-        size 100%
+        width 100%
         position relative
         &--Body
-            position: absolute
-            top: 0
-            left: 0
+            position: absolute 0
             width 100%
             &--Back
                 width: 100%
-                position absolute
-                top: 0
-                left: 0
+                position: absolute 0
                 z-index 10
                 svg
                     border 2px solid $black
-                    position: absolute
-                    left 0
-                    top: 0
-                    width: 100%
+                    position relative
+                    display block
+                    top 0
+                    width 100%
             &--Shield
                 width: 60%
                 position absolute
