@@ -1,16 +1,18 @@
 import base64
 import math
-from django.urls import reverse
+from django.urls import reverse, reverse_lazy
 from django.shortcuts import get_object_or_404
 from django.contrib.messages.views import SuccessMessageMixin
-from .forms import EmailSaveForm, AddCodeForm, SendCodeForm
+from .forms import EmailSaveForm, AddCodeForm, SendCodeForm, NotificationForm
 from accounts.models import User
-from .models import Card, Code, Department
+from .models import Card, Code, Department, Notification
 from django.views.generic.list import ListView
 from django.views.generic.edit import UpdateView, FormView
 from django.views.generic.detail import DetailView
 from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
+from django.views.generic.edit import FormMixin
+from django.db.models import Q
 
 decorators = [login_required]
 
@@ -84,6 +86,8 @@ class SendCodeView(SuccessMessageMixin, UpdateView):
     def form_valid(self, form):
         self.object = form.save(commit=False)
         user = form.cleaned_data['user']
+        notification = Notification(sender=self.request.user, receiver=user, code=self.object)
+        notification.save()
         self.object.fk_user = user
         self.object.save()
         return super().form_valid(form)
@@ -141,6 +145,30 @@ class CoverView(DetailView):
         return context
 
 
+@method_decorator(decorators, name='dispatch')
+class NotificationsListView(ListView, FormMixin):
+    template_name = 'cards/notifications_list.html'
+    model = Notification
+    form_class = NotificationForm
+    paginate_by = 12
+    success_url = reverse_lazy('cards:notifications')
+
+    def get_queryset(self, *args, **kwargs):
+        notifications = Notification.objects.filter(Q(receiver=self.request.user) | Q(sender=self.request.user)).order_by('-created_at')
+        return notifications
+
+    def post(self, request, *args, **kwargs):
+        form = self.get_form()
+        if form.is_valid():
+            return self.form_valid(form)
+        else:
+            return self.form_invalid(form)
+
+    def form_valid(self, form):
+        Notification.objects.filter(Q(receiver=self.request.user) | Q(sender=self.request.user)).update(receiver_read=True)
+        return super().form_valid(form)
+
+
 class CardList(ListView):
     template_name = 'cards/cards_list.html'
     model = Card
@@ -148,11 +176,14 @@ class CardList(ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        # Check badge of current Department and its codes
         badge = Card.objects.get(fk_department__slug=self.kwargs['slug'], is_badge=True, active=True)
         badge_codes = Code.objects.filter(fk_user_id=self.kwargs['pk'], fk_card=badge)
         if badge_codes.exists():
             badge.obtained = True
             badge.codes = badge_codes
+        context['badge'] = badge
+        # Get the Departments for the sidebad
         departments = Department.objects.all().order_by('id')
         for department in departments:
             department_codes = Code.objects.filter(fk_user_id=self.kwargs['pk'], fk_card__fk_department=department)
@@ -161,9 +192,10 @@ class CardList(ListView):
             else:
                 department.codes = 0
             department.cards = Card.objects.filter(fk_department=department, active=True).count()
-        context['department'] = Department.objects.get(slug=self.kwargs['slug'])
         context['departments'] = departments
-        context['badge'] = badge
+        # Get the current Department
+        context['department'] = Department.objects.get(slug=self.kwargs['slug'])
+        # Get the user of the kwargs
         context['album_user'] = User.objects.get(pk=self.kwargs['pk'])
         cards = Card.objects.filter(active=True).order_by('id')
         codes = Code.objects.filter(fk_user_id=self.kwargs['pk']).values('fk_card').distinct()

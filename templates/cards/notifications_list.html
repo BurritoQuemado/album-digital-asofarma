@@ -1,0 +1,83 @@
+{% extends "registration/registration_base.html" %}
+{% load static %}
+{% load bootstrap4 %}
+{% block content %}
+<div class="Notifications-List">
+    <div class="Notifications-List--Container">
+        {% bootstrap_messages %}
+        <h2 class="border-bottom border-gray pb-2 mb-0">Intercambios</h2>
+        <div class="Notifications-List--Content pt-3">
+            {% for notification in object_list %}
+
+            {% if notification.receiver == user %}
+            <div class="card mb-3 {% if not notification.receiver_read %}border-primary{% endif %}">
+                <div class="card-body ">
+                    <h5 class="card-title {% if not notification.receiver_read %}text-primary{% endif %}"><strong>{{notification.sender}}</strong> te mandó la carta <strong>{{notification.code.fk_card.name}}</strong></h5>
+                    <h6 class="card-subtitle mb-2 text-muted">{{notification.created_at}}</h6>
+                </div>
+            </div>
+
+            {% else %}
+            <div class="card mb-3">
+                <div class="card-body">
+                    <h5 class="card-title">Le mandaste la carta <strong>{{notification.code.fk_card.name}}</strong> a <strong>{{notification.receiver}}</strong></h5>
+                    <h6 class="card-subtitle mb-2 text-muted">{{notification.created_at}}</h6>
+                </div>
+            </div>
+
+            {% endif %}
+            {% empty %}
+            <li class="list-group-item d-flex justify-content-between lh-condensed">
+                <div>
+                    <p class="my-0">No tienes intercambios para mostrar.</p>
+                </div>
+                <span class="text-muted"></span>
+            </li>
+            {% endfor %}
+        </div>
+        {% if is_paginated %}
+        <nav aria-label="Page navigation example">
+            <ul class="pagination justify-content-center">
+                {% if page_obj.has_previous %}
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ page_obj.previous_page_number }}">&laquo;</a>
+                </li>
+                {% else %}
+                <li class="page-item disabled">
+                    <span class="page-link">&laquo;</span>
+                </li>
+                {% endif %}
+                {% for i in paginator.page_range %}
+                {% if page_obj.number is i %}
+                <li class="page-item disabled">
+                    <span class="page-link">{{ i }} <span class="sr-only">(current)</span></span>
+                </li>
+                {% else %}
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ i }}">{{ i }}</a>
+                </li>
+                {% endif %}
+                {% endfor %}
+                {% if page_obj.has_next %}
+                <li>
+                    <a class="page-link" href="?page={{ page_obj.next_page_number }}">&raquo;</a>
+                </li>
+                {% else %}
+                <li class="page-item disabled">
+                    <span class="page-link">&raquo;</span>
+                </li>
+                {% endif %}
+            </ul>
+        </nav>
+        {% endif %}
+    </div>
+    <form action="" method="POST">
+        {% csrf_token %}
+        {% bootstrap_form form %}
+        {% buttons %}
+        <button type="submit" class="btn btn-primary btn-lg">Marcar todos como leídos</button>
+        {% endbuttons %}
+    </form>
+</div>
+
+{% endblock %}

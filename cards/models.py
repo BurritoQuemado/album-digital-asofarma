@@ -14,6 +14,11 @@ def get_file_path(instance, filename):
 
 
 class Rarity(models.Model):
+
+    class Meta:
+        verbose_name = 'Rareza'
+        verbose_name_plural = 'Rarezas'
+
     description = models.CharField(max_length=50)
     slug = models.SlugField(unique=True)
 
@@ -26,6 +31,11 @@ class Rarity(models.Model):
 
 
 class Department(models.Model):
+
+    class Meta:
+        verbose_name = 'Departamento'
+        verbose_name_plural = 'Departamentos'
+
     name = models.CharField(max_length=50)
     description = models.CharField(max_length=1000)
     head = models.CharField(max_length=250)
@@ -43,6 +53,11 @@ class Department(models.Model):
 
 
 class Card(models.Model):
+
+    class Meta:
+        verbose_name = 'Carta'
+        verbose_name_plural = 'Cartas'
+
     is_badge = models.BooleanField(default=False)
     name = models.CharField(max_length=100)
     order_card = models.IntegerField()
@@ -74,9 +89,28 @@ class Card(models.Model):
 
 
 class Code(models.Model):
+
+    class Meta:
+        verbose_name = 'Código'
+        verbose_name_plural = 'Códigos'
+
     code = models.CharField(max_length=200, unique=True)
     fk_user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
     fk_card = models.ForeignKey(Card, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.code
+
+
+class Notification(models.Model):
+
+    class Meta:
+        verbose_name = 'Notificación'
+        verbose_name_plural = 'Notificaciones'
+
+    sender = models.ForeignKey(User, related_name='sender', on_delete=models.CASCADE)
+    receiver = models.ForeignKey(User, related_name='receiver', on_delete=models.CASCADE)
+    code = models. ForeignKey(Code, on_delete=models.CASCADE)
+    sender_read = models.BooleanField(default=False)
+    receiver_read = models.BooleanField(default=False)
+    created_at = models.DateTimeField(auto_now=True)

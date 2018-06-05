@@ -34,6 +34,10 @@ class AddCodeForm(forms.Form):
         return cleaned_data
 
 
+class NotificationForm(forms.Form):
+    pass
+
+
 class SendCodeForm(forms.ModelForm):
     code = forms.CharField(widget=forms.HiddenInput())
     user = forms.ModelChoiceField(required=True, queryset=User.objects.all(), label="Selecciona el usuario al cúal le enviarás esta tarjeta")
