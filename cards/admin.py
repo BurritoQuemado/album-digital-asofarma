@@ -22,9 +22,9 @@ class CardResource(resources.ModelResource):
 
 @admin.register(Card)
 class CardAdmin(ImportExportModelAdmin):
-    list_display = ('name', 'id', 'fk_rarity', 'fk_department', 'wave', 'is_badge')
-    list_filter = ('wave', 'is_badge', 'fk_department', 'fk_rarity',)
-    fields = ('photo',)
+    list_display = ('name', 'id', 'fk_rarity', 'fk_department', 'wave', 'is_badge', 'active',)
+    list_filter = ('wave', 'is_badge', 'fk_department', 'fk_rarity', 'active',)
+    fields = ('photo', 'active', 'fk_department', 'fk_rarity', 'wave',)
     resource_class = CardResource
 
 

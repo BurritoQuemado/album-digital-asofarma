@@ -155,6 +155,18 @@ class NotificationsListView(ListView, FormMixin):
 
     def get_queryset(self, *args, **kwargs):
         notifications = Notification.objects.filter(Q(receiver=self.request.user) | Q(sender=self.request.user)).order_by('-created_at')
+        for notification in notifications:
+            code = notification.code
+            cards = Card.objects.filter(fk_department__slug=code.fk_card.fk_department.slug, active=True).order_by('id')
+            page = 0
+            if cards.count() > 12:
+                for index, card in enumerate(cards):
+                    if code.fk_card.id is card.id:
+                        page = index
+            if page > 0:
+                notification.page = str(int(math.ceil(page / 12)))
+            else:
+                notification.page = None
         return notifications
 
     def post(self, request, *args, **kwargs):
