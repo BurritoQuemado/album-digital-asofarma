@@ -15,9 +15,9 @@ class EmailSaveForm(forms.ModelForm):
         cleaned_data = super().clean()
         code_cleaned = cleaned_data.get('code')
         try:
-            Code.objects.get(code=code_cleaned)
+            Code.objects.get(code=code_cleaned, fk_user=None)
         except ObjectDoesNotExist:
-            raise forms.ValidationError("No existe el código")
+            raise forms.ValidationError("No existe el código o ya fue redimido.")
         return cleaned_data
 
 
