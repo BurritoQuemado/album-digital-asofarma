@@ -17,6 +17,21 @@ decorators = [login_required]
 
 
 @method_decorator(decorators, name='dispatch')
+class AlbumList(ListView):
+    template_name = 'cards/album_list.html'
+    model = User
+    paginate_by = 12
+
+    def get_queryset(self, *args, **kwargs):
+        users = User.objects.filter(
+            is_active=True,
+            is_staff=False,
+            is_superuser=False,
+        ).exclude(id=self.request.user.id).order_by('first_name')
+        return users
+
+
+@method_decorator(decorators, name='dispatch')
 class EmailSaveView(SuccessMessageMixin, UpdateView):
     model = Code
     form_class = EmailSaveForm

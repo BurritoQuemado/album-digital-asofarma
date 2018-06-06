@@ -7,7 +7,7 @@
     <!-- The first thing in any HTML file should be the charset -->
     <meta charset="utf-8">
     <!-- Make the page mobile compatible -->
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0, shrink-to-fit=no">
     <!-- Allow installing the app to the homescreen -->
     <link rel="manifest" href="manifest.json">
     <meta name="mobile-web-app-capable" content="yes">
@@ -40,6 +40,9 @@
                         <a class="nav-link" href="{% url 'cards:redeem' %}"><i class="fas fa-sign-out-alt"></i> Agregar tarjeta</a>
                     </li>
                     {% endcomment %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'cards:directory' %}"><i class="fas fa-sign-out-alt"></i> Directorio </a>
+                    </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'cards:notifications' %}"><i class="fas fa-sign-out-alt"></i> Intercambios {% if alerts.count is not 0 %}<span class="badge badge-pill badge-primary">{{alerts.count}}</span>{%endif%}</a>
                     </li>
