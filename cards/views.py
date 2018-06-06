@@ -1,5 +1,4 @@
 import base64
-import math
 from django.urls import reverse, reverse_lazy
 from django.shortcuts import get_object_or_404
 from django.contrib.messages.views import SuccessMessageMixin
@@ -26,14 +25,8 @@ class EmailSaveView(SuccessMessageMixin, UpdateView):
 
     def get_success_url(self, **kwargs):
         code = Code.objects.get(code=self.kwargs['code'])
-        cards = Card.objects.filter(fk_department__slug=code.fk_card.fk_department.slug, active=True).order_by('id')
-        page = 0
-        if cards.count() > 12:
-            for index, card in enumerate(cards):
-                if code.fk_card.id is card.id:
-                    page = index
-        if page > 0:
-            return reverse('cards:card_list', kwargs={'pk': self.request.user.id, 'slug': code.fk_card.fk_department.slug}) + '?page=' + str(int(math.ceil(page / 12))) + '#' + str(code.fk_card.id)
+        if code.fk_card.page > 1:
+            return reverse('cards:card_list', kwargs={'pk': self.request.user.id, 'slug': code.fk_card.fk_department.slug}) + '?page=' + str(code.fk_card.page) + '#' + str(code.fk_card.id)
         else:
             return reverse('cards:card_list', kwargs={'pk': self.request.user.id, 'slug': code.fk_card.fk_department.slug}) + '#' + str(code.fk_card.id)
 
@@ -101,14 +94,8 @@ class AddCodeView(SuccessMessageMixin, FormView):
 
     def get_success_url(self, **kwargs):
         code = Code.objects.get(code=self.form.cleaned_data['code'])
-        cards = Card.objects.filter(fk_department__slug=code.fk_card.fk_department.slug, active=True).order_by('id')
-        page = 0
-        if cards.count() > 12:
-            for index, card in enumerate(cards):
-                if code.fk_card.id is card.id:
-                    page = index
-        if page > 0:
-            return reverse('cards:card_list', kwargs={'pk': self.request.user.id, 'slug': code.fk_card.fk_department.slug}) + '?page=' + str(int(math.ceil(page / 12))) + '#' + str(code.fk_card.id)
+        if code.fk_card.page > 1:
+            return reverse('cards:card_list', kwargs={'pk': self.request.user.id, 'slug': code.fk_card.fk_department.slug}) + '?page=' + str(code.fk_card.page) + '#' + str(code.fk_card.id)
         else:
             return reverse('cards:card_list', kwargs={'pk': self.request.user.id, 'slug': code.fk_card.fk_department.slug}) + '#' + str(code.fk_card.id)
 
@@ -155,18 +142,6 @@ class NotificationsListView(ListView, FormMixin):
 
     def get_queryset(self, *args, **kwargs):
         notifications = Notification.objects.filter(Q(receiver=self.request.user) | Q(sender=self.request.user)).order_by('-created_at')
-        for notification in notifications:
-            code = notification.code
-            cards = Card.objects.filter(fk_department__slug=code.fk_card.fk_department.slug, active=True).order_by('id')
-            page = 0
-            if cards.count() > 12:
-                for index, card in enumerate(cards):
-                    if code.fk_card.id is card.id:
-                        page = index
-            if page > 0:
-                notification.page = str(int(math.ceil(page / 12)))
-            else:
-                notification.page = None
         return notifications
 
     def post(self, request, *args, **kwargs):

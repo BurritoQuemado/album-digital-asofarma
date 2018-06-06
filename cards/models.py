@@ -60,7 +60,7 @@ class Card(models.Model):
 
     is_badge = models.BooleanField(default=False)
     name = models.CharField(max_length=100)
-    order_card = models.IntegerField()
+    order = models.IntegerField()
     description = models.CharField(max_length=300)
     photo = models.ImageField(upload_to=get_file_path, null=True, blank=True)
     photo_thumbnail = ImageSpecField(
@@ -74,6 +74,7 @@ class Card(models.Model):
     wave = models.IntegerField(default=1)
     active = models.BooleanField(default=True)
     arrival_date = models.DateField()
+    page = models.IntegerField(default=1)
 
     def __str__(self):
         return self.name + ' - ' + self.description

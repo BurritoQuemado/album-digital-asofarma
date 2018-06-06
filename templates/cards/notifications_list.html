@@ -12,7 +12,7 @@
             {% if notification.receiver == user %}
             <div class="card mb-3 {% if not notification.receiver_read %}border-primary{% endif %}">
                 <div class="card-body ">
-                    <h5 class="card-title {% if not notification.receiver_read %}text-primary{% endif %}"><strong>{{notification.sender}}</strong> te mandó la carta <a href="{% url 'cards:card_list' pk=user.id slug=notification.code.fk_card.fk_department.slug %}{% if notification.page is not None %}?page={{notification.page}}{% endif %}#{{notification.code.fk_card.id}}">{{notification.code.fk_card.name}}</a></h5>
+                    <h5 class="card-title {% if not notification.receiver_read %}text-primary{% endif %}"><strong>{{notification.sender}}</strong> te mandó la carta <a href="{% url 'cards:card_list' pk=user.id slug=notification.code.fk_card.fk_department.slug %}{% if notification.code.fk_card.page is not 1 %}?page={{notification.code.fk_card.page}}{% endif %}#{{notification.code.fk_card.id}}">{{notification.code.fk_card.name}}</a></h5>
                     <h6 class="card-subtitle mb-2 text-muted">{{notification.created_at}}</h6>
                 </div>
             </div>
@@ -27,7 +27,7 @@
 
             {% endif %}
             {% empty %}
-            <li class="list-group-item d-flex justify-content-between lh-condensed">
+            <li class="list-group-item d-flex justify-content-between lh-condensed mb-4">
                 <div>
                     <p class="my-0">No tienes intercambios para mostrar.</p>
                 </div>
