@@ -52,10 +52,10 @@ class User(AbstractUser):
     objects = UserManager()
 
     def full_name(self):
-        return self.first_name + ' ' + self.last_name
+        return self.first_name.title() + ' ' + self.last_name.title()
 
     def __str__(self):
-        return self.first_name + ' ' + self.last_name
+        return self.first_name.title() + ' ' + self.last_name.title()
 
 
 class DepartmentUser(models.Model):
