@@ -1,4 +1,5 @@
 import math
+from django.contrib.admin import SimpleListFilter
 from django.contrib import admin
 from .models import Card, Department, Rarity
 from import_export import fields, resources
@@ -39,10 +40,34 @@ def cached_admin_thumb(instance):
     return None
 
 
+class HasPhotoFilter(SimpleListFilter):
+    title = 'tiene foto'
+    parameter_name = 'photo'
+
+    def lookups(self, request, model_admin):
+        """
+        Returns a list of tuples. The first element in each
+        tuple is the coded value for the option that will
+        appear in the URL query. The second element is the
+        human-readable name for the option that will appear
+        in the right sidebar.
+        """
+        return (
+            ('no_photo', 'No tiene foto'),
+            ('has_photo', 'Tiene foto'),
+        )
+
+    def queryset(self, request, queryset):
+        if self.value() == 'no_photo':
+            return queryset.filter(photo='')
+        if self.value() == 'has_photo':
+            return queryset.all().exclude(photo='')
+
+
 @admin.register(Card)
 class CardAdmin(ImportExportModelAdmin):
     list_display = ('name', 'admin_thumbnail', 'id', 'order', 'fk_rarity', 'fk_department', 'wave', 'is_badge', 'active', 'page', )
-    list_filter = ('wave', 'is_badge', 'fk_department', 'fk_rarity', 'active',)
+    list_filter = (HasPhotoFilter, 'wave', 'is_badge', 'fk_department', 'fk_rarity', 'active', )
     fields = ('photo', 'active', 'fk_department', 'fk_rarity', 'wave',)
     resource_class = CardResource
     admin_thumbnail = AdminThumbnail(image_field=cached_admin_thumb)
