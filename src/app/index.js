@@ -44,11 +44,9 @@ $(() => {
             }
         }
     }
-    setTimeout(() => {
-        TweenMax.set('#Sidebar', {
-            x: -$('#Sidebar').outerWidth() + $('#Menu--Toggler').outerWidth(),
-        })
-    }, 100)
+    TweenMax.set('#Sidebar', {
+        x: -$('#Sidebar').outerWidth() + $('#Menu--Toggler').outerWidth(),
+    })
     $('#Menu--Toggler').click(onClickMenu)
     $('.Card-Quantity').click(onClickQuantity)
     $(document).mouseup(closeMenuOutside)
