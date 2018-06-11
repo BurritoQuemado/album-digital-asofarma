@@ -7,7 +7,7 @@
     <main role="main" class="Cover bg-worldcup">
         {% if user.is_authenticated and user.id is not album_user.id %}
         <div class="ExternalAdvice">
-            <div class="OtherUser">
+            <div class="OtherUser container">
                 <span>Estás visualizando el álbum de {{album_user.full_name}}, para ir a tu álbum da <a href="{% url 'cards:card_list' pk=user.id slug='portada' %}">click aquí.</a></span>
             </div>
         </div>
