@@ -27,6 +27,7 @@ urlpatterns = [
         ), name='registration_register'),
     path('cuenta/', include('registration.backends.default.urls')),
     path('restablecer/', include('accounts.urls')),
+    path('dinamicas/', include('events.urls')),
     path('admin/', admin.site.urls),
     path('admin/django-ses/', include('django_ses.urls')),
     path('seeder/', include('seeder.urls')),

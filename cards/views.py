@@ -28,7 +28,15 @@ class AlbumList(ListView):
             is_staff=False,
             is_superuser=False,
         ).exclude(id=self.request.user.id).order_by('first_name')
+        for user in users:
+            user.progress = Code.objects.filter(fk_user=user).values('fk_card').distinct().count()
         return users
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        cards = Card.objects.filter(active=True).order_by('id')
+        context['cards'] = cards.count()
+        return context
 
 
 @method_decorator(decorators, name='dispatch')

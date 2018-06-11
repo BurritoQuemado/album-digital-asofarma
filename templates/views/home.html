@@ -1,15 +1,22 @@
 {% extends "base.html" %}
 {% load static %}
+{% load bootstrap4 %}
 {% block body_block %}
 <div class="bg-welcome">
     <div class="container pt-3 pb-2 mb-4">
+        {% bootstrap_messages %}
         {% if user.is_authenticated %}
-        <h4 class="text-center">Hola, {{user.full_name}}</h4>
+        <h4 class="text-center font-weight-bold">Hola, {{user.full_name}}</h4>
+        {% if alerts.count is not 0 %}
+        <p class="lead text-center">
+            Te han enviado {{alerts.count}} tarjeta{% if alerts.count > 1 %}s{%endif%}, <a class="text-dark" href="{% url 'cards:notifications' %}">ver mis intercambios</a>
+        </p>
+        {%endif%}
         <p class="lead text-center">
             <a class="btn btn-dark" href="{% url 'cards:card_list' pk=user.id slug='portada' %}" role="button">Ir a mi álbum</a>
         </p>
         {% else %}
-        <h2 class="text-center">Bienvenido a tu álbum digital</h2>
+        <h4 class="text-center font-weight-bold">Bienvenido a tu álbum digital</h4>
         <p class="lead text-center">
             <a class="btn btn-dark" href="{% url 'registration_register' %}" role="button">Registrarse</a>
         </p>
@@ -17,7 +24,6 @@
             ¿Tiene cuenta? <a class="text-dark" href="{% url 'auth_login' %}" role="button">Inicie sesión</a>
         </p>
         {% endif %}
-
     </div>
 </div>
 <div class="container">

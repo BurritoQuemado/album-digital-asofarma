@@ -12,39 +12,26 @@
     +mobile()
         margin 0.5rem 0
 
-
-.MobileSidebar
-    display: none
-    background: $big-stone
-    size 100%
-    padding: 10px 20px
-    color: $white
-    +below($tablet)
-        display: block
-    &--Information
-        font-size 0.8em
-        text-transform: uppercase
-        margin-bottom: 15px
-        padding-bottom: 10px
-        border-bottom: 1px solid $primary
-        span
-            display: block
-    &--Buttons
-        text-align: center
-        span
-            display inline-block
-            width: 50px
-            margin-right 5px
-            font-size 6px
-            text-align center
-            height 50px
-
-.bg-welcome
+#Menu--Toggler
+    position: absolute
+    top 0
+    right 0
+    bottom 0
+    z-index 1001
+    width: 40px
     background: $primary
-    color $white
+    color: $white
+    border none
+    padding 10px 20px
+    font-weight: bold
+    cursor pointer
+    span
+        display: block
+        center both
+        transform translateX(-50%) translateY(-50%) rotate(90deg);
+        width: 300px;
 
-.bg-dark
-    background: $black
-
-.text-dark
+.Event-Item
+    background: $white
     color: $black
+    padding 20px 0

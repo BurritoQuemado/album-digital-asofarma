@@ -8,15 +8,19 @@
         <h2 class="border-bottom border-gray pb-2 mb-0">Intercambios</h2>
         <div class="Notifications-List--Content pt-3">
             {% for notification in object_list %}
-
             {% if notification.receiver == user %}
             <div class="card mb-3 {% if not notification.receiver_read %}border-primary{% endif %}">
                 <div class="card-body ">
-                    <h5 class="card-title {% if not notification.receiver_read %}text-primary{% endif %}"><strong>{{notification.sender}}</strong> te mandó la carta <a href="{% url 'cards:card_list' pk=user.id slug=notification.code.fk_card.fk_department.slug %}{% if notification.code.fk_card.page is not 1 %}?page={{notification.code.fk_card.page}}{% endif %}#{{notification.code.fk_card.id}}">{{notification.code.fk_card.name}}</a></h5>
+                    <h5 class="card-title {% if not notification.receiver_read %}text-primary{% endif %}">
+                        <strong>{{notification.sender}}</strong>
+                        te mandó la carta
+                        <a href="{% url 'cards:card_list' pk=user.id slug=notification.code.fk_card.fk_department.slug %}{% if notification.code.fk_card.page is not 1 %}?page={{notification.code.fk_card.page}}{% endif %}#{{notification.code.fk_card.id}}">
+                            {{notification.code.fk_card.name}}
+                        </a>
+                    </h5>
                     <h6 class="card-subtitle mb-2 text-muted">{{notification.created_at}}</h6>
                 </div>
             </div>
-
             {% else %}
             <div class="card mb-3">
                 <div class="card-body">

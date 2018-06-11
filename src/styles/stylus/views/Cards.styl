@@ -12,20 +12,39 @@
 .Album-Container
     lost-utility clearfix
     padding-bottom 20px
+    position relative
     .Card-List
-        lost-column 6/8 2 0
+        nav
+            margin 0 auto
         &--Container
             padding 20px 0
-        +below($tablet)
-            lost-column 1 1 0
+        &--Row
+            lost-utility clearfix
+            lost-center 1024px
+            padding 0 30px
+            &--Description
+                lost-column 8/12 2 40px
+                +below($tablet)
+                    lost-column 1/1 1 0
+            &--Badge
+                lost-column 4/12 2 40px
+                +below($tablet)
+                    lost-column 1/1 1 0
+            &--Card
+                lost-column 4/12 3 40px
+                +below($tablet)
+                    lost-column 6/12 2 40px
     .Sidebar
-        lost-column 2/8 2 0
-        +below($tablet)
-            lost-column 1 1 0
+        position: fixed
+        top: 0
+        left: 0
+        bottom: 0
+        padding: 20px 60px 10px 0
+        z-index 999
+        +mobile()
+            width: 100%
         .DesktopSidebar
             display: block
-            +below($tablet)
-                display: none
             ul
                 padding-left: 0;
                 margin-bottom: 0;
@@ -44,9 +63,6 @@
                     padding-bottom 0
     .Cover
         min-height calc(100vh - 60px)
-        lost-column 6/8 2 0
-        +below($tablet)
-            lost-column 1 1 0
         .alert
             margin: 20px 25px;
         &--Header

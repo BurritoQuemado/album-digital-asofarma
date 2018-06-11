@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     # apps
     'accounts',
     'cards',
+    'events',
     # libs
     'django_ses',
     'webpack_loader',
@@ -87,6 +88,7 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'cards.context.departments',
+                'events.context.events',
             ],
         },
     },

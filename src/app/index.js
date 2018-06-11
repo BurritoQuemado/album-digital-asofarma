@@ -1,4 +1,7 @@
+import { TweenMax, Power2 } from 'gsap'
+
 $(() => {
+    let menuIsOpened = false
     $('.Card-Footer').hide()
     function onClickQuantity() {
         const id = $(this).attr('data-id')
@@ -7,7 +10,48 @@ $(() => {
         $(this).attr('show', !isVisible)
         !isVisible ? $(`.Card-Footer-${id}`).show() : $(`.Card-Footer-${id}`).hide()
     }
+    function onClickMenu() {
+        TweenMax.to('#Sidebar', 0.45, {
+            x: !menuIsOpened ? 0 : -$('#Sidebar').outerWidth() + $('#Menu--Toggler').outerWidth(),
+            onComplete: () => menuIsOpened = !menuIsOpened,
+            ease: Power2.easeOut,
+        })
+        $('#Menu--Toggler span').text(() => {
+            return !menuIsOpened ? 'Cerrar menú' : 'Ver secciones de álbum'
+        })
+    }
+    $(window).resize(() => {
+        menuIsOpened = false
+        $('#Menu--Toggler span').text(() => {
+            return 'Ver secciones de álbum'
+        })
+        TweenMax.set('#Sidebar', {
+            x: -$('#Sidebar').outerWidth() + $('#Menu--Toggler').outerWidth(),
+        })
+    })
+    const closeMenuOutside = (e) => {
+        const container = $('#Sidebar')
+        if (!container.is(e.target) && container.has(e.target).length === 0) {
+            if (menuIsOpened) {
+                TweenMax.to('#Sidebar', 0.45, {
+                    x: -$('#Sidebar').outerWidth() + $('#Menu--Toggler').outerWidth(),
+                    onComplete: () => menuIsOpened = false,
+                    ease: Power2.easeOut,
+                })
+                $('#Menu--Toggler span').text(() => {
+                    return 'Ver secciones de álbum'
+                })
+            }
+        }
+    }
+    setTimeout(() => {
+        TweenMax.set('#Sidebar', {
+            x: -$('#Sidebar').outerWidth() + $('#Menu--Toggler').outerWidth(),
+        })
+    }, 100)
+    $('#Menu--Toggler').click(onClickMenu)
     $('.Card-Quantity').click(onClickQuantity)
+    $(document).mouseup(closeMenuOutside)
     if (window.location.hash) {
         setTimeout(() => {
             const hash = window.location.hash.substring(1)
