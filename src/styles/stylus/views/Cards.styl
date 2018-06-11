@@ -22,6 +22,8 @@
             lost-utility clearfix
             lost-center 1024px
             padding 0 30px
+            +below($tablet)
+                padding 0
             &--Description
                 lost-column 8/12 2 40px
                 +below($tablet)
@@ -33,7 +35,7 @@
             &--Card
                 lost-column 4/12 3 40px
                 +below($tablet)
-                    lost-column 6/12 2 40px
+                    lost-column 6/12 2 10px
     .Sidebar
         position: fixed
         top: 0

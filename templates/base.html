@@ -14,7 +14,7 @@
     <title>Álbum Digital</title>
     {% render_bundle 'main' 'css' %}
 </head>
-<body class="bg-light">
+<body class="bg-light {% block body_padding %}{% endblock %}">
     <!-- Display a message if JS has been disabled on the browser. -->
     <noscript>If you're seeing this message, that means <strong>JavaScript has been disabled on your browser</strong>, please <strong>enable JS</strong> to make this app work.</noscript>
     {% if user.is_authenticated %}

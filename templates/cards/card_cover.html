@@ -1,6 +1,7 @@
 {% extends "cards/cards_base.html" %}
 {% load static %}
 {% load bootstrap4 %}
+{% block body_padding %}padding{% endblock %}
 {% block content %}
 <div class="Album-Container">
     {% include 'cards/cards_sidebar.html' with departments=departments %}
