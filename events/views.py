@@ -3,13 +3,17 @@ from .models import Match, Prediction
 from .forms import PredictionForm
 from django.urls import reverse_lazy
 from django.contrib.messages.views import SuccessMessageMixin
+from django.utils.decorators import method_decorator
+from django.contrib.auth.decorators import login_required
+decorators = [login_required]
 
 
+@method_decorator(decorators, name='dispatch')
 class CreatePredictionView(SuccessMessageMixin, CreateView):
     template_name = 'events/create_prediction.html'
     form_class = PredictionForm
     success_url = reverse_lazy('home')
-    success_message = 'Se ha enviado tu predicción con éxito'
+    success_message = 'Se ha enviado tu registrado con éxito'
 
     def get_form_kwargs(self, *args, **kwargs):
         form_kwargs = super(CreatePredictionView, self).get_form_kwargs(*args, **kwargs)
