@@ -13,29 +13,29 @@
     </mj-section>
     <mj-section background-color="#ffffff">
       <mj-column width="200px">
-        <mj-image width="165px" src="https://s3.amazonaws.com/album-cwt/empty-card.png"></mj-image>
+        <mj-image width="165px" src="https://s3.amazonaws.com/album-polar/empty-card.png"></mj-image>
         <mj-text align="center" font-size="13px" color="#000" font-family="helvetica">{{code}}</mj-text>
         <mj-button background-color="#f26950" border-radius="10px" font-family="helvetica" font-size="12px" href="http://albumdigital.com.mx">Agregar a álbum</mj-button>
       </mj-column>
       <mj-column width="200px">
-        <mj-image width="165px" src="https://s3.amazonaws.com/album-cwt/empty-card.png"></mj-image>
+        <mj-image width="165px" src="https://s3.amazonaws.com/album-polar/empty-card.png"></mj-image>
         <mj-text align="center" font-size="13px" color="#000" font-family="helvetica">{{code}}</mj-text>
         <mj-button background-color="#f26950" border-radius="10px" font-family="helvetica" font-size="12px" href="http://albumdigital.com.mx">Agregar a álbum</mj-button>
       </mj-column>
       <mj-column width="200px">
-        <mj-image width="165px" src="https://s3.amazonaws.com/album-cwt/empty-card.png"></mj-image>
+        <mj-image width="165px" src="https://s3.amazonaws.com/album-polar/empty-card.png"></mj-image>
         <mj-text align="center" font-size="13px" color="#000" font-family="helvetica">{{code}}</mj-text>
         <mj-button background-color="#f26950" border-radius="10px" font-family="helvetica" font-size="12px" href="http://albumdigital.com.mx">Agregar a álbum</mj-button>
       </mj-column>
     </mj-section>
     <mj-section background-color="#ffffff" text-align="center">
       <mj-column width="200px">
-        <mj-image width="165px" src="https://s3.amazonaws.com/album-cwt/empty-card.png"></mj-image>
+        <mj-image width="165px" src="https://s3.amazonaws.com/album-polar/empty-card.png"></mj-image>
         <mj-text align="center" font-size="13px" color="#000" font-family="helvetica">{{code}}</mj-text>
         <mj-button background-color="#f26950" border-radius="10px" font-family="helvetica" font-size="12px" href="http://albumdigital.com.mx">Agregar a álbum</mj-button>
       </mj-column>
       <mj-column width="200px">
-        <mj-image width="165px" src="https://s3.amazonaws.com/album-cwt/empty-card.png"></mj-image>
+        <mj-image width="165px" src="https://s3.amazonaws.com/album-polar/empty-card.png"></mj-image>
         <mj-text align="center" font-size="13px" color="#000" font-family="helvetica">{{code}}</mj-text>
         <mj-button background-color="#f26950" border-radius="10px" font-family="helvetica" font-size="12px" href="http://albumdigital.com.mx">Agregar a álbum</mj-button>
       </mj-column>
