@@ -24,7 +24,7 @@ class Command(BaseCommand):
             email = base64.b64encode(bytes(user.email, 'utf-8'))
             email = email.decode("utf-8")
 
-            codes = new_cards_save()
+            codes = new_cards_save(5)
             site = Site.objects.get_current()
             now = datetime.datetime.now()
 

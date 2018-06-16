@@ -1,4 +1,5 @@
 {% extends "mail_templated/base.tpl" %}
+{% load grid_row %}
 
 {% block subject %}
 Este es tu paquete de cartas
@@ -182,7 +183,9 @@ Este es tu paquete de cartas
           </td>
         </tr>
       </table>
+    <![endif]-->
 
+    <!--[if mso | IE]>
       <table
          align="center" border="0" cellpadding="0" cellspacing="0" style="width:600px;" width="600"
       >
@@ -254,7 +257,9 @@ Este es tu paquete de cartas
           </td>
         </tr>
       </table>
+    <![endif]-->
 
+    <!--[if mso | IE]>
       <table
          align="center" border="0" cellpadding="0" cellspacing="0" style="width:600px;" width="600"
       >
@@ -262,371 +267,101 @@ Este es tu paquete de cartas
           <td style="line-height:0px;font-size:0px;mso-line-height-rule:exactly;">
       <![endif]-->
 
-
+    {% for group in codes|group_by:3 %}
     <div style="background:#ffffff;background-color:#ffffff;Margin:0px auto;max-width:600px;">
-
       <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="background:#ffffff;background-color:#ffffff;width:100%;">
         <tbody>
           <tr>
             <td style="direction:ltr;font-size:0px;padding:20px 0;text-align:center;vertical-align:top;">
               <!--[if mso | IE]>
-                  <table role="presentation" border="0" cellpadding="0" cellspacing="0">
+                <table role="presentation" border="0" cellpadding="0" cellspacing="0">
+                <tr>
+                <![endif]-->
 
-        <tr>
+                {% for code in group %}
 
-            <td
-               style="vertical-align:top;width:200px;"
-            >
-          <![endif]-->
+                <!--[if mso | IE]>
+                <td
+                    style="vertical-align:top;width:200px;"
+                >
+                <![endif]-->
 
-              <div class="mj-column-px-200 outlook-group-fix" style="font-size:13px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:100%;">
+                <div class="mj-column-px-200 outlook-group-fix" style="font-size:13px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:100%;">
 
-                <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="vertical-align:top;" width="100%">
+                    <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="vertical-align:top;" width="100%">
 
-                  <tr>
-                    <td align="center" style="font-size:0px;padding:10px 25px;word-break:break-word;">
+                    <tr>
+                        <td align="center" style="font-size:0px;padding:10px 25px;word-break:break-word;">
 
-                      <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="border-collapse:collapse;border-spacing:0px;">
-                        <tbody>
-                          <tr>
-                            <td style="width:150px;">
+                        <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="border-collapse:collapse;border-spacing:0px;">
+                            <tbody>
+                            <tr>
+                                <td style="width:150px;">
 
-                              <img height="auto" src="https://s3.amazonaws.com/album-polar/empty-card.png" style="border:0;display:block;outline:none;text-decoration:none;width:100%;" width="150" />
+                                <img height="auto" src="https://s3.amazonaws.com/album-polar/empty-card.png" style="border:0;display:block;outline:none;text-decoration:none;width:100%;" width="150" />
 
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td align="center" style="font-size:0px;padding:10px 25px;word-break:break-word;">
+
+                        <div style="font-family:helvetica;font-size:13px;line-height:1;text-align:center;color:#000;">
+                            {{code}}
+                        </div>
+
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td align="center" vertical-align="middle" style="font-size:0px;padding:10px 25px;word-break:break-word;">
+
+                        <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="border-collapse:separate;line-height:100%;">
+                            <tr>
+                            <td align="center" bgcolor="#f26950" role="presentation" style="border:none;border-radius:10px;color:#ffffff;cursor:auto;padding:10px 25px;" valign="middle">
+                                <a href="http://{{site.domain}}/album/redeem/{{codes}}/{{email}}" style="background:#f26950;color:#ffffff;font-family:helvetica;font-size:12px;font-weight:normal;line-height:120%;Margin:0;text-decoration:none;text-transform:none;" target="_blank">
+                                Descubrir
+                                </a>
                             </td>
-                          </tr>
-                        </tbody>
-                      </table>
+                            </tr>
+                        </table>
 
-                    </td>
-                  </tr>
+                        </td>
+                    </tr>
 
-                  <tr>
-                    <td align="center" style="font-size:0px;padding:10px 25px;word-break:break-word;">
+                    </table>
 
-                      <div style="font-family:helvetica;font-size:13px;line-height:1;text-align:center;color:#000;">
-                        {{codes.0}}
-                      </div>
+                </div>
 
-                    </td>
-                  </tr>
+                <!--[if mso | IE]>
+                </td>
+                <![endif]-->
 
-                  <tr>
-                    <td align="center" vertical-align="middle" style="font-size:0px;padding:10px 25px;word-break:break-word;">
+                {% endfor %}
 
-                      <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="border-collapse:separate;line-height:100%;">
-                        <tr>
-                          <td align="center" bgcolor="#f26950" role="presentation" style="border:none;border-radius:10px;color:#ffffff;cursor:auto;padding:10px 25px;" valign="middle">
-                            <a href="http://{{site.domain}}/album/redeem/{{codes.0}}/{{email}}" style="background:#f26950;color:#ffffff;font-family:helvetica;font-size:12px;font-weight:normal;line-height:120%;Margin:0;text-decoration:none;text-transform:none;" target="_blank">
-              Descubrir
-            </a>
-                          </td>
-                        </tr>
-                      </table>
-
-                    </td>
-                  </tr>
-
+                <!--[if mso | IE]>
+                </tr>
                 </table>
-
-              </div>
-
-              <!--[if mso | IE]>
-            </td>
-
-            <td
-               style="vertical-align:top;width:200px;"
-            >
-          <![endif]-->
-
-              <div class="mj-column-px-200 outlook-group-fix" style="font-size:13px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:100%;">
-
-                <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="vertical-align:top;" width="100%">
-
-                  <tr>
-                    <td align="center" style="font-size:0px;padding:10px 25px;word-break:break-word;">
-
-                      <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="border-collapse:collapse;border-spacing:0px;">
-                        <tbody>
-                          <tr>
-                            <td style="width:150px;">
-
-                              <img height="auto" src="https://s3.amazonaws.com/album-polar/empty-card.png" style="border:0;display:block;outline:none;text-decoration:none;width:100%;" width="150" />
-
-                            </td>
-                          </tr>
-                        </tbody>
-                      </table>
-
-                    </td>
-                  </tr>
-
-                  <tr>
-                    <td align="center" style="font-size:0px;padding:10px 25px;word-break:break-word;">
-
-                      <div style="font-family:helvetica;font-size:13px;line-height:1;text-align:center;color:#000;">
-                        {{codes.1}}
-                      </div>
-
-                    </td>
-                  </tr>
-
-                  <tr>
-                    <td align="center" vertical-align="middle" style="font-size:0px;padding:10px 25px;word-break:break-word;">
-
-                      <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="border-collapse:separate;line-height:100%;">
-                        <tr>
-                          <td align="center" bgcolor="#f26950" role="presentation" style="border:none;border-radius:10px;color:#ffffff;cursor:auto;padding:10px 25px;" valign="middle">
-                            <a href="http://{{site.domain}}/album/redeem/{{codes.1}}/{{email}}" style="background:#f26950;color:#ffffff;font-family:helvetica;font-size:12px;font-weight:normal;line-height:120%;Margin:0;text-decoration:none;text-transform:none;" target="_blank">
-              Descubrir
-            </a>
-                          </td>
-                        </tr>
-                      </table>
-
-                    </td>
-                  </tr>
-
-                </table>
-
-              </div>
-
-              <!--[if mso | IE]>
-            </td>
-
-            <td
-               style="vertical-align:top;width:200px;"
-            >
-          <![endif]-->
-
-              <div class="mj-column-px-200 outlook-group-fix" style="font-size:13px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:100%;">
-
-                <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="vertical-align:top;" width="100%">
-
-                  <tr>
-                    <td align="center" style="font-size:0px;padding:10px 25px;word-break:break-word;">
-
-                      <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="border-collapse:collapse;border-spacing:0px;">
-                        <tbody>
-                          <tr>
-                            <td style="width:150px;">
-
-                              <img height="auto" src="https://s3.amazonaws.com/album-polar/empty-card.png" style="border:0;display:block;outline:none;text-decoration:none;width:100%;" width="150" />
-
-                            </td>
-                          </tr>
-                        </tbody>
-                      </table>
-
-                    </td>
-                  </tr>
-
-                  <tr>
-                    <td align="center" style="font-size:0px;padding:10px 25px;word-break:break-word;">
-
-                      <div style="font-family:helvetica;font-size:13px;line-height:1;text-align:center;color:#000;">
-                        {{codes.2}}
-                      </div>
-
-                    </td>
-                  </tr>
-
-                  <tr>
-                    <td align="center" vertical-align="middle" style="font-size:0px;padding:10px 25px;word-break:break-word;">
-
-                      <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="border-collapse:separate;line-height:100%;">
-                        <tr>
-                          <td align="center" bgcolor="#f26950" role="presentation" style="border:none;border-radius:10px;color:#ffffff;cursor:auto;padding:10px 25px;" valign="middle">
-                            <a href="http://{{site.domain}}/album/redeem/{{codes.2}}/{{email}}" style="background:#f26950;color:#ffffff;font-family:helvetica;font-size:12px;font-weight:normal;line-height:120%;Margin:0;text-decoration:none;text-transform:none;" target="_blank">
-              Descubrir
-            </a>
-                          </td>
-                        </tr>
-                      </table>
-
-                    </td>
-                  </tr>
-
-                </table>
-
-              </div>
-
-              <!--[if mso | IE]>
-            </td>
-
-        </tr>
-
-                  </table>
                 <![endif]-->
             </td>
           </tr>
         </tbody>
       </table>
-
     </div>
-
+    {% endfor %}
 
     <!--[if mso | IE]>
           </td>
         </tr>
       </table>
-
-      <table
-         align="center" border="0" cellpadding="0" cellspacing="0" style="width:600px;" width="600"
-      >
-        <tr>
-          <td style="line-height:0px;font-size:0px;mso-line-height-rule:exactly;">
-      <![endif]-->
-
-
-    <div style="background:#ffffff;background-color:#ffffff;Margin:0px auto;max-width:600px;">
-
-      <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="background:#ffffff;background-color:#ffffff;width:100%;">
-        <tbody>
-          <tr>
-            <td style="direction:ltr;font-size:0px;padding:20px 0;text-align:center;vertical-align:top;">
-              <!--[if mso | IE]>
-                  <table role="presentation" border="0" cellpadding="0" cellspacing="0">
-
-        <tr>
-
-            <td
-               style="vertical-align:top;width:200px;"
-            >
-          <![endif]-->
-
-              <div class="mj-column-px-200 outlook-group-fix" style="font-size:13px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:100%;">
-
-                <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="vertical-align:top;" width="100%">
-
-                  <tr>
-                    <td align="center" style="font-size:0px;padding:10px 25px;word-break:break-word;">
-
-                      <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="border-collapse:collapse;border-spacing:0px;">
-                        <tbody>
-                          <tr>
-                            <td style="width:150px;">
-
-                              <img height="auto" src="https://s3.amazonaws.com/album-polar/empty-card.png" style="border:0;display:block;outline:none;text-decoration:none;width:100%;" width="150" />
-
-                            </td>
-                          </tr>
-                        </tbody>
-                      </table>
-
-                    </td>
-                  </tr>
-
-                  <tr>
-                    <td align="center" style="font-size:0px;padding:10px 25px;word-break:break-word;">
-
-                      <div style="font-family:helvetica;font-size:13px;line-height:1;text-align:center;color:#000;">
-                        {{codes.3}}
-                      </div>
-
-                    </td>
-                  </tr>
-
-                  <tr>
-                    <td align="center" vertical-align="middle" style="font-size:0px;padding:10px 25px;word-break:break-word;">
-
-                      <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="border-collapse:separate;line-height:100%;">
-                        <tr>
-                          <td align="center" bgcolor="#f26950" role="presentation" style="border:none;border-radius:10px;color:#ffffff;cursor:auto;padding:10px 25px;" valign="middle">
-                            <a href="http://{{site.domain}}/album/redeem/{{codes.3}}/{{email}}" style="background:#f26950;color:#ffffff;font-family:helvetica;font-size:12px;font-weight:normal;line-height:120%;Margin:0;text-decoration:none;text-transform:none;" target="_blank">
-              Descubrir
-            </a>
-                          </td>
-                        </tr>
-                      </table>
-
-                    </td>
-                  </tr>
-
-                </table>
-
-              </div>
-
-              <!--[if mso | IE]>
-            </td>
-
-            <td
-               style="vertical-align:top;width:200px;"
-            >
-          <![endif]-->
-
-              <div class="mj-column-px-200 outlook-group-fix" style="font-size:13px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:100%;">
-
-                <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="vertical-align:top;" width="100%">
-
-                  <tr>
-                    <td align="center" style="font-size:0px;padding:10px 25px;word-break:break-word;">
-
-                      <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="border-collapse:collapse;border-spacing:0px;">
-                        <tbody>
-                          <tr>
-                            <td style="width:150px;">
-
-                              <img height="auto" src="https://s3.amazonaws.com/album-polar/empty-card.png" style="border:0;display:block;outline:none;text-decoration:none;width:100%;" width="150" />
-
-                            </td>
-                          </tr>
-                        </tbody>
-                      </table>
-
-                    </td>
-                  </tr>
-
-                  <tr>
-                    <td align="center" style="font-size:0px;padding:10px 25px;word-break:break-word;">
-
-                      <div style="font-family:helvetica;font-size:13px;line-height:1;text-align:center;color:#000;">
-                        {{codes.4}}
-                      </div>
-
-                    </td>
-                  </tr>
-
-                  <tr>
-                    <td align="center" vertical-align="middle" style="font-size:0px;padding:10px 25px;word-break:break-word;">
-
-                      <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="border-collapse:separate;line-height:100%;">
-                        <tr>
-                          <td align="center" bgcolor="#f26950" role="presentation" style="border:none;border-radius:10px;color:#ffffff;cursor:auto;padding:10px 25px;" valign="middle">
-                            <a href="http://{{site.domain}}/album/redeem/{{codes.4}}/{{email}}" style="background:#f26950;color:#ffffff;font-family:helvetica;font-size:12px;font-weight:normal;line-height:120%;Margin:0;text-decoration:none;text-transform:none;" target="_blank">
-              Descubrir
-            </a>
-                          </td>
-                        </tr>
-                      </table>
-
-                    </td>
-                  </tr>
-
-                </table>
-
-              </div>
-
-              <!--[if mso | IE]>
-            </td>
-
-        </tr>
-
-                  </table>
-                <![endif]-->
-            </td>
-          </tr>
-        </tbody>
-      </table>
-
-    </div>
-
+    <![endif]-->
 
     <!--[if mso | IE]>
-          </td>
-        </tr>
-      </table>
-
       <table
          align="center" border="0" cellpadding="0" cellspacing="0" style="width:600px;" width="600"
       >
@@ -696,7 +431,9 @@ Este es tu paquete de cartas
           </td>
         </tr>
       </table>
+    <![endif]-->
 
+    <!--[if mso | IE]>
       <table
          align="center" border="0" cellpadding="0" cellspacing="0" style="width:600px;" width="600"
       >
@@ -758,7 +495,9 @@ Este es tu paquete de cartas
           </td>
         </tr>
       </table>
+    <![endif]-->
 
+    <!--[if mso | IE]>
       <table
          align="center" border="0" cellpadding="0" cellspacing="0" style="width:600px;" width="600"
       >
