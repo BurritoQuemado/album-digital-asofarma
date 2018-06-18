@@ -29,7 +29,9 @@ class Command(BaseCommand):
                     'codes': codes,
                     'email': email,
                     'site': site,
-                    'time': now
+                    'time': now,
+                    'text': 'Este es tu sobre de %s cartas del día: ' % (len(codes)),
+                    'subject': 'Este es tu paquete de cartas'
                 },
                 settings.DEFAULT_FROM_EMAIL,
                 [user.email]

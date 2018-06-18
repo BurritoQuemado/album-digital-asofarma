@@ -132,15 +132,14 @@
         width 100%
         position relative
         &--Footer
-            background: $primary
-            padding: 10px 10px
+            background: $black
+            padding: 10px 10px 10px 10px
             &--Code
                 lost-utility clearfix
                 span
-                    font-family: 'din'
-                    font-weight: bold
-                    font-size 1em
-                    line-height: 0.5rem
+                    text-transform: uppercase;
+                    font-family: 'din';
+                    font-size: 0.9em;
                     border: 1px solid $black
                     color: $black
                     padding 4px 7px 4px 5px
@@ -148,16 +147,21 @@
                     display inline-block
                     margin-right: -5px;
                 a
-                    display inline-block
-                    margin-right: -5px;
-                    font-family: 'din'
-                    font-weight: normal
-                    line-height: 0.5rem
-                    font-size 0.8em
-                    padding 5px 7px 5px 5px
-                    color $primary
-                    background $black
-                    margin 0
+                    display block
+                    // margin-right: -5px;
+                    text-transform: uppercase;
+                    font-family: 'din';
+                    font-size: 0.7em;
+                    padding 6px 8px
+                    background $primary
+                    color $white
+                    letter-spacing: 1px
+                    margin 3px auto
+                    text-align: center
+                    &:hover
+                        background: $white
+                        color $primary
+                        text-decoration: none
         &--Body
             position: absolute 0
             width 100%
