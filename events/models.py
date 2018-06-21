@@ -27,7 +27,7 @@ class Prediction(models.Model):
 
     match = models.ForeignKey(Match, related_name="match_prediction", on_delete=models.CASCADE)
     user = models.ForeignKey(User, related_name="match_user", on_delete=models.CASCADE)
-    away_result = models.IntegerField(verbose_name='Resultado Local')
-    home_result = models.IntegerField(verbose_name='Resultado Visitante')
+    away_result = models.IntegerField(verbose_name='Resultado Visitante')
+    home_result = models.IntegerField(verbose_name='Resultado Local')
     created_at = models.DateTimeField(auto_now=True)
     submitted = models.BooleanField(default=False)
