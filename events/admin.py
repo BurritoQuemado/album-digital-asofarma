@@ -11,7 +11,7 @@ class MatchAdmin(admin.ModelAdmin):
 
 class CorrectFilter(SimpleListFilter):
     title = 'prediccion correcta'
-    parameter_name = 'photo'
+    parameter_name = 'correct'
 
     def lookups(self, request, model_admin):
         """

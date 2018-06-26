@@ -67,7 +67,7 @@ class HasPhotoFilter(SimpleListFilter):
 @admin.register(Card)
 class CardAdmin(ImportExportModelAdmin):
     list_display = ('name', 'admin_thumbnail', 'id', 'order', 'fk_rarity', 'fk_department', 'wave', 'is_badge', 'active', 'page', )
-    list_filter = (HasPhotoFilter, 'wave', 'is_badge', 'fk_department', 'fk_rarity', 'active', )
+    list_filter = ('active', HasPhotoFilter, 'wave', 'is_badge', 'fk_department', 'fk_rarity', )
     fields = ('photo', 'active', 'fk_department', 'fk_rarity', 'wave',)
     resource_class = CardResource
     admin_thumbnail = AdminThumbnail(image_field=cached_admin_thumb)
