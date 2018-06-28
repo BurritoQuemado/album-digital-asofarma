@@ -31,6 +31,7 @@
             {% for department in departments %}
             <li class="Item">
                 <a class="Nav--Link Department" href="{% url 'cards:card_list' pk=album_user.id slug=department.slug %}">
+                    <span>{{department.minium.order}}-{{department.maximum.order}}</span>
                     <div class="svg-logo-sidebar">
                         <img src="{% static department.svg_template %}">
                     </div>

@@ -8,7 +8,7 @@
 <p>Ya enviaste tu predicción, una vez terminado el partido <strong>{{match}}</strong> sabrás si te llevas el premio.</p>
 {% else %}
 <h2 class="border-bottom border-gray pb-2 mb-4">Predicción</h2>
-<p>Predice el resultado del partido <strong>{{match}}</strong> y podrás ganar un sobre de cartas especiales.</p>
+<p>Predice el resultado del partido <strong>{{match}}</strong> en tiempo reglamentario (sin penaltis) y podrás ganar un sobre de cartas especiales.</p>
 <form method="post" action="" class="pt-3">
     {% csrf_token %}
     {% bootstrap_form_errors form type='non_fields' %}

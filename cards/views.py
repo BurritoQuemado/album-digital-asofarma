@@ -147,10 +147,12 @@ class CoverView(DetailView):
         for department in departments:
             department_codes = Code.objects.filter(fk_user_id=self.kwargs['pk'], fk_card__fk_department=department)
             if department_codes.exists():
-                department.codes = department_codes.count()
+                department.codes = department_codes.values('fk_card').distinct().count()
             else:
                 department.codes = 0
             department.cards = Card.objects.filter(fk_department=department, active=True).count()
+            department.minium = Card.objects.filter(fk_department=department, active=True).order_by('order').first()
+            department.maximum = Card.objects.filter(fk_department=department, active=True).order_by('-order').first()
         context['departments'] = departments
         return context
 
@@ -198,7 +200,7 @@ class CardList(ListView):
         for department in departments:
             department_codes = Code.objects.filter(fk_user_id=self.kwargs['pk'], fk_card__fk_department=department)
             if department_codes.exists():
-                department.codes = department_codes.count()
+                department.codes = department_codes.values('fk_card').distinct().count()
             else:
                 department.codes = 0
             department.cards = Card.objects.filter(fk_department=department, active=True).count()

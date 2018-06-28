@@ -74,15 +74,15 @@ class CardAdmin(ImportExportModelAdmin):
 
     def import_action(self, request, *args, **kwargs):
         response = super().import_action(request, *args, **kwargs)
-        departments = Department.objects.all().order_by('id')
-        cards_order = 1
-        for department in departments:
-            cards = Card.objects.filter(fk_department=department, active=True).order_by('id')
-            for index, card in enumerate(cards):
-                card.page = 1 if index is 0 else int(math.ceil(index / 12))
-                card.order = cards_order
-                card.save()
-                cards_order += 1
+        # departments = Department.objects.all().order_by('id')
+        # cards_order = 1
+        # for department in departments:
+        #     cards = Card.objects.filter(fk_department=department, active=True).order_by('id')
+        #     for index, card in enumerate(cards):
+        #         card.page = 1 if index is 0 else int(math.ceil(index / 12))
+        #         card.order = cards_order
+        #         card.save()
+        #         cards_order += 1
         return response
 
 
