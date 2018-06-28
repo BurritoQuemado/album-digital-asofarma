@@ -150,9 +150,10 @@ class CoverView(DetailView):
                 department.codes = department_codes.values('fk_card').distinct().count()
             else:
                 department.codes = 0
-            department.cards = Card.objects.filter(fk_department=department, active=True).count()
-            department.minium = Card.objects.filter(fk_department=department, active=True).order_by('order').first()
-            department.maximum = Card.objects.filter(fk_department=department, active=True).order_by('-order').first()
+            cards = Card.objects.filter(fk_department=department, active=True)
+            department.cards = cards.count()
+            department.minium = cards.order_by('order').first()
+            department.maximum = cards.order_by('-order').first()
         context['departments'] = departments
         return context
 
@@ -203,7 +204,10 @@ class CardList(ListView):
                 department.codes = department_codes.values('fk_card').distinct().count()
             else:
                 department.codes = 0
-            department.cards = Card.objects.filter(fk_department=department, active=True).count()
+            cards = Card.objects.filter(fk_department=department, active=True)
+            department.cards = cards.count()
+            department.minium = cards.order_by('order').first()
+            department.maximum = cards.order_by('-order').first()
         context['departments'] = departments
         # Get the current Department
         context['department'] = Department.objects.get(slug=self.kwargs['slug'])
