@@ -48,8 +48,8 @@ INSTALLED_APPS = [
     'whitenoise.runserver_nostatic',
     'django.contrib.staticfiles',
     # apps
-    'accounts',
     'cards',
+    'accounts',
     'events',
     # libs
     'django_ses',

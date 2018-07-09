@@ -76,10 +76,12 @@ class EmailSaveView(SuccessMessageMixin, UpdateView):
 
         total_cards = Card.objects.filter(active=True).count()
         user_codes = Code.objects.filter(fk_user=user).values('fk_card').distinct().count()
-        if user_codes == total_cards:
+        if user_codes == total_cards and user.finished is False:
+            user.finished = True
+            user.save()
             send_mail(
                 'Usuario acabó',
-                'El usuario %s acabó con fecha %s.' % (user.email, datetime.datetime.now()),
+                'El usuario %s acabó con fecha %s.' % (user.full_name, datetime.datetime.now()),
                 'no-reply@albumdigital.com.mx',
                 ['erick@polarmultimedia.com', 'carpinteyro@polarmultimedia.com'],
                 fail_silently=False,
@@ -122,10 +124,12 @@ class SendCodeView(SuccessMessageMixin, UpdateView):
 
         total_cards = Card.objects.filter(active=True).count()
         user_codes = Code.objects.filter(fk_user=user).values('fk_card').distinct().count()
-        if user_codes == total_cards:
+        if user_codes == total_cards and user.finished is False:
+            user.finished = True
+            user.save()
             send_mail(
                 'Usuario acabó',
-                'El usuario %s acabó con fecha %s.' % (user.email, datetime.datetime.now()),
+                'El usuario %s acabó con fecha %s.' % (user.full_name, datetime.datetime.now()),
                 'no-reply@albumdigital.com.mx',
                 ['erick@polarmultimedia.com', 'carpinteyro@polarmultimedia.com'],
                 fail_silently=False,

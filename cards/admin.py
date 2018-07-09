@@ -67,22 +67,21 @@ class HasPhotoFilter(SimpleListFilter):
 
 @admin.register(Card)
 class CardAdmin(ImportExportModelAdmin):
-    list_display = ('name', 'codes_count', 'id', 'order', 'fk_rarity', 'fk_department', 'wave', 'is_badge', 'active', 'page', )
+    list_display = ('name', 'show_codes_count', 'id', 'order', 'fk_rarity', 'fk_department', 'wave', 'is_badge', 'active', 'page', )
     list_filter = ('active', HasPhotoFilter, 'wave', 'is_badge', 'fk_department', 'fk_rarity', )
     fields = ('photo', 'active', 'fk_department', 'fk_rarity', 'wave',)
     resource_class = CardResource
     # admin_thumbnail = AdminThumbnail(image_field=cached_admin_thumb)
 
-    def queryset(self, request):
-        qs = super(CardAdmin, self).queryset(request)
-        qs = qs.annotate(codes_count=Count('code'))
+    def get_queryset(self, request):
+        qs = super(CardAdmin, self).get_queryset(request)
+        qs = qs.annotate(codes_count=Count('card_code'))
         return qs
 
-    def codes_count(self, obj):
-        codes = Code.objects.filter(fk_card=obj).count()
-        return codes
-    # codes_count.short_description = 'Códigos'
-    # codes_count.admin_order_field = 'codes_count'
+    def show_codes_count(self, obj):
+        return obj.codes_count
+    show_codes_count.short_description = 'Códigos'
+    show_codes_count.admin_order_field = 'codes_count'
 
     def import_action(self, request, *args, **kwargs):
         response = super().import_action(request, *args, **kwargs)

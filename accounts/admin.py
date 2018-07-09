@@ -2,7 +2,7 @@ from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin as DjangoUserAdmin
 from django.utils.translation import ugettext_lazy as _
 from .models import User
-from cards.models import Code
+from django.db.models import Count
 
 
 @admin.register(User)
@@ -22,10 +22,14 @@ class UserAdmin(DjangoUserAdmin):
             'fields': ('email', 'password1', 'password2'),
         }),
     )
-    list_display = ('email', 'codes_count', 'first_name', 'last_name', 'is_staff')
+    list_display = ('email', 'show_codes_count', 'first_name', 'last_name', 'is_staff')
     search_fields = ('email', 'first_name', 'last_name')
     ordering = ('email',)
 
-    def codes_count(self, obj):
-        codes = Code.objects.filter(fk_user=obj).values('fk_card').distinct().count()
-        return codes
+    def get_queryset(self, request):
+        qs = super(UserAdmin, self).get_queryset(request)
+        return qs.annotate(codes_count=Count('code'))
+
+    def show_codes_count(self, obj):
+        return obj.codes_count
+    show_codes_count.admin_order_field = 'codes_count'

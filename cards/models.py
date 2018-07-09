@@ -96,8 +96,8 @@ class Code(models.Model):
         verbose_name_plural = 'Códigos'
 
     code = models.CharField(max_length=200, unique=True)
-    fk_user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
-    fk_card = models.ForeignKey(Card, on_delete=models.CASCADE, related_name='code')
+    fk_user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, related_name='code')
+    fk_card = models.ForeignKey(Card, on_delete=models.CASCADE, related_name='card_code')
 
     def __str__(self):
         return self.code
