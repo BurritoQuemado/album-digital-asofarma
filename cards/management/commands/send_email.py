@@ -37,7 +37,7 @@ class Command(BaseCommand):
                     'site': site,
                     'time': now,
                     'text': 'Este es tu sobre de %s cartas del día: ' % (len(codes)),
-                    'subject': 'Este es tu paquete de cartas especiales'
+                    'subject': 'Este es tu paquete de cartas'
                 },
                 settings.DEFAULT_FROM_EMAIL,
                 [user.email]
