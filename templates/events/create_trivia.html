@@ -1,0 +1,20 @@
+{% extends "registration/registration_base.html" %}
+
+{% load bootstrap4 %}
+
+{% block content %}
+{% if trivia_exists %}
+<h2 class="border-bottom border-gray pb-2 mb-4">Trivia</h2>
+<p>Ya enviaste tu trivia.</p>
+{% else %}
+<h2 class="border-bottom border-gray pb-2 mb-4">Trivia</h2>
+<p>Contesta la siguiente Trivia y podrás ganar un sobre de cartas especiales.</p>
+<form method="post" action="" class="pt-3">
+    {% csrf_token %}
+    {% bootstrap_form form %}
+    {% buttons %}
+    <button type="submit" class="btn btn-primary btn-lg">Enviar</button>
+    {% endbuttons %}
+</form>
+{% endif %}
+{% endblock %}

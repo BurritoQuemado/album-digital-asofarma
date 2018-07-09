@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Match, Prediction
+from .models import Match, Prediction, Question, Option
 from django.contrib.admin import SimpleListFilter
 
 
@@ -47,3 +47,15 @@ class PredictionAdmin(admin.ModelAdmin):
     #     qs = super(PredictionAdmin, self).get_queryset(request)
     #     match = Match.objects.all().first()
     #     return qs.filter(away_result=match.away_result, home_result=match.home_result)
+
+
+@admin.register(Option)
+class OptionAdmin(admin.ModelAdmin):
+    list_display = ('id', 'text', 'created_at',)
+    fields = ['text', 'is_correct']
+
+
+@admin.register(Question)
+class QuestionAdmin(admin.ModelAdmin):
+    list_display = ('id', 'text', 'created_at',)
+    fields = ['text', 'options', 'multiple']

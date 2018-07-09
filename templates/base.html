@@ -25,6 +25,13 @@
             </div>
         </div>
         {% endfor %}
+        {% if not trivia %}
+        <div class="Event-Item">
+            <div class="container">
+                Participa en nuestra dinámica, <a href="{% url 'events:create_trivia'%}">contesta nuestra Trivia</a> y gana tarjetas especiales.
+            </div>
+        </div>
+        {% endif %}
     {% endif %}
     <nav class="navbar navbar-expand-md navbar-dark main-menu">
         <div class="container">
