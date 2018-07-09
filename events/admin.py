@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Match, Prediction, Question, Option
+from .models import Match, Prediction, Question, Option, Trivia
 from django.contrib.admin import SimpleListFilter
 
 
@@ -59,3 +59,14 @@ class OptionAdmin(admin.ModelAdmin):
 class QuestionAdmin(admin.ModelAdmin):
     list_display = ('id', 'text', 'created_at',)
     fields = ['text', 'options', 'multiple']
+
+
+@admin.register(Trivia)
+class TriviaAdmin(admin.ModelAdmin):
+    list_display = ('id', 'user', 'correct',)
+
+    def correct(self, obj):
+        options = obj.options.filter(is_correct=False).exists()
+        return not options
+    correct.short_description = 'Correcto'
+    correct.boolean = True
