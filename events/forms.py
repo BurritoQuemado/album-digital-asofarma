@@ -29,4 +29,4 @@ class TriviaForm(forms.Form):
             if question.multiple:
                 self.fields['question-%s' % question.id] = forms.ModelMultipleChoiceField(queryset=question.options, widget=CheckboxSelectMultiple(), label=question.text, required=True)
             else:
-                self.fields['question-%s' % question.id] = forms.ModelChoiceField(queryset=question.options, widget=RadioSelect(), label=question.text, required=True)
+                self.fields['question-%s' % question.id] = forms.ModelChoiceField(queryset=question.options, widget=RadioSelect(), label=question.text, required=True, empty_label=None)
