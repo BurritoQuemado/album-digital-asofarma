@@ -1,7 +1,7 @@
 import math
 from django.contrib.admin import SimpleListFilter
 from django.contrib import admin
-from .models import Card, Department, Rarity
+from .models import Card, Department, Rarity, Code
 from import_export import fields, resources
 from import_export.admin import ImportExportModelAdmin
 from import_export.widgets import ForeignKeyWidget
@@ -9,6 +9,7 @@ from imagekit.admin import AdminThumbnail
 from imagekit import ImageSpec
 from imagekit.processors import ResizeToFill
 from imagekit.cachefiles import ImageCacheFile
+from django.db.models import Count
 
 
 class CardResource(resources.ModelResource):
@@ -66,11 +67,22 @@ class HasPhotoFilter(SimpleListFilter):
 
 @admin.register(Card)
 class CardAdmin(ImportExportModelAdmin):
-    list_display = ('name', 'admin_thumbnail', 'id', 'order', 'fk_rarity', 'fk_department', 'wave', 'is_badge', 'active', 'page', )
+    list_display = ('name', 'codes_count', 'id', 'order', 'fk_rarity', 'fk_department', 'wave', 'is_badge', 'active', 'page', )
     list_filter = ('active', HasPhotoFilter, 'wave', 'is_badge', 'fk_department', 'fk_rarity', )
     fields = ('photo', 'active', 'fk_department', 'fk_rarity', 'wave',)
     resource_class = CardResource
-    admin_thumbnail = AdminThumbnail(image_field=cached_admin_thumb)
+    # admin_thumbnail = AdminThumbnail(image_field=cached_admin_thumb)
+
+    def queryset(self, request):
+        qs = super(CardAdmin, self).queryset(request)
+        qs = qs.annotate(codes_count=Count('code'))
+        return qs
+
+    def codes_count(self, obj):
+        codes = Code.objects.filter(fk_card=obj).count()
+        return codes
+    # codes_count.short_description = 'Códigos'
+    # codes_count.admin_order_field = 'codes_count'
 
     def import_action(self, request, *args, **kwargs):
         response = super().import_action(request, *args, **kwargs)

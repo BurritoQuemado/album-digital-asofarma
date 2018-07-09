@@ -10,7 +10,7 @@ def get_cards(total_cards):
     packet = []
     packet_card = []
     # number of the cards in the packet
-    all_cards = Card.objects.filter(active=True)
+    all_cards = Card.objects.filter(active=True, wave=1)
 
     for card_number in range(1, total_cards + 1):
         # We get de rarity of the card and after we will choose a card in that category
