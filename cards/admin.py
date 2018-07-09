@@ -1,7 +1,7 @@
 # import math
 from django.contrib.admin import SimpleListFilter
 from django.contrib import admin
-from .models import Card, Department, Rarity, Code
+from .models import Card, Department, Rarity
 from import_export import fields, resources
 from import_export.admin import ImportExportModelAdmin
 from import_export.widgets import ForeignKeyWidget
@@ -75,7 +75,7 @@ class CardAdmin(ImportExportModelAdmin):
 
     def get_queryset(self, request):
         qs = super(CardAdmin, self).get_queryset(request)
-        qs = qs.annotate(codes_count=Count('card_code', distinct=True))
+        qs = qs.annotate(codes_count=Count('card_code'))
         return qs
 
     def show_codes_count(self, obj):

@@ -3,6 +3,7 @@ from django.contrib.auth.admin import UserAdmin as DjangoUserAdmin
 from django.utils.translation import ugettext_lazy as _
 from .models import User
 from django.db.models import Count
+from cards.models import Code
 
 
 @admin.register(User)
@@ -28,7 +29,7 @@ class UserAdmin(DjangoUserAdmin):
 
     def get_queryset(self, request):
         qs = super(UserAdmin, self).get_queryset(request)
-        return qs.annotate(codes_count=Count('code', distinct=True))
+        return qs.annotate(codes_count=Count('code__fk_card', distinct=True))
 
     def show_codes_count(self, obj):
         return obj.codes_count
