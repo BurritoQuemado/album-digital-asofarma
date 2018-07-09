@@ -75,7 +75,7 @@ class CardAdmin(ImportExportModelAdmin):
 
     def get_queryset(self, request):
         qs = super(CardAdmin, self).get_queryset(request)
-        qs = qs.annotate(codes_count=Count('card_code'))
+        qs = qs.annotate(codes_count=Count('card_code', distinct=True))
         return qs
 
     def show_codes_count(self, obj):

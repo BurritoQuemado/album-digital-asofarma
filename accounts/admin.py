@@ -28,7 +28,7 @@ class UserAdmin(DjangoUserAdmin):
 
     def get_queryset(self, request):
         qs = super(UserAdmin, self).get_queryset(request)
-        return qs.annotate(codes_count=Count('code'))
+        return qs.annotate(codes_count=Count('code', distinct=True))
 
     def show_codes_count(self, obj):
         return obj.codes_count
