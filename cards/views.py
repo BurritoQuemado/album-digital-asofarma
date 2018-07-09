@@ -12,6 +12,8 @@ from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
 from django.views.generic.edit import FormMixin
 from django.db.models import Q
+from django.core.mail import send_mail
+import datetime
 
 decorators = [login_required]
 
@@ -71,6 +73,17 @@ class EmailSaveView(SuccessMessageMixin, UpdateView):
 
         self.object.fk_user = user
         self.object.save()
+
+        total_cards = Card.objects.filter(active=True).count()
+        user_codes = Code.objects.filter(fk_user=user).values('fk_card').distinct().count()
+        if user_codes == total_cards:
+            send_mail(
+                'Usuario acabó',
+                'El usuario %s acabó con fecha %s.' % (user.email, datetime.datetime.now()),
+                'no-reply@albumdigital.com.mx',
+                ['erick@polarmultimedia.com', 'carpinteyro@polarmultimedia.com'],
+                fail_silently=False,
+            )
         return super().form_valid(form)
 
 
@@ -106,6 +119,18 @@ class SendCodeView(SuccessMessageMixin, UpdateView):
         notification.save()
         self.object.fk_user = user
         self.object.save()
+
+        total_cards = Card.objects.filter(active=True).count()
+        user_codes = Code.objects.filter(fk_user=user).values('fk_card').distinct().count()
+        if user_codes == total_cards:
+            send_mail(
+                'Usuario acabó',
+                'El usuario %s acabó con fecha %s.' % (user.email, datetime.datetime.now()),
+                'no-reply@albumdigital.com.mx',
+                ['erick@polarmultimedia.com', 'carpinteyro@polarmultimedia.com'],
+                fail_silently=False,
+            )
+
         return super().form_valid(form)
 
 

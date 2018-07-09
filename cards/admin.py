@@ -1,11 +1,11 @@
-import math
+# import math
 from django.contrib.admin import SimpleListFilter
 from django.contrib import admin
 from .models import Card, Department, Rarity, Code
 from import_export import fields, resources
 from import_export.admin import ImportExportModelAdmin
 from import_export.widgets import ForeignKeyWidget
-from imagekit.admin import AdminThumbnail
+# from imagekit.admin import AdminThumbnail
 from imagekit import ImageSpec
 from imagekit.processors import ResizeToFill
 from imagekit.cachefiles import ImageCacheFile
