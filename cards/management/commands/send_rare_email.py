@@ -43,4 +43,4 @@ class Command(BaseCommand):
                 [user.email]
             )
 
-            self.stdout.write(self.style.SUCCESS('Send email to "%s"' % user_email))
+            self.stdout.write(self.style.SUCCESS('Send email to %s with rarity %s' % (user_email)))
