@@ -38,7 +38,7 @@ def get_prize_cards():
     all_cards = Card.objects.filter(active=True, wave=1)
 
     # number of the cards in the packet
-    for card_number in [1, 2, 1, 2, 1, 3, 4, 3, 3, 4]:
+    for card_number in [1, 1, 2, 2, 2, 3, 3, 4, 4, 4]:
         # We get de rarity of the card and after we will choose a card in that category
         # if we wish change the probability we need change the values in the p
 

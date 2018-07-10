@@ -74,6 +74,7 @@ class CodeInline(admin.StackedInline):
     def has_add_permission(self, request, obj=None):
         return False
 
+
 @admin.register(Card)
 class CardAdmin(ImportExportModelAdmin):
     inlines = [CodeInline]
