@@ -55,6 +55,31 @@ def get_prize_cards():
     return packet
 
 
+def get_rare_cards():
+    # opening connection with the database
+    packet = []
+    packet_card = []
+
+    all_cards = Card.objects.filter(active=True, wave=1)
+
+    # number of the cards in the packet
+    for card_number in [1, 2, 1, 2, 1]:
+        # We get de rarity of the card and after we will choose a card in that category
+        # if we wish change the probability we need change the values in the p
+
+        rarity_id = Rarity.objects.get(id=card_number)
+        cards = all_cards.filter(fk_rarity=rarity_id).values('id')
+
+        # we choose all the cards with the rarity selected
+        for card in cards:
+            packet_card.append(card['id'])
+
+        # we choose one card and finally, put the card in the packet
+        packet.append(np.random.choice(packet_card))
+
+    return packet
+
+
 def id_generator(size=8, chars=string.ascii_letters + string.digits):
     return ''.join(random.choice(chars) for _ in range(size))
 
@@ -79,6 +104,20 @@ def new_cards_save(total_cards):
     packet_codes = []
 
     for card in get_cards(total_cards):
+        # we generate the code of the card
+        code = code_save()
+        packet_codes.append(code)
+        # we save the packet of cards
+        c = Code(code=code, fk_card=Card.objects.get(id=card), )
+        c.save()
+    # return the packet of cards
+    return packet_codes
+
+
+def new_cards_rare_save():
+    packet_codes = []
+
+    for card in get_rare_cards():
         # we generate the code of the card
         code = code_save()
         packet_codes.append(code)

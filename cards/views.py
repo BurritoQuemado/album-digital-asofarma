@@ -81,7 +81,7 @@ class EmailSaveView(SuccessMessageMixin, UpdateView):
             user.save()
             send_mail(
                 'Usuario acabó',
-                'El usuario %s acabó con fecha %s.' % (user.full_name, datetime.datetime.now()),
+                'El usuario %s acabó con fecha %s.' % (user, datetime.datetime.now()),
                 'no-reply@albumdigital.com.mx',
                 ['erick@polarmultimedia.com', 'carpinteyro@polarmultimedia.com'],
                 fail_silently=False,
@@ -129,7 +129,7 @@ class SendCodeView(SuccessMessageMixin, UpdateView):
             user.save()
             send_mail(
                 'Usuario acabó',
-                'El usuario %s acabó con fecha %s.' % (user.full_name, datetime.datetime.now()),
+                'El usuario %s acabó con fecha %s.' % (user, datetime.datetime.now()),
                 'no-reply@albumdigital.com.mx',
                 ['erick@polarmultimedia.com', 'carpinteyro@polarmultimedia.com'],
                 fail_silently=False,
