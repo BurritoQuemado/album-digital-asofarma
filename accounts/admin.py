@@ -6,9 +6,17 @@ from django.db.models import Count
 from cards.models import Code
 
 
+class CodeInline(admin.StackedInline):
+    model = Code
+    can_delete = False
+    extra = 0
+    readonly_fields = ['code']
+
+
 @admin.register(User)
 class UserAdmin(DjangoUserAdmin):
     """Define admin model for custom User model with no email field."""
+    inlines = [CodeInline]
 
     fieldsets = (
         (None, {'fields': ('email', 'password')}),
@@ -33,4 +41,5 @@ class UserAdmin(DjangoUserAdmin):
 
     def show_codes_count(self, obj):
         return obj.codes_count
+    show_codes_count.short_description = 'Códigos'
     show_codes_count.admin_order_field = 'codes_count'

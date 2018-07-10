@@ -1,7 +1,7 @@
 # import math
 from django.contrib.admin import SimpleListFilter
 from django.contrib import admin
-from .models import Card, Department, Rarity
+from .models import Card, Department, Rarity, Code
 from import_export import fields, resources
 from import_export.admin import ImportExportModelAdmin
 from import_export.widgets import ForeignKeyWidget
@@ -65,8 +65,18 @@ class HasPhotoFilter(SimpleListFilter):
             return queryset.all().exclude(photo='')
 
 
+class CodeInline(admin.StackedInline):
+    model = Code
+    can_delete = False
+    extra = 0
+    readonly_fields = ['fk_user', 'code']
+
+    def has_add_permission(self, request, obj=None):
+        return False
+
 @admin.register(Card)
 class CardAdmin(ImportExportModelAdmin):
+    inlines = [CodeInline]
     list_display = ('name', 'show_codes_count', 'id', 'order', 'fk_rarity', 'fk_department', 'wave', 'is_badge', 'active', 'page', )
     list_filter = ('active', HasPhotoFilter, 'wave', 'is_badge', 'fk_department', 'fk_rarity', )
     fields = ('photo', 'active', 'fk_department', 'fk_rarity', 'wave',)
