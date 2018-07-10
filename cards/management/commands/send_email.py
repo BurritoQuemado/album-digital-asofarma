@@ -5,7 +5,7 @@ from accounts.models import User
 from django.conf import settings
 from mail_templated import send_mail
 from django.contrib.sites.models import Site
-from cards.functions import new_cards_rare_save
+from cards.functions import new_cards_save
 
 
 class Command(BaseCommand):
@@ -24,7 +24,7 @@ class Command(BaseCommand):
             email = base64.b64encode(bytes(user.email, 'utf-8'))
             email = email.decode("utf-8")
 
-            codes = new_cards_rare_save()
+            codes = new_cards_save(5)
             site = Site.objects.get_current()
             now = datetime.datetime.now()
 
