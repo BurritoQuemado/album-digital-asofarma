@@ -55,4 +55,4 @@ class Question(models.Model):
 
 class Trivia(models.Model):
     user = models.OneToOneField(User, related_name="trivia", on_delete=models.CASCADE)
-    options = models.ManyToManyField(Option)
+    options = models.ManyToManyField(Option, related_name='pizzas')

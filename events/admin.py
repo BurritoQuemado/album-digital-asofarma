@@ -61,10 +61,37 @@ class QuestionAdmin(admin.ModelAdmin):
     fields = ['text', 'options', 'multiple']
 
 
+class CorrectTriviaFilter(SimpleListFilter):
+    title = 'trivia correcta'
+    parameter_name = 'is_correct'
+
+    def lookups(self, request, model_admin):
+        """
+        Returns a list of tuples. The first element in each
+        tuple is the coded value for the option that will
+        appear in the URL query. The second element is the
+        human-readable name for the option that will appear
+        in the right sidebar.
+        """
+        return (
+            ('correct', 'Correcta'),
+            ('incorrect', 'Incorrecta'),
+        )
+
+    def queryset(self, request, queryset):
+        if self.value() == 'correct':
+            trivias = queryset.all().exclude(options__is_correct=False)
+            return trivias
+
+        if self.value() == 'incorrect':
+            trivias = queryset.filter(options__is_correct=False)
+            return trivias
+
+
 @admin.register(Trivia)
 class TriviaAdmin(admin.ModelAdmin):
     list_display = ('id', 'user', 'correct',)
-    list_filter = ('correct',)
+    list_filter = (CorrectTriviaFilter,)
 
     def correct(self, obj):
         options = obj.options.filter(is_correct=False).exists()
