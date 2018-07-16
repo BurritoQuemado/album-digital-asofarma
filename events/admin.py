@@ -64,6 +64,7 @@ class QuestionAdmin(admin.ModelAdmin):
 @admin.register(Trivia)
 class TriviaAdmin(admin.ModelAdmin):
     list_display = ('id', 'user', 'correct',)
+    list_filter = ('correct',)
 
     def correct(self, obj):
         options = obj.options.filter(is_correct=False).exists()
