@@ -8,8 +8,9 @@ services:
             dockerfile: Dockerfile
         command: python manage.py runserver 0.0.0.0:8000
         volumes:
-            - /var/www/node_modules
-            - .:/var/www/album
+            - /var/www/album/node_modules
+            - ./backend:/var/www/album
+            - ./static:/var/www/album/static
         ports:
             - "8000:8000"
         env_file:

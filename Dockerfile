@@ -10,4 +10,5 @@ COPY ./backend/Pipfile ./backend/Pipfile.lock ./
 RUN pip install -U pipenv
 RUN pipenv install --system
 
+COPY ./static/ ./static/
 COPY ./backend/ ./
