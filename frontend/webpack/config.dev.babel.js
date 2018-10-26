@@ -13,11 +13,9 @@ module.exports = base({
     mode: 'development',
     devtool: 'cheap-module-source-map',
     output: {
-        // Compile into js/build.js
-        path: path.resolve(__dirname, '..', 'dev'),
-        filename: '[name].js',
-        // chunkFilename: '[name].chunk.js?[hash]',
-        publicPath: '/static/',
+        path: path.resolve('../assets/bundles/'),
+        filename: '[name]-[hash].js',
+        publicPath: 'http://localhost:3000/assets/bundles/', // Tell django to use this URL to load packages and not use STATIC_URL + bundle_name
     },
     // Add hot reloading in development
     entry: {
@@ -76,6 +74,6 @@ module.exports = base({
         }),
     ],
     plugins: [
-        new BundleTracker({ filename: './webpack-stats.json' }),
+        new BundleTracker({ filename: '../webpack-stats.json' }),
     ],
 })

@@ -39,7 +39,6 @@ ALLOWED_HOSTS = env('ALLOWED_HOSTS')
 
 INSTALLED_APPS = [
     'django.contrib.sites',
-    'registration',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -52,6 +51,7 @@ INSTALLED_APPS = [
     'accounts',
     'events',
     # libs
+    'registration',
     'django_ses',
     'webpack_loader',
     'localflavor',
@@ -59,7 +59,6 @@ INSTALLED_APPS = [
     'django_s3_storage',
     'bootstrap4',
     'imagekit',
-    'mail_templated',
     'import_export',
 ]
 
@@ -139,16 +138,11 @@ USE_TZ = True
 
 
 # Whitenoise
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATIC_ROOT = os.path.join(BASE_DIR, '..', 'static')
 # MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # MEDIA_URL = '/media/'
 FILE_UPLOAD_PERMISSIONS = 0o644
 
-# Webpack
-if DEBUG:
-    STATICFILES_DIRS = (
-        os.path.join(BASE_DIR, 'dev'),
-    )
 
 if not DEBUG:
     WEBPACK_LOADER = {
@@ -161,11 +155,12 @@ else:
     WEBPACK_LOADER = {
       'DEFAULT': {
           'BUNDLE_DIR_NAME': '/',
-          'STATS_FILE': os.path.join(BASE_DIR, 'webpack-stats.json'),
+          'STATS_FILE': os.path.join(BASE_DIR, '..', 'webpack-stats.json'),
           'IGNORE': ['.+\.hot-update.js', '.+\.map'],
           'CACHE': not DEBUG
       }
     }
+
 
 # Cors
 CORS_ORIGIN_ALLOW_ALL = False
@@ -230,3 +225,8 @@ PROBABILITY_LOW = env('PROBABILITY_LOW')
 PROBABILITY_MEDIUM = env('PROBABILITY_MEDIUM')
 PROBABILITY_HIGH = env('PROBABILITY_HIGH')
 PROBABILITY_SPECIAL = env('PROBABILITY_SPECIAL')
+
+# Debug
+INTERNAL_IPS = (
+    '127.0.0.1',
+)

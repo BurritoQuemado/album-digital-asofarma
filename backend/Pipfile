@@ -21,6 +21,7 @@ django-registration-redux = "*"
 django-ses = "*"
 django-import-export = "*"
 "django-s3-storage" = "*"
+django-templated-email = "*"
 
 [dev-packages]
 "flake8" = "*"

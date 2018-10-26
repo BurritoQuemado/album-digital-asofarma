@@ -17,16 +17,38 @@ from django.contrib import admin
 from django.urls import path
 from django.views.generic.base import TemplateView
 from django.conf.urls import include
+from django.contrib.auth.forms import PasswordResetForm
+from django.core.exceptions import ValidationError
+from django.contrib.auth import views as auth_views
+from django.contrib.auth import get_user_model
 from registration.backends.default.views import RegistrationView
 from accounts.forms import RegistrationForm
 
+
+class EmailValidationOnForgotPassword(PasswordResetForm):
+    def clean_email(self):
+        email = self.cleaned_data['email']
+        User = get_user_model()
+        if not User.objects.filter(email__iexact=email, is_active=True).exists():
+            raise ValidationError("No existen usuarios registrados con el correo especificado.")
+        return email
+
+
 urlpatterns = [
     path('', TemplateView.as_view(template_name='views/home.html'), name='home'),
+    path(
+        'cuenta/password_reset/',
+        auth_views.PasswordResetView.as_view(
+            form_class=EmailValidationOnForgotPassword,
+            email_template_name='registration/password_reset_email.html'
+        ),
+        name='password_reset'
+    ),
     path('cuenta/register/', RegistrationView.as_view(
             form_class=RegistrationForm
         ), name='registration_register'),
     path('cuenta/', include('registration.backends.default.urls')),
-    path('restablecer/', include('accounts.urls')),
+    path('cuenta/', include('django.contrib.auth.urls')),
     path('dinamicas/', include('events.urls')),
     path('admin/', admin.site.urls),
     path('admin/django-ses/', include('django_ses.urls')),

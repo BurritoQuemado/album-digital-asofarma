@@ -1,7 +1,7 @@
 import datetime
 import base64
 from django.conf import settings
-from mail_templated import send_mail
+from templated_email import send_templated_mail
 from django.core.management.base import BaseCommand, CommandError
 from django.contrib.sites.models import Site
 from cards.functions import prize_cards_save
@@ -34,9 +34,11 @@ class Command(BaseCommand):
                 site = Site.objects.get_current()
                 now = datetime.datetime.now()
 
-                send_mail(
-                    'email/send_pack.html',
-                    {
+                send_templated_mail(
+                    template_name='send_pack',
+                    from_email=settings.DEFAULT_FROM_EMAIL,
+                    recipient_list=[user.email],
+                    context={
                         'name': user.full_name,
                         'codes': codes,
                         'email': email,
@@ -45,7 +47,10 @@ class Command(BaseCommand):
                         'text': 'Este es tu sobre de %s cartas especiales por predecir el partido de  Corea del Sur vs. México del día: ' % (len(codes)),
                         'subject': 'Este es tu paquete de cartas especiales'
                     },
-                    settings.DEFAULT_FROM_EMAIL,
-                    [user.email]
+                    # cc=['cc@example.com'],
+                    # bcc=['bcc@example.com'],
+                    # headers={'My-Custom-Header':'Custom Value'},
+                    template_prefix="email/",
+                    template_suffix="html",
                 )
         self.stdout.write(self.style.SUCCESS('Successfully send prize emails'))
