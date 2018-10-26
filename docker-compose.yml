@@ -2,20 +2,14 @@ version: '3'
 
 services:
     db:
-        image: "postgres:10.3-alpine"
+        image: 'postgres:10.3-alpine'
         restart: always
-        env_file:
-            - ./.postgres.env
-        expose:
-            - "5432"
         volumes:
             - ./postgres/data:/var/lib/postgresql/data
     django:
         container_name: album_server
-        build:
-            context: .
-            dockerfile: Dockerfile
-        command: python manage.py runserver 0.0.0.0:8000
+        build: .
+        command: bash -c 'while !</dev/tcp/db/5432; do sleep 1; done; python manage.py runserver 0.0.0.0:8000'
         volumes:
             - /var/www/album/node_modules
             - ./backend:/var/www/album
@@ -24,5 +18,5 @@ services:
             - "8000:8000"
         env_file:
             - ./.docker.env
-        links:
-            - db:db
+        depends_on:
+            - db

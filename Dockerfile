@@ -13,4 +13,3 @@ RUN pipenv install --system
 COPY ./static/ ./static/
 COPY ./backend/ ./
 
-# RUN python manage.py migrate
