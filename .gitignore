@@ -112,3 +112,5 @@ media/
 static/*
 !static/assets/
 dev/
+
+postgres/data/
