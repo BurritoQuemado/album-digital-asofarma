@@ -96,6 +96,6 @@ module.exports = base({
         }),
         // Set the process.env to production so React includes the production
         // version of itself
-        new BundleTracker({ filename: './webpack-stats-prod.json' }),
+        new BundleTracker({ filename: '../webpack-stats-prod.json' }),
     ],
 })

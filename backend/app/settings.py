@@ -138,7 +138,7 @@ USE_TZ = True
 
 
 # Whitenoise
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATIC_ROOT = os.path.join(BASE_DIR, '..', 'static')
 # MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # MEDIA_URL = '/media/'
 FILE_UPLOAD_PERMISSIONS = 0o644
@@ -148,14 +148,14 @@ if not DEBUG:
     WEBPACK_LOADER = {
       'DEFAULT': {
           'BUNDLE_DIR_NAME': '/',
-          'STATS_FILE': os.path.join(BASE_DIR, 'webpack-stats-prod.json'),
+          'STATS_FILE': os.path.join(BASE_DIR, '..', 'webpack-stats-prod.json'),
       }
     }
 else:
     WEBPACK_LOADER = {
       'DEFAULT': {
           'BUNDLE_DIR_NAME': '/',
-          'STATS_FILE': os.path.join(BASE_DIR, 'webpack-stats.json'),
+          'STATS_FILE': os.path.join(BASE_DIR, '..', 'webpack-stats.json'),
           'IGNORE': ['.+\\.hot-update.js', '.+\\.map'],
           'CACHE': not DEBUG
       }

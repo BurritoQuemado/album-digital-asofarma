@@ -13,6 +13,6 @@
     {% endbuttons %}
 </form>
 <p>¿{% trans "No está registrado" %}? <a href="{% url 'registration_register' %}">{% trans "Registrar" %}</a></p>
-<p>¿{% trans "Olvidó su contraseña" %}? <a href="{% url 'accounts:password_reset' %}">{% trans "Restablecer contraseña" %}</a></p>
+<p>¿{% trans "Olvidó su contraseña" %}? <a href="{% url 'password_reset' %}">{% trans "Restablecer contraseña" %}</a></p>
 
 {% endblock %}
