@@ -22,6 +22,7 @@ django-ses = "*"
 django-import-export = "*"
 "django-s3-storage" = "*"
 django-templated-email = "*"
+gunicorn = "*"
 
 [dev-packages]
 "flake8" = "*"

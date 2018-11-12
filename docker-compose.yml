@@ -1,0 +1,18 @@
+version: '3'
+
+services:
+    dockerhost:
+        image: qoomon/docker-host
+        cap_add: [ 'NET_ADMIN', 'NET_RAW' ]
+        restart: on-failure
+    django:
+        container_name: django_server
+        build:
+            context: .
+            dockerfile: Dockerfile
+        volumes:
+            - /app/node_modules
+        ports:
+            - "8080:8080"
+        env_file:
+            - ./.env

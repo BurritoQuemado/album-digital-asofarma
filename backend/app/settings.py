@@ -138,7 +138,10 @@ USE_TZ = True
 
 
 # Whitenoise
-STATIC_ROOT = os.path.join(BASE_DIR, '..', 'static')
+if not DEBUG:
+    STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+else:
+    STATIC_ROOT = os.path.join(BASE_DIR, '..', 'static')
 # MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # MEDIA_URL = '/media/'
 FILE_UPLOAD_PERMISSIONS = 0o644
@@ -148,7 +151,7 @@ if not DEBUG:
     WEBPACK_LOADER = {
       'DEFAULT': {
           'BUNDLE_DIR_NAME': '/',
-          'STATS_FILE': os.path.join(BASE_DIR, '..', 'webpack-stats-prod.json'),
+          'STATS_FILE': os.path.join(BASE_DIR, 'webpack-stats-prod.json'),
       }
     }
 else:
