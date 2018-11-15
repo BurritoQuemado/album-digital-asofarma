@@ -1,5 +1,5 @@
 #!/bin/bash
-NAME="boilerplate"
+NAME="album"
 NUM_WORKERS=3
 DJANGO_WSGI_MODULE=app.wsgi
 TIMEOUT=300
