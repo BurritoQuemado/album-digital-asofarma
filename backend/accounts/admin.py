@@ -10,7 +10,7 @@ class CodeInline(admin.StackedInline):
     model = Code
     can_delete = False
     extra = 0
-    readonly_fields = ['codes']
+    readonly_fields = ['code']
 
 
 @admin.register(User)
