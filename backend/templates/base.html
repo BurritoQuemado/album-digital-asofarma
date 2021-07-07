@@ -21,7 +21,7 @@
         {% for event in events %}
         <div class="Event-Item">
             <div class="container">
-                Participa en nuestra dinámica, <a href="{% url 'events:create_prediction' id=event.id %}">predice el resultado del partido {{event}}</a> y gana tarjetas especiales.
+                Participa en nuestra dinámica, <a href="{% url 'events:create_prediction' id=event.id %}">{{event}}</a> y gana tarjetas especiales.
             </div>
         </div>
         {% endfor %}
