@@ -11,7 +11,7 @@
     <!-- Allow installing the app to the homescreen -->
     <link rel="manifest" href="manifest.json">
     <meta name="mobile-web-app-capable" content="yes">
-    <title>Álbum Digital</title>
+    <title>Abalat Álbum Digital</title>
     {% render_bundle 'main' 'css' %}
 </head>
 <body class="bg-light {% block body_padding %}{% endblock %}">
@@ -21,7 +21,7 @@
         {% for event in events %}
         <div class="Event-Item">
             <div class="container">
-                Participa en nuestra dinámica, <a href="{% url 'events:create_prediction' id=event.id %}">{{event}}</a> y gana tarjetas especiales.
+                Participa en nuestra dinámica, <a href="{% url 'events:create_prediction' id=event.id %}"> {{event}}</a> y gana tarjetas especiales.
             </div>
         </div>
         {% endfor %}
@@ -29,7 +29,7 @@
     <nav class="navbar navbar-expand-md navbar-dark main-menu">
         <div class="container">
             <a class="navbar-brand" href="{% url 'home' %}">
-                <img src="{% static 'assets/logo_cwt_alt.svg' %}" height="30" class="d-inline-block align-top" alt="">
+                <img src="{% static 'assets/logo_abalat_alt.svg' %}" height="30" class="d-inline-block align-top" alt="">
             </a>
             <button class="navbar-toggler ml-auto" type="button" data-toggle="collapse" data-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -68,7 +68,7 @@
                     </li>
                     {% endif %}
                     <li class="nav-item">
-                        <img src="{% static 'assets/logo_aeromexico_alt.svg' %}" height="25" class="logo-aeromexico-menu" alt="">
+                        <img src="{% static 'assets/logo_abalat_alt.svg' %}" height="25" class="logo-abalat-menu" alt="">
                     </li>
                 </ul>
             </div>
