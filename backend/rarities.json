@@ -1,0 +1,1 @@
+[{"model": "cards.rarity", "pk": 1, "fields": {"description": "special", "slug": "special"}}, {"model": "cards.rarity", "pk": 2, "fields": {"description": "low", "slug": "low"}}, {"model": "cards.rarity", "pk": 3, "fields": {"description": "medium", "slug": "medium"}}, {"model": "cards.rarity", "pk": 4, "fields": {"description": "high", "slug": "high"}}]
