@@ -60,7 +60,7 @@ class Card(models.Model):
 
     is_badge = models.BooleanField(default=False)
     name = models.CharField(max_length=100)
-    order = models.IntegerField()
+    order = models.IntegerField(default=0, null=True, blank=True)
     description = models.CharField(max_length=300)
     photo = models.ImageField(upload_to=get_file_path, null=True, blank=True)
     photo_thumbnail = ImageSpecField(
@@ -85,8 +85,6 @@ class Card(models.Model):
     def img_template(self):
         return 'assets/badges/%s.png' % (self.fk_department.slug)
 
-    def ribbon_template(self):
-        return 'assets/ribbons/%s.png' % (self.fk_department.slug)
 
 
 class Code(models.Model):
