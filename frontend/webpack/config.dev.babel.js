@@ -54,11 +54,11 @@ module.exports = base({
     }, {
         loader: 'postcss-loader', // Run post css actions
         options: {
-            plugins: () => { // post css plugins, can be exported to postcss.config.js
-                return [
+            postcssOptions: {
+                plugins: [
                     precss,
                     autoprefixer,
-                ]
+                ],
             },
         },
     }, {
