@@ -24,7 +24,7 @@ class CardResource(resources.ModelResource):
 
     class Meta:
         model = Card
-        fields = ('id', 'order', 'fk_rarity', 'name', 'fk_department', 'description', 'arrival_date', 'is_badge', 'active', 'wave',)
+        fields = ('id', 'order', 'fk_rarity', 'name','charge', 'birth_date', 'true_department', 'fk_department', 'description', 'arrival_date', 'is_badge', 'active', 'wave',)
 
 
 class AdminThumbnailSpec(ImageSpec):
@@ -78,7 +78,7 @@ class CodeInline(admin.StackedInline):
 @admin.register(Card)
 class CardAdmin(ImportExportModelAdmin):
     inlines = [CodeInline]
-    list_display = ('name', 'show_codes_count', 'id', 'order', 'fk_rarity', 'fk_department', 'wave', 'is_badge', 'active', 'page', )
+    list_display = ('name', 'show_codes_count', 'id', 'order','charge','birth_date', 'fk_rarity', 'fk_department', 'wave', 'is_badge', 'active', 'page', )
     list_filter = ('active', HasPhotoFilter, 'wave', 'is_badge', 'fk_department', 'fk_rarity', )
     fields = ('photo', 'active', 'fk_department', 'fk_rarity', 'wave',)
     resource_class = CardResource

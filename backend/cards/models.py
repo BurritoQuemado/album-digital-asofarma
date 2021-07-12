@@ -61,7 +61,8 @@ class Card(models.Model):
     is_badge = models.BooleanField(default=False)
     name = models.CharField(max_length=100)
     order = models.IntegerField(default=0, null=True, blank=True)
-    description = models.CharField(max_length=300)
+    description = models.CharField(max_length=300, default='No info')
+    charge = models.CharField(max_length=100, default='No info')
     photo = models.ImageField(upload_to=get_file_path, null=True, blank=True)
     photo_thumbnail = ImageSpecField(
         source='photo',
@@ -73,7 +74,9 @@ class Card(models.Model):
     fk_department = models.ForeignKey(Department, on_delete=models.CASCADE)
     wave = models.IntegerField(default=1)
     active = models.BooleanField(default=True)
-    arrival_date = models.DateField()
+    arrival_date = models.CharField(max_length=4)
+    birth_date = models.CharField(max_length=100, default='No info')
+    true_department = models.CharField(max_length=100, default='No info')
     page = models.IntegerField(default=1)
 
     def __str__(self):
