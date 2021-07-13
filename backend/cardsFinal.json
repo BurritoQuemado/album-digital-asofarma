@@ -1,0 +1,2852 @@
+[
+  {
+    "model": "cards.card",
+    "pk": 1,
+    "fields":{
+        "fk_rarity": "4",
+        "photo": "",
+        "name": "Asuntos Regulatorios",
+        "true_department": "",
+        "fk_department": 1,
+        "charge": "badge",
+        "arrival_date": "",
+        "is_badge": 1,
+        "active": true,
+        "wave": 1,
+        "description": "",
+        "birth_date": "",
+        "order": 1
+    }
+  },
+  {
+    "model": "cards.card",
+    "pk": 2,
+    "fields":{
+        "fk_rarity": "2",
+        "photo": "",
+        "name": "Diana Lule",
+        "true_department": "Asuntos Regulatorios",
+        "fk_department": 1,
+        "charge": "Auxiliar Técnico Sanitario",
+        "arrival_date": 2018,
+        "is_badge": 0,
+        "active": true,
+        "wave": 1,
+        "description": "Aficionada del flamenco, su artista favorito es Vanesa Martín",
+        "birth_date": "21 octubre",
+        "order": 2
+    }
+  },
+  {
+    "model": "cards.card",
+    "pk": 3,
+    "fields":{
+        "fk_rarity": "2",
+        "photo": "",
+        "name": "Maricela López",
+        "true_department": "Asuntos Regulatorios",
+        "fk_department": 1,
+        "charge": "Analista de Asuntos Regulatorios",
+        "arrival_date": 2015,
+        "is_badge": 0,
+        "active": true,
+        "wave": 1,
+        "description": "Le gustan las artes, los museos y la pintura; sus museos favoritos son el MUNAL y el Museo del Louvre (París).",
+        "birth_date": "19 octubre",
+        "order": 3
+    }
+  },
+  {
+    "model": "cards.card",
+    "pk": 4,
+    "fields":{
+        "fk_rarity": "2",
+        "photo": "",
+        "name": "Verónica Sánchez",
+        "true_department": "Asuntos Regulatorios",
+        "fk_department": 1,
+        "charge": "Auxiliar de Asuntos Regulatorios",
+        "arrival_date": 2019,
+        "is_badge": 0,
+        "active": true,
+        "wave": 1,
+        "description": "Los juegos competitivos son lo suyo, el Jenga y el Rummy son sus favoritos.",
+        "birth_date": "29 enero",
+        "order": 4
+    }
+  },
+  {
+    "model": "cards.card",
+    "pk": 5,
+    "fields":{
+        "fk_rarity": "4",
+        "photo": "",
+        "name": "Bonus",
+        "true_department": "",
+        "fk_department": 2,
+        "charge": "badge",
+        "arrival_date": "",
+        "is_badge": 1,
+        "active": true,
+        "wave": 1,
+        "description": "",
+        "birth_date": "",
+        "order": 5
+    }
+  },
+  {
+    "model": "cards.card",
+    "pk": 6,
+    "fields":{
+        "fk_rarity": "4",
+        "photo": "",
+        "name": "Ana Ramírez",
+        "true_department": "Limpieza",
+        "fk_department": 2,
+        "charge": "Limpieza",
+        "arrival_date": 2018,
+        "is_badge": 0,
+        "active": true,
+        "wave": 1,
+        "description": "Le gusta pasar tiempo con su familia.",
+        "birth_date": "25 octubre",
+        "order": 6
+    }
+  },
+  {
+    "model": "cards.card",
+    "pk": 7,
+    "fields":{
+        "fk_rarity": "4",
+        "photo": "",
+        "name": "Celso Márquez",
+        "true_department": "Seguridad",
+        "fk_department": 2,
+        "charge": "Oficial",
+        "arrival_date": 2012,
+        "is_badge": 0,
+        "active": true,
+        "wave": 1,
+        "description": "Su deporte favorito es el futbol y le va al Cruz Azul, en su tiempo libre juega futbol con sus hijos.",
+        "birth_date": "30 septiembre",
+        "order": 7
+    }
+  },
+  {
+    "model": "cards.card",
+    "pk": 8,
+    "fields":{
+        "fk_rarity": "4",
+        "photo": "",
+        "name": "Clara Medel",
+        "true_department": "Limpieza",
+        "fk_department": 2,
+        "charge": "Limpieza",
+        "arrival_date": 2018,
+        "is_badge": 0,
+        "active": true,
+        "wave": 1,
+        "description": "Disfruta de ver películas del Cine de Oro Mexicano.",
+        "birth_date": "12 agosto",
+        "order": 8
+    }
+  },
+  {
+    "model": "cards.card",
+    "pk": 9,
+    "fields":{
+        "fk_rarity": "4",
+        "photo": "",
+        "name": "Daniel Cerna",
+        "true_department": "Limpieza",
+        "fk_department": 2,
+        "charge": "Limpieza",
+        "arrival_date": 2020,
+        "is_badge": 0,
+        "active": true,
+        "wave": 1,
+        "description": "Le gusta y práctica la danza de los Chinelos, también sabe elaborar figuras de chaquira.",
+        "birth_date": "7 abril",
+        "order": 9
+    }
+  },
+  {
+    "model": "cards.card",
+    "pk": 10,
+    "fields":{
+        "fk_rarity": "4",
+        "photo": "",
+        "name": "Francisco López",
+        "true_department": "Seguridad",
+        "fk_department": 2,
+        "charge": "Oficial",
+        "arrival_date": 2019,
+        "is_badge": 0,
+        "active": true,
+        "wave": 1,
+        "description": "Le gusta ejercitarse e ir a correr al aire libre.",
+        "birth_date": "25 enero",
+        "order": 10
+    }
+  },
+  {
+    "model": "cards.card",
+    "pk": 11,
+    "fields":{
+        "fk_rarity": "4",
+        "photo": "",
+        "name": "Jesús Moguel",
+        "true_department": "Seguridad",
+        "fk_department": 2,
+        "charge": "Oficial",
+        "arrival_date": 2019,
+        "is_badge": 0,
+        "active": true,
+        "wave": 1,
+        "description": "Era técnico mercadólogo y le encanta viajar: su lugar favorito es Honduras.",
+        "birth_date": "13 abril",
+        "order": 11
+    }
+  },
+  {
+    "model": "cards.card",
+    "pk": 12,
+    "fields":{
+        "fk_rarity": "4",
+        "photo": "",
+        "name": "Jesús Vázquez",
+        "true_department": "Mederik",
+        "fk_department": 2,
+        "charge": "Gerente Comercial",
+        "arrival_date": 2011,
+        "is_badge": 0,
+        "active": true,
+        "wave": 1,
+        "description": "Sabe tocar la batería y se considera una persona versátil.",
+        "birth_date": "13 julio",
+        "order": 12
+    }
+  },
+  {
+    "model": "cards.card",
+    "pk": 13,
+    "fields":{
+        "fk_rarity": "4",
+        "photo": "",
+        "name": "Jorge Rivera",
+        "true_department": "Seguridad",
+        "fk_department": 2,
+        "charge": "Oficial",
+        "arrival_date": 2020,
+        "is_badge": 0,
+        "active": true,
+        "wave": 1,
+        "description": "Le gusta jugar fútbol con sus amigos y su equipo favorito es el Cruz Azul.",
+        "birth_date": "16 enero",
+        "order": 13
+    }
+  },
+  {
+    "model": "cards.card",
+    "pk": 14,
+    "fields":{
+        "fk_rarity": "4",
+        "photo": "",
+        "name": "Luis Torres",
+        "true_department": "Seguridad",
+        "fk_department": 2,
+        "charge": "Oficial",
+        "arrival_date": 2020,
+        "is_badge": 0,
+        "active": true,
+        "wave": 1,
+        "description": "Le gusta hacer ejercicio y la saga de “Juego de Tronos”.",
+        "birth_date": "25 mayo",
+        "order": 14
+    }
+  },
+  {
+    "model": "cards.card",
+    "pk": 15,
+    "fields":{
+        "fk_rarity": "4",
+        "photo": "",
+        "name": "Patricia Rodríguez",
+        "true_department": "Limpieza",
+        "fk_department": 2,
+        "charge": "Limpieza",
+        "arrival_date": 2013,
+        "is_badge": 0,
+        "active": true,
+        "wave": 1,
+        "description": "Disfruta de pasear al aire libre en los parques.",
+        "birth_date": "26 agosto",
+        "order": 15
+    }
+  },
+  {
+    "model": "cards.card",
+    "pk": 16,
+    "fields":{
+        "fk_rarity": "4",
+        "photo": "",
+        "name": "Roberto Amador",
+        "true_department": "Seguridad",
+        "fk_department": 2,
+        "charge": "Oficial",
+        "arrival_date": 2021,
+        "is_badge": 0,
+        "active": true,
+        "wave": 1,
+        "description": "Le gusta mucho el futbol y le va al Cruz Azul.",
+        "birth_date": "2 mayo",
+        "order": 16
+    }
+  },
+  {
+    "model": "cards.card",
+    "pk": 17,
+    "fields":{
+        "fk_rarity": "4",
+        "photo": "",
+        "name": "Roberto Torres",
+        "true_department": "Seguridad",
+        "fk_department": 2,
+        "charge": "Oficial",
+        "arrival_date": 2012,
+        "is_badge": 0,
+        "active": true,
+        "wave": 1,
+        "description": "Le encanta jugar el frontón.",
+        "birth_date": "5 julio",
+        "order": 17
+    }
+  },
+  {
+    "model": "cards.card",
+    "pk": 18,
+    "fields":{
+        "fk_rarity": "4",
+        "photo": "",
+        "name": "Viridiana Correa",
+        "true_department": "Limpieza",
+        "fk_department": 2,
+        "charge": "Limpieza",
+        "arrival_date": 2020,
+        "is_badge": 0,
+        "active": true,
+        "wave": 1,
+        "description": "Le gusta ver películas en su tiempo libre; le encanta la música banda.",
+        "birth_date": "31 diciembre",
+        "order": 18
+    }
+  },
+  {
+    "model": "cards.card",
+    "pk": 19,
+    "fields":{
+        "fk_rarity": "4",
+        "photo": "",
+        "name": "Gamaliel Jaramillo",
+        "true_department": "Seguridad",
+        "fk_department": 2,
+        "charge": "Oficial",
+        "arrival_date": "",
+        "is_badge": 0,
+        "active": true,
+        "wave": 1,
+        "description": "",
+        "birth_date": "16 junio",
+        "order": 19
+    }
+  },
+  {
+    "model": "cards.card",
+    "pk": 20,
+    "fields":{
+        "fk_rarity": "4",
+        "photo": "",
+        "name": "Calidad y Cumplimiento",
+        "true_department": "",
+        "fk_department": 3,
+        "charge": "badge",
+        "arrival_date": "",
+        "is_badge": 1,
+        "active": true,
+        "wave": 1,
+        "description": "",
+        "birth_date": "",
+        "order": 20
+    }
+  },
+  {
+    "model": "cards.card",
+    "pk": 21,
+    "fields":{
+        "fk_rarity": "3",
+        "photo": "",
+        "name": "Abigail Gómez",
+        "true_department": "Calidad",
+        "fk_department": 3,
+        "charge": "Asistente de Calidad y Cumplimiento",
+        "arrival_date": 2011,
+        "is_badge": 0,
+        "active": true,
+        "wave": 1,
+        "description": "Le gusta viajar por México.",
+        "birth_date": "17 abril",
+        "order": 21
+    }
+  },
+  {
+    "model": "cards.card",
+    "pk": 22,
+    "fields":{
+        "fk_rarity": "4",
+        "photo": "",
+        "name": "Flor Farfán",
+        "true_department": "Calidad",
+        "fk_department": 3,
+        "charge": "Supervisora del Sistema de Calidad",
+        "arrival_date": 2011,
+        "is_badge": 0,
+        "active": true,
+        "wave": 1,
+        "description": "Su película romántica favorita es \"Diario De Una Pasión\".",
+        "birth_date": "29 abril",
+        "order": 22
+    }
+  },
+  {
+    "model": "cards.card",
+    "pk": 23,
+    "fields":{
+        "fk_rarity": "4",
+        "photo": "",
+        "name": "Isaac Salcedo",
+        "true_department": "Calidad",
+        "fk_department": 3,
+        "charge": "Especialista Técnico",
+        "arrival_date": 2006,
+        "is_badge": 0,
+        "active": true,
+        "wave": 1,
+        "description": "Es fan de la saga de Harry Potter (libros y películas).",
+        "birth_date": "28 abril",
+        "order": 23
+    }
+  },
+  {
+    "model": "cards.card",
+    "pk": 24,
+    "fields":{
+        "fk_rarity": "3",
+        "photo": "",
+        "name": "Nahelly Murga",
+        "true_department": "Calidad",
+        "fk_department": 3,
+        "charge": "Analista de Calidad y CumplImiento",
+        "arrival_date": 2020,
+        "is_badge": 0,
+        "active": true,
+        "wave": 1,
+        "description": "Le gusta la natación y ha participado en competencias.",
+        "birth_date": "14 febrero",
+        "order": 24
+    }
+  },
+  {
+    "model": "cards.card",
+    "pk": 25,
+    "fields":{
+        "fk_rarity": "4",
+        "photo": "",
+        "name": "Contabilidad y Finanzas",
+        "true_department": "",
+        "fk_department": 4,
+        "charge": "badge",
+        "arrival_date": "",
+        "is_badge": 1,
+        "active": true,
+        "wave": 1,
+        "description": "",
+        "birth_date": "",
+        "order": 25
+    }
+  },
+  {
+    "model": "cards.card",
+    "pk": 26,
+    "fields":{
+        "fk_rarity": "4",
+        "photo": "",
+        "name": "David Hernández",
+        "true_department": "Finanzas",
+        "fk_department": 4,
+        "charge": "Contabilidad y Finanzas",
+        "arrival_date": 2017,
+        "is_badge": 0,
+        "active": true,
+        "wave": 1,
+        "description": "Le gustan las motocicletas y los juegos mecánicos.",
+        "birth_date": "14 diciembre",
+        "order": 26
+    }
+  },
+  {
+    "model": "cards.card",
+    "pk": 27,
+    "fields":{
+        "fk_rarity": "2",
+        "photo": "",
+        "name": "Gonzalo Tapia",
+        "true_department": "Finanzas",
+        "fk_department": 4,
+        "charge": "Contabilidad y Finanzas",
+        "arrival_date": 2010,
+        "is_badge": 0,
+        "active": true,
+        "wave": 1,
+        "description": "Su deporte favorito es el futbol y le va al América.",
+        "birth_date": "5 abril",
+        "order": 27
+    }
+  },
+  {
+    "model": "cards.card",
+    "pk": 28,
+    "fields":{
+        "fk_rarity": "4",
+        "photo": "",
+        "name": "Graciela Ramírez",
+        "true_department": "Contabilidad",
+        "fk_department": 4,
+        "charge": "Contabilidad y Finanzas",
+        "arrival_date": 2020,
+        "is_badge": 0,
+        "active": true,
+        "wave": 1,
+        "description": "Le encanta la lectura. Su novela favorita es \"El Conde de Montecristo\".",
+        "birth_date": "9 mayo",
+        "order": 28
+    }
+  },
+  {
+    "model": "cards.card",
+    "pk": 29,
+    "fields":{
+        "fk_rarity": "4",
+        "photo": "",
+        "name": "Jeovanny Marín",
+        "true_department": "Finanzas",
+        "fk_department": 4,
+        "charge": "Contabilidad y Finanzas",
+        "arrival_date": 2020,
+        "is_badge": 0,
+        "active": true,
+        "wave": 1,
+        "description": "Le gusta visitar Pueblos Mágicos, su favorito es San Miguel de Allende (Guanajuato).",
+        "birth_date": "3 septiembre",
+        "order": 29
+    }
+  },
+  {
+    "model": "cards.card",
+    "pk": 30,
+    "fields":{
+        "fk_rarity": "2",
+        "photo": "",
+        "name": "Juan Delgado",
+        "true_department": "Finanzas",
+        "fk_department": 4,
+        "charge": "Contabilidad y Finanzas",
+        "arrival_date": 2010,
+        "is_badge": 0,
+        "active": true,
+        "wave": 1,
+        "description": "Le gusta y practicaba el boxeo.",
+        "birth_date": "5 julio",
+        "order": 30
+    }
+  },
+  {
+    "model": "cards.card",
+    "pk": 31,
+    "fields":{
+        "fk_rarity": "2",
+        "photo": "",
+        "name": "María Rivera",
+        "true_department": "Finanzas",
+        "fk_department": 4,
+        "charge": "Contabilidad y Finanzas",
+        "arrival_date": 2009,
+        "is_badge": 0,
+        "active": true,
+        "wave": 1,
+        "description": "Sus pasatiempos favoritos son escuchar música y la lectura de libros científicos.",
+        "birth_date": "9 octubre",
+        "order": 31
+    }
+  },
+  {
+    "model": "cards.card",
+    "pk": 32,
+    "fields":{
+        "fk_rarity": "2",
+        "photo": "",
+        "name": "Mariana Balbuena",
+        "true_department": "Contabilidad",
+        "fk_department": 4,
+        "charge": "Contabilidad y Finanzas",
+        "arrival_date": 2017,
+        "is_badge": 0,
+        "active": true,
+        "wave": 1,
+        "description": "Le interesan las artes, le gusta dibujar manga y paisajes y sabe tocar la guitarra.",
+        "birth_date": "15 diciembre",
+        "order": 32
+    }
+  },
+  {
+    "model": "cards.card",
+    "pk": 33,
+    "fields":{
+        "fk_rarity": "2",
+        "photo": "",
+        "name": "Moisés López",
+        "true_department": "Contabilidad",
+        "fk_department": 4,
+        "charge": "Contabilidad y Finanzas",
+        "arrival_date": 2021,
+        "is_badge": 0,
+        "active": true,
+        "wave": 1,
+        "description": "Practica danza folklórica y teatro. Su pasatiempo es andar en bicicleta.",
+        "birth_date": "24 febrero",
+        "order": 33
+    }
+  },
+  {
+    "model": "cards.card",
+    "pk": 34,
+    "fields":{
+        "fk_rarity": "2",
+        "photo": "",
+        "name": "Patricia Rayón",
+        "true_department": "Logística",
+        "fk_department": 4,
+        "charge": "Contabilidad y Finanzas",
+        "arrival_date": 2017,
+        "is_badge": 0,
+        "active": true,
+        "wave": 1,
+        "description": "Su comida favorita es la pechuga rellena con spaguetti.",
+        "birth_date": "29 mayo",
+        "order": 34
+    }
+  },
+  {
+    "model": "cards.card",
+    "pk": 35,
+    "fields":{
+        "fk_rarity": "4",
+        "photo": "",
+        "name": "Sandra Arana",
+        "true_department": "Contabilidad",
+        "fk_department": 4,
+        "charge": "Contabilidad y Finanzas",
+        "arrival_date": 2013,
+        "is_badge": 0,
+        "active": true,
+        "wave": 1,
+        "description": "Le gusta mucho bailar.",
+        "birth_date": "5 enero",
+        "order": 35
+    }
+  },
+  {
+    "model": "cards.card",
+    "pk": 36,
+    "fields":{
+        "fk_rarity": "2",
+        "photo": "",
+        "name": "Yazmín Castillejos",
+        "true_department": "Finanzas",
+        "fk_department": 4,
+        "charge": "Contabilidad y Finanzas",
+        "arrival_date": 2014,
+        "is_badge": 0,
+        "active": true,
+        "wave": 1,
+        "description": "Su canción favorita es \"Las maravillas de la vida\" y le gusta la música de los 80’s.",
+        "birth_date": "3 mayo",
+        "order": 36
+    }
+  },
+  {
+    "model": "cards.card",
+    "pk": 37,
+    "fields":{
+        "fk_rarity": "4",
+        "photo": "",
+        "name": "Maria Torres",
+        "true_department": "Finanzas",
+        "fk_department": 4,
+        "charge": "Finanzas",
+        "arrival_date": "",
+        "is_badge": 0,
+        "active": true,
+        "wave": 1,
+        "description": "",
+        "birth_date": "25 marzo",
+        "order": 37
+    }
+  },
+  {
+    "model": "cards.card",
+    "pk": 38,
+    "fields":{
+        "fk_rarity": "4",
+        "photo": "",
+        "name": "Gerencias y Direcciones",
+        "true_department": "",
+        "fk_department": 5,
+        "charge": "badge",
+        "arrival_date": "",
+        "is_badge": 1,
+        "active": true,
+        "wave": 1,
+        "description": "",
+        "birth_date": "",
+        "order": 38
+    }
+  },
+  {
+    "model": "cards.card",
+    "pk": 39,
+    "fields":{
+        "fk_rarity": "3",
+        "photo": "",
+        "name": "César Tovar",
+        "true_department": "Operaciones",
+        "fk_department": 5,
+        "charge": "Director de Operaciones",
+        "arrival_date": 2012,
+        "is_badge": 0,
+        "active": true,
+        "wave": 1,
+        "description": "Le gustan los perros, y tiene cinco de mascota.",
+        "birth_date": "9 junio",
+        "order": 39
+    }
+  },
+  {
+    "model": "cards.card",
+    "pk": 40,
+    "fields":{
+        "fk_rarity": "4",
+        "photo": "",
+        "name": "Cuauhtémoc de Luna",
+        "true_department": "Licitaciones",
+        "fk_department": 5,
+        "charge": "Gerente de Licitaciones",
+        "arrival_date": 2005,
+        "is_badge": 0,
+        "active": true,
+        "wave": 1,
+        "description": "Su libro favorito es el “El Principito”.",
+        "birth_date": "12 marzo",
+        "order": 40
+    }
+  },
+  {
+    "model": "cards.card",
+    "pk": 41,
+    "fields":{
+        "fk_rarity": "4",
+        "photo": "",
+        "name": "Elizabeth Flandes",
+        "true_department": "Asuntos Regulatorios",
+        "fk_department": 5,
+        "charge": "Gerente de Asuntos Regulatorios",
+        "arrival_date": 2011,
+        "is_badge": 0,
+        "active": true,
+        "wave": 1,
+        "description": "Su pasatiempo es decorar su casa con estilo rústico.",
+        "birth_date": "17 enero",
+        "order": 41
+    }
+  },
+  {
+    "model": "cards.card",
+    "pk": 42,
+    "fields":{
+        "fk_rarity": "2",
+        "photo": "",
+        "name": "Enrique Neri",
+        "true_department": "Soporte",
+        "fk_department": 5,
+        "charge": "Director Técnico",
+        "arrival_date": 2011,
+        "is_badge": 0,
+        "active": true,
+        "wave": 1,
+        "description": "",
+        "birth_date": "20 septiembre",
+        "order": 42
+    }
+  },
+  {
+    "model": "cards.card",
+    "pk": 43,
+    "fields":{
+        "fk_rarity": "2",
+        "photo": "",
+        "name": "Fabricio Rico",
+        "true_department": "Sistemas",
+        "fk_department": 5,
+        "charge": "Gerente de Sistemas",
+        "arrival_date": 2021,
+        "is_badge": 0,
+        "active": true,
+        "wave": 1,
+        "description": "Aficionado de los “gadgets” y del basquetbol.",
+        "birth_date": "19 junio",
+        "order": 43
+    }
+  },
+  {
+    "model": "cards.card",
+    "pk": 44,
+    "fields":{
+        "fk_rarity": "4",
+        "photo": "",
+        "name": "Leticia Mendoza",
+        "true_department": "Importaciones",
+        "fk_department": 5,
+        "charge": "Gerente de Importaciones",
+        "arrival_date": 2008,
+        "is_badge": 0,
+        "active": true,
+        "wave": 1,
+        "description": "Su color favorito es el turquesa.",
+        "birth_date": "18 diciembre",
+        "order": 44
+    }
+  },
+  {
+    "model": "cards.card",
+    "pk": 45,
+    "fields":{
+        "fk_rarity": "2",
+        "photo": "",
+        "name": "Marcela Velázquez",
+        "true_department": "Ventas",
+        "fk_department": 5,
+        "charge": "Directora Comercial",
+        "arrival_date": 2014,
+        "is_badge": 0,
+        "active": true,
+        "wave": 1,
+        "description": "Le gusta bailar y toma clases de \"jazz\".",
+        "birth_date": "20 septiembre",
+        "order": 45
+    }
+  },
+  {
+    "model": "cards.card",
+    "pk": 46,
+    "fields":{
+        "fk_rarity": "2",
+        "photo": "",
+        "name": "Salvador Nava",
+        "true_department": "Ventas",
+        "fk_department": 5,
+        "charge": "Gerente de Ventas Jr.",
+        "arrival_date": 2018,
+        "is_badge": 0,
+        "active": true,
+        "wave": 1,
+        "description": "Su serie favorita de Netflix es \"Lupin\".",
+        "birth_date": "29 enero",
+        "order": 46
+    }
+  },
+  {
+    "model": "cards.card",
+    "pk": 47,
+    "fields":{
+        "fk_rarity": "2",
+        "photo": "",
+        "name": "Valeri Martínez",
+        "true_department": "Finanzas",
+        "fk_department": 5,
+        "charge": "Gerente de Contabilidad y Finanzas",
+        "arrival_date": 2012,
+        "is_badge": 0,
+        "active": true,
+        "wave": 1,
+        "description": "Le encanta bailar salsa, cumbia y banda.",
+        "birth_date": "9 septiembre",
+        "order": 47
+    }
+  },
+  {
+    "model": "cards.card",
+    "pk": 48,
+    "fields":{
+        "fk_rarity": "2",
+        "photo": "",
+        "name": "Vanessa Córdoba",
+        "true_department": "Soporte",
+        "fk_department": 5,
+        "charge": "Gerente de Soporte Técnico",
+        "arrival_date": 2011,
+        "is_badge": 0,
+        "active": true,
+        "wave": 1,
+        "description": "Le encanta bailar en las fiestas.",
+        "birth_date": "29 junio",
+        "order": 48
+    }
+  },
+  {
+    "model": "cards.card",
+    "pk": 49,
+    "fields":{
+        "fk_rarity": "2",
+        "photo": "",
+        "name": "María del Carmen Velázquez",
+        "true_department": "Calidad",
+        "fk_department": 5,
+        "charge": "",
+        "arrival_date": "",
+        "is_badge": 0,
+        "active": true,
+        "wave": 1,
+        "description": "",
+        "birth_date": "30 noviembre",
+        "order": 49
+    }
+  },
+  {
+    "model": "cards.card",
+    "pk": 50,
+    "fields":{
+        "fk_rarity": "2",
+        "photo": "",
+        "name": "Mario Abad",
+        "true_department": "DG",
+        "fk_department": 5,
+        "charge": "",
+        "arrival_date": "",
+        "is_badge": 0,
+        "active": true,
+        "wave": 1,
+        "description": "",
+        "birth_date": "5 abril",
+        "order": 50
+    }
+  },
+  {
+    "model": "cards.card",
+    "pk": 51,
+    "fields":{
+        "fk_rarity": "2",
+        "photo": "",
+        "name": "David Abad",
+        "true_department": "Ventas",
+        "fk_department": 5,
+        "charge": "",
+        "arrival_date": "",
+        "is_badge": 0,
+        "active": true,
+        "wave": 1,
+        "description": "",
+        "birth_date": "15 abril",
+        "order": 51
+    }
+  },
+  {
+    "model": "cards.card",
+    "pk": 52,
+    "fields":{
+        "fk_rarity": "2",
+        "photo": "",
+        "name": "Mónica Ramírez",
+        "true_department": "Ventas",
+        "fk_department": 5,
+        "charge": "",
+        "arrival_date": "",
+        "is_badge": 0,
+        "active": true,
+        "wave": 1,
+        "description": "",
+        "birth_date": "4 mayo",
+        "order": 52
+    }
+  },
+  {
+    "model": "cards.card",
+    "pk": 53,
+    "fields":{
+        "fk_rarity": "4",
+        "photo": "",
+        "name": "Importaciones",
+        "true_department": "",
+        "fk_department": 6,
+        "charge": "badge",
+        "arrival_date": "",
+        "is_badge": 1,
+        "active": true,
+        "wave": 1,
+        "description": "",
+        "birth_date": "",
+        "order": 53
+    }
+  },
+  {
+    "model": "cards.card",
+    "pk": 54,
+    "fields":{
+        "fk_rarity": "3",
+        "photo": "",
+        "name": "Adriana Valdés",
+        "true_department": "Importaciones",
+        "fk_department": 6,
+        "charge": "Asistente de Importaciones",
+        "arrival_date": 2021,
+        "is_badge": 0,
+        "active": true,
+        "wave": 1,
+        "description": "Su comida favorita son las pastas.",
+        "birth_date": "26 febrero",
+        "order": 54
+    }
+  },
+  {
+    "model": "cards.card",
+    "pk": 55,
+    "fields":{
+        "fk_rarity": "4",
+        "photo": "",
+        "name": "Diego Palacios",
+        "true_department": "Importaciones",
+        "fk_department": 6,
+        "charge": "Comprador de Importaciones",
+        "arrival_date": 2019,
+        "is_badge": 0,
+        "active": true,
+        "wave": 1,
+        "description": "Practicaba fútbol americano y era receptor.",
+        "birth_date": "14 diciembre",
+        "order": 55
+    }
+  },
+  {
+    "model": "cards.card",
+    "pk": 56,
+    "fields":{
+        "fk_rarity": "3",
+        "photo": "",
+        "name": "Lourdes Toledo",
+        "true_department": "Importaciones",
+        "fk_department": 6,
+        "charge": "Comprador de Importaciones",
+        "arrival_date": 2021,
+        "is_badge": 0,
+        "active": true,
+        "wave": 1,
+        "description": "Su platillo favoritao son los chilaquiles a la mexicana.",
+        "birth_date": "3 junio",
+        "order": 56
+    }
+  },
+  {
+    "model": "cards.card",
+    "pk": 57,
+    "fields":{
+        "fk_rarity": "4",
+        "photo": "",
+        "name": "Logística",
+        "true_department": "",
+        "fk_department": 7,
+        "charge": "badge",
+        "arrival_date": "",
+        "is_badge": 1,
+        "active": true,
+        "wave": 1,
+        "description": "",
+        "birth_date": "",
+        "order": 57
+    }
+  },
+  {
+    "model": "cards.card",
+    "pk": 58,
+    "fields":{
+        "fk_rarity": "4",
+        "photo": "",
+        "name": "Abraham Ramos",
+        "true_department": "Logística",
+        "fk_department": 7,
+        "charge": "Asistente de facturación",
+        "arrival_date": 2010,
+        "is_badge": 0,
+        "active": true,
+        "wave": 1,
+        "description": "Le gusta la música pop y cantar.",
+        "birth_date": "13 septiembre",
+        "order": 58
+    }
+  },
+  {
+    "model": "cards.card",
+    "pk": 59,
+    "fields":{
+        "fk_rarity": "4",
+        "photo": "",
+        "name": "Adela Rodríguez",
+        "true_department": "Logística",
+        "fk_department": 7,
+        "charge": "Capturista",
+        "arrival_date": 2021,
+        "is_badge": 0,
+        "active": true,
+        "wave": 1,
+        "description": "Le gusta el anime y leer mangas.",
+        "birth_date": "26 julio",
+        "order": 59
+    }
+  },
+  {
+    "model": "cards.card",
+    "pk": 60,
+    "fields":{
+        "fk_rarity": "3",
+        "photo": "",
+        "name": "Alejandra Pavia",
+        "true_department": "Logística",
+        "fk_department": 7,
+        "charge": "Comprador",
+        "arrival_date": 2018,
+        "is_badge": 0,
+        "active": true,
+        "wave": 1,
+        "description": "Se considera curiosa y le encanta bailar.",
+        "birth_date": "23 abril",
+        "order": 60
+    }
+  },
+  {
+    "model": "cards.card",
+    "pk": 61,
+    "fields":{
+        "fk_rarity": "4",
+        "photo": "",
+        "name": "Alicia Leal",
+        "true_department": "Logística",
+        "fk_department": 7,
+        "charge": "Asistente de facturación",
+        "arrival_date": 2018,
+        "is_badge": 0,
+        "active": true,
+        "wave": 1,
+        "description": "Se considera perseverante, alguien que no se rinde, cumple lo que se propone y es muy insistente.",
+        "birth_date": "15 abril",
+        "order": 61
+    }
+  },
+  {
+    "model": "cards.card",
+    "pk": 62,
+    "fields":{
+        "fk_rarity": "4",
+        "photo": "",
+        "name": "Araceli Ávila",
+        "true_department": "Logística",
+        "fk_department": 7,
+        "charge": "Coordinadora de Compras y Captura",
+        "arrival_date": 2021,
+        "is_badge": 0,
+        "active": true,
+        "wave": 1,
+        "description": "Le gusta viajar e ir al cine en familia y/o amigos.",
+        "birth_date": "6 enero",
+        "order": 62
+    }
+  },
+  {
+    "model": "cards.card",
+    "pk": 63,
+    "fields":{
+        "fk_rarity": "4",
+        "photo": "",
+        "name": "Carolina Suárez",
+        "true_department": "Logística",
+        "fk_department": 7,
+        "charge": "Asistente de facturación",
+        "arrival_date": 2010,
+        "is_badge": 0,
+        "active": true,
+        "wave": 1,
+        "description": "Le gustan las películas de terror como \"Pesadilla en la Calle Elm\" y \"Viernes 13\".",
+        "birth_date": "4 abril",
+        "order": 63
+    }
+  },
+  {
+    "model": "cards.card",
+    "pk": 64,
+    "fields":{
+        "fk_rarity": "3",
+        "photo": "",
+        "name": "Cecilia Chávez",
+        "true_department": "Logística",
+        "fk_department": 7,
+        "charge": "Coordinadora de Facturación y Archivo",
+        "arrival_date": 2012,
+        "is_badge": 0,
+        "active": true,
+        "wave": 1,
+        "description": "Le gustan las películas románticas como “Diario de una pasión” y “Antes de ti”.",
+        "birth_date": "13 enero",
+        "order": 64
+    }
+  },
+  {
+    "model": "cards.card",
+    "pk": 65,
+    "fields":{
+        "fk_rarity": "4",
+        "photo": "",
+        "name": "Diana Alvarado",
+        "true_department": "Logística",
+        "fk_department": 7,
+        "charge": "Comprador",
+        "arrival_date": 2015,
+        "is_badge": 0,
+        "active": true,
+        "wave": 1,
+        "description": "Su serie favorita es \"Juego de Tronos\" y le gusta cantar.",
+        "birth_date": "22 septiembre",
+        "order": 65
+    }
+  },
+  {
+    "model": "cards.card",
+    "pk": 66,
+    "fields":{
+        "fk_rarity": "4",
+        "photo": "",
+        "name": "Eduardo Santos",
+        "true_department": "Logística",
+        "fk_department": 7,
+        "charge": "Responsable de Archivo",
+        "arrival_date": 2011,
+        "is_badge": 0,
+        "active": true,
+        "wave": 1,
+        "description": "Le gusta cocinar platillos mexicanas.",
+        "birth_date": "6 febrero",
+        "order": 66
+    }
+  },
+  {
+    "model": "cards.card",
+    "pk": 67,
+    "fields":{
+        "fk_rarity": "4",
+        "photo": "",
+        "name": "Gloria Curiel",
+        "true_department": "Logística",
+        "fk_department": 7,
+        "charge": "Asistente de facturación",
+        "arrival_date": 2012,
+        "is_badge": 0,
+        "active": true,
+        "wave": 1,
+        "description": "Le gusta pasear en bicicleta y disfrutar de la naturaleza.",
+        "birth_date": "25 enero",
+        "order": 67
+    }
+  },
+  {
+    "model": "cards.card",
+    "pk": 68,
+    "fields":{
+        "fk_rarity": "4",
+        "photo": "",
+        "name": "Lizeth Quintanilla",
+        "true_department": "Logística",
+        "fk_department": 7,
+        "charge": "Capturista",
+        "arrival_date": 2018,
+        "is_badge": 0,
+        "active": true,
+        "wave": 1,
+        "description": "Una persona positiva, risueña y muy alegre.",
+        "birth_date": "16 junio",
+        "order": 68
+    }
+  },
+  {
+    "model": "cards.card",
+    "pk": 69,
+    "fields":{
+        "fk_rarity": "4",
+        "photo": "",
+        "name": "Alma Girón",
+        "true_department": "Logística",
+        "fk_department": 7,
+        "charge": "Comprador",
+        "arrival_date": 2014,
+        "is_badge": 0,
+        "active": true,
+        "wave": 1,
+        "description": "Su pasatiempo favorito es patinar.",
+        "birth_date": "11 septiembre",
+        "order": 69
+    }
+  },
+  {
+    "model": "cards.card",
+    "pk": 70,
+    "fields":{
+        "fk_rarity": "3",
+        "photo": "",
+        "name": "Erika Fernández",
+        "true_department": "Logística",
+        "fk_department": 7,
+        "charge": "",
+        "arrival_date": "",
+        "is_badge": 0,
+        "active": true,
+        "wave": 1,
+        "description": "",
+        "birth_date": "29 enero",
+        "order": 70
+    }
+  },
+  {
+    "model": "cards.card",
+    "pk": 71,
+    "fields":{
+        "fk_rarity": "4",
+        "photo": "",
+        "name": "Mantenimiento",
+        "true_department": "",
+        "fk_department": 8,
+        "charge": "badge",
+        "arrival_date": "",
+        "is_badge": 1,
+        "active": true,
+        "wave": 1,
+        "description": "",
+        "birth_date": "",
+        "order": 71
+    }
+  },
+  {
+    "model": "cards.card",
+    "pk": 72,
+    "fields":{
+        "fk_rarity": "4",
+        "photo": "",
+        "name": "Benjamín Torres",
+        "true_department": "Mantenimiento",
+        "fk_department": 8,
+        "charge": "Encargado de Mantenimiento",
+        "arrival_date": 2017,
+        "is_badge": 0,
+        "active": true,
+        "wave": 1,
+        "description": "Aficionado a las motocicletas.",
+        "birth_date": "31 marzo",
+        "order": 72
+    }
+  },
+  {
+    "model": "cards.card",
+    "pk": 73,
+    "fields":{
+        "fk_rarity": "4",
+        "photo": "",
+        "name": "Fernando Romero",
+        "true_department": "Mantenimiento",
+        "fk_department": 8,
+        "charge": "Jefe de Mantenimiento",
+        "arrival_date": 2012,
+        "is_badge": 0,
+        "active": true,
+        "wave": 1,
+        "description": "Le gusta el fútbol y su equipo favorito es el América.",
+        "birth_date": "23 julio",
+        "order": 73
+    }
+  },
+  {
+    "model": "cards.card",
+    "pk": 74,
+    "fields":{
+        "fk_rarity": "4",
+        "photo": "",
+        "name": "Gloria Torres",
+        "true_department": "Limpieza",
+        "fk_department": 8,
+        "charge": "Limpieza",
+        "arrival_date": 2008,
+        "is_badge": 0,
+        "active": true,
+        "wave": 1,
+        "description": "Le gustan las manualidades y bordar para decorar.",
+        "birth_date": "29 mayo",
+        "order": 74
+    }
+  },
+  {
+    "model": "cards.card",
+    "pk": 75,
+    "fields":{
+        "fk_rarity": "4",
+        "photo": "",
+        "name": "Óscar Carrera",
+        "true_department": "Mantenimiento",
+        "fk_department": 8,
+        "charge": "Auxiliar de Mantenimiento",
+        "arrival_date": 2017,
+        "is_badge": 0,
+        "active": true,
+        "wave": 1,
+        "description": "Es una persona amigable, tranquila e introvertida.",
+        "birth_date": "14 marzo",
+        "order": 75
+    }
+  },
+  {
+    "model": "cards.card",
+    "pk": 76,
+    "fields":{
+        "fk_rarity": "4",
+        "photo": "",
+        "name": "Operaciones",
+        "true_department": "",
+        "fk_department": 9,
+        "charge": "badge",
+        "arrival_date": "",
+        "is_badge": 1,
+        "active": true,
+        "wave": 1,
+        "description": "",
+        "birth_date": "",
+        "order": 76
+    }
+  },
+  {
+    "model": "cards.card",
+    "pk": 77,
+    "fields":{
+        "fk_rarity": "4",
+        "photo": "",
+        "name": "Alejandro Mendoza",
+        "true_department": "Almacén",
+        "fk_department": 9,
+        "charge": "Auxiliar de Almacén",
+        "arrival_date": 2021,
+        "is_badge": 0,
+        "active": true,
+        "wave": 1,
+        "description": "Le gusta pasear en bicicleta y ver \"Juego de Tronos\".",
+        "birth_date": "22 febrero",
+        "order": 77
+    }
+  },
+  {
+    "model": "cards.card",
+    "pk": 78,
+    "fields":{
+        "fk_rarity": "4",
+        "photo": "",
+        "name": "Christian Toledo",
+        "true_department": "Sistemas",
+        "fk_department": 9,
+        "charge": "Jefe de sistemas",
+        "arrival_date": 2019,
+        "is_badge": 0,
+        "active": true,
+        "wave": 1,
+        "description": "Sus pasatiempos son escuchar música y cantar canciones de pop en inglés y español.",
+        "birth_date": "4 marzo",
+        "order": 78
+    }
+  },
+  {
+    "model": "cards.card",
+    "pk": 79,
+    "fields":{
+        "fk_rarity": "3",
+        "photo": "",
+        "name": "Daniel Garduño",
+        "true_department": "Distribución",
+        "fk_department": 9,
+        "charge": "Jefe de Distribución",
+        "arrival_date": 2008,
+        "is_badge": 0,
+        "active": true,
+        "wave": 1,
+        "description": "Sus pasatiempos son ver películas de acción, el fútbol y le gustan los tatuajes.",
+        "birth_date": "13 mayo",
+        "order": 79
+    }
+  },
+  {
+    "model": "cards.card",
+    "pk": 80,
+    "fields":{
+        "fk_rarity": "4",
+        "photo": "",
+        "name": "Eunice Gutiérrez",
+        "true_department": "Sistemas",
+        "fk_department": 9,
+        "charge": "Administrador de E.R.P",
+        "arrival_date": 2019,
+        "is_badge": 0,
+        "active": true,
+        "wave": 1,
+        "description": "Sabe tocar el piano y su compositor favorito es Sebastian Bach.",
+        "birth_date": "1 junio",
+        "order": 80
+    }
+  },
+  {
+    "model": "cards.card",
+    "pk": 81,
+    "fields":{
+        "fk_rarity": "4",
+        "photo": "",
+        "name": "Francisco Rodríguez",
+        "true_department": "Almacén",
+        "fk_department": 9,
+        "charge": "Auxiliar de Almacén",
+        "arrival_date": 2019,
+        "is_badge": 0,
+        "active": true,
+        "wave": 1,
+        "description": "Le gusta hacer ejercicio y su deporte favorito es el fútbol, su equipo favorito es el Toluca.",
+        "birth_date": "9 octubre",
+        "order": 81
+    }
+  },
+  {
+    "model": "cards.card",
+    "pk": 82,
+    "fields":{
+        "fk_rarity": "3",
+        "photo": "",
+        "name": "Hugo Matadamas",
+        "true_department": "Almacén",
+        "fk_department": 9,
+        "charge": "Auxiliar de Almacén",
+        "arrival_date": 2011,
+        "is_badge": 0,
+        "active": true,
+        "wave": 1,
+        "description": "Aficionado a los coches clásicos, tiene un Volkswagen y colecciona coches a escala.",
+        "birth_date": "25 febrero",
+        "order": 82
+    }
+  },
+  {
+    "model": "cards.card",
+    "pk": 83,
+    "fields":{
+        "fk_rarity": "4",
+        "photo": "",
+        "name": "Jorge Luna",
+        "true_department": "Distribución",
+        "fk_department": 9,
+        "charge": "Repartidor",
+        "arrival_date": 2018,
+        "is_badge": 0,
+        "active": true,
+        "wave": 1,
+        "description": "Aficionado al automovilismo y la Formula 1.",
+        "birth_date": "13 abril",
+        "order": 83
+    }
+  },
+  {
+    "model": "cards.card",
+    "pk": 84,
+    "fields":{
+        "fk_rarity": "3",
+        "photo": "",
+        "name": "Leopoldo Morales",
+        "true_department": "Operaciones",
+        "fk_department": 9,
+        "charge": "Responsable de base instalada",
+        "arrival_date": 2008,
+        "is_badge": 0,
+        "active": true,
+        "wave": 1,
+        "description": "Le gustan los videojuegos (se considera gamer), es “el serio” del equipo.",
+        "birth_date": "24 noviembre",
+        "order": 84
+    }
+  },
+  {
+    "model": "cards.card",
+    "pk": 85,
+    "fields":{
+        "fk_rarity": "2",
+        "photo": "",
+        "name": "Luis Miguel de Luna",
+        "true_department": "Almacén",
+        "fk_department": 9,
+        "charge": "Jefe de Almacén",
+        "arrival_date": 2010,
+        "is_badge": 0,
+        "active": true,
+        "wave": 1,
+        "description": "Aficionado del senderismo y a viajar.",
+        "birth_date": "15 marzo",
+        "order": 85
+    }
+  },
+  {
+    "model": "cards.card",
+    "pk": 86,
+    "fields":{
+        "fk_rarity": "4",
+        "photo": "",
+        "name": "Antonio Blancas",
+        "true_department": "Distribución",
+        "fk_department": 9,
+        "charge": "Repartidor",
+        "arrival_date": 2021,
+        "is_badge": 0,
+        "active": true,
+        "wave": 1,
+        "description": "Sus series favoritas son \"The Walking Dead\" y \"Breaking Bad\".",
+        "birth_date": "20 octubre",
+        "order": 86
+    }
+  },
+  {
+    "model": "cards.card",
+    "pk": 87,
+    "fields":{
+        "fk_rarity": "2",
+        "photo": "",
+        "name": "Martín Santiago",
+        "true_department": "Distribución",
+        "fk_department": 9,
+        "charge": "Auxiliar de Distribución",
+        "arrival_date": 2015,
+        "is_badge": 0,
+        "active": true,
+        "wave": 1,
+        "description": "Le gusta esuchar música y salir a pasear.",
+        "birth_date": "23 febrero",
+        "order": 87
+    }
+  },
+  {
+    "model": "cards.card",
+    "pk": 88,
+    "fields":{
+        "fk_rarity": "2",
+        "photo": "",
+        "name": "Miguel Hernández",
+        "true_department": "Distribución",
+        "fk_department": 9,
+        "charge": "Auxiliar de Distribución",
+        "arrival_date": 2016,
+        "is_badge": 0,
+        "active": true,
+        "wave": 1,
+        "description": "Disfruta de acamapar y apreciar la naturaleza.",
+        "birth_date": "26 agosto",
+        "order": 88
+    }
+  },
+  {
+    "model": "cards.card",
+    "pk": 89,
+    "fields":{
+        "fk_rarity": "2",
+        "photo": "",
+        "name": "Rafael Amézquita",
+        "true_department": "Distribución",
+        "fk_department": 9,
+        "charge": "Repartidor",
+        "arrival_date": 2018,
+        "is_badge": 0,
+        "active": true,
+        "wave": 1,
+        "description": "Le gusta jugar basquebol en el Parque Bicentenario.",
+        "birth_date": "15 junio",
+        "order": 89
+    }
+  },
+  {
+    "model": "cards.card",
+    "pk": 90,
+    "fields":{
+        "fk_rarity": "2",
+        "photo": "",
+        "name": "Ricardo Guerrero",
+        "true_department": "Almacén",
+        "fk_department": 9,
+        "charge": "Auxiliar de Almacén",
+        "arrival_date": 2018,
+        "is_badge": 0,
+        "active": true,
+        "wave": 1,
+        "description": "Le gusta la música rock en español e inglés, su grupo favorito es Metallica.",
+        "birth_date": "26 diciembre",
+        "order": 90
+    }
+  },
+  {
+    "model": "cards.card",
+    "pk": 91,
+    "fields":{
+        "fk_rarity": "2",
+        "photo": "",
+        "name": "Antonio Ortiz",
+        "true_department": "Distribución",
+        "fk_department": 9,
+        "charge": "",
+        "arrival_date": "",
+        "is_badge": 0,
+        "active": true,
+        "wave": 1,
+        "description": "",
+        "birth_date": "23 agosto",
+        "order": 91
+    }
+  },
+  {
+    "model": "cards.card",
+    "pk": 92,
+    "fields":{
+        "fk_rarity": "2",
+        "photo": "",
+        "name": "Ignacio Mercado",
+        "true_department": "Distribución",
+        "fk_department": 9,
+        "charge": "",
+        "arrival_date": "",
+        "is_badge": 0,
+        "active": true,
+        "wave": 1,
+        "description": "",
+        "birth_date": "15 mayo",
+        "order": 92
+    }
+  },
+  {
+    "model": "cards.card",
+    "pk": 93,
+    "fields":{
+        "fk_rarity": "2",
+        "photo": "",
+        "name": "Jesús Quintana",
+        "true_department": "Distribución",
+        "fk_department": 9,
+        "charge": "",
+        "arrival_date": "",
+        "is_badge": 0,
+        "active": true,
+        "wave": 1,
+        "description": "",
+        "birth_date": "8 octubre",
+        "order": 93
+    }
+  },
+  {
+    "model": "cards.card",
+    "pk": 94,
+    "fields":{
+        "fk_rarity": "2",
+        "photo": "",
+        "name": "Julio Sánchez",
+        "true_department": "Distribución",
+        "fk_department": 9,
+        "charge": "",
+        "arrival_date": "",
+        "is_badge": 0,
+        "active": true,
+        "wave": 1,
+        "description": "",
+        "birth_date": "22 junio",
+        "order": 94
+    }
+  },
+  {
+    "model": "cards.card",
+    "pk": 96,
+    "fields":{
+        "fk_rarity": "4",
+        "photo": "",
+        "name": "Ricardo Corza",
+        "true_department": "Operaciones",
+        "fk_department": 9,
+        "charge": "",
+        "arrival_date": "",
+        "is_badge": 0,
+        "active": true,
+        "wave": 1,
+        "description": "",
+        "birth_date": "8 diciembre",
+        "order": 95
+    }
+  },
+  {
+    "model": "cards.card",
+    "pk": 97,
+    "fields":{
+        "fk_rarity": "4",
+        "photo": "",
+        "name": "Recursos Humanos",
+        "true_department": "",
+        "fk_department": 10,
+        "charge": "badge",
+        "arrival_date": "",
+        "is_badge": 1,
+        "active": true,
+        "wave": 1,
+        "description": "",
+        "birth_date": "",
+        "order": 96
+    }
+  },
+  {
+    "model": "cards.card",
+    "pk": 98,
+    "fields":{
+        "fk_rarity": "4",
+        "photo": "",
+        "name": "Dulce Reyes",
+        "true_department": "Recursos Humanos",
+        "fk_department": 10,
+        "charge": "Asistente de Recursos y Desarrollo Humano",
+        "arrival_date": 2018,
+        "is_badge": 0,
+        "active": true,
+        "wave": 1,
+        "description": "Su color favorito es el rosa.",
+        "birth_date": "26 noviembre",
+        "order": 97
+    }
+  },
+  {
+    "model": "cards.card",
+    "pk": 99,
+    "fields":{
+        "fk_rarity": "3",
+        "photo": "",
+        "name": "Eliza Vega",
+        "true_department": "Recepción",
+        "fk_department": 10,
+        "charge": "Recepcionista",
+        "arrival_date": 2019,
+        "is_badge": 0,
+        "active": true,
+        "wave": 1,
+        "description": "Le gustan las plantitas y tomar cursos en línea.",
+        "birth_date": "22 diciembre",
+        "order": 98
+    }
+  },
+  {
+    "model": "cards.card",
+    "pk": 100,
+    "fields":{
+        "fk_rarity": "4",
+        "photo": "",
+        "name": "Ximena Garay",
+        "true_department": "Recursos Humanos",
+        "fk_department": 10,
+        "charge": "Asistente de Recursos y Desarrollo Humano",
+        "arrival_date": 2021,
+        "is_badge": 0,
+        "active": true,
+        "wave": 1,
+        "description": "Su serie favorita es \"How I Met Your Mother\".",
+        "birth_date": "19 junio",
+        "order": 99
+    }
+  },
+  {
+    "model": "cards.card",
+    "pk": 101,
+    "fields":{
+        "fk_rarity": "4",
+        "photo": "",
+        "name": "Yuridia Oropeza",
+        "true_department": "Recepción",
+        "fk_department": 10,
+        "charge": "Recepcionista",
+        "arrival_date": 2019,
+        "is_badge": 0,
+        "active": true,
+        "wave": 1,
+        "description": "Su pasatiempo favorito es ver películas.",
+        "birth_date": "20 junio",
+        "order": 100
+    }
+  },
+  {
+    "model": "cards.card",
+    "pk": 102,
+    "fields":{
+        "fk_rarity": "4",
+        "photo": "",
+        "name": "Soporte Técnico",
+        "true_department": "",
+        "fk_department": 11,
+        "charge": "badge",
+        "arrival_date": "",
+        "is_badge": 1,
+        "active": true,
+        "wave": 1,
+        "description": "",
+        "birth_date": "",
+        "order": 101
+    }
+  },
+  {
+    "model": "cards.card",
+    "pk": 103,
+    "fields":{
+        "fk_rarity": "4",
+        "photo": "",
+        "name": "Alejandro Fonseca",
+        "true_department": "Soporte",
+        "fk_department": 11,
+        "charge": "Ingeniero de servicio",
+        "arrival_date": 2019,
+        "is_badge": 0,
+        "active": true,
+        "wave": 1,
+        "description": "Le gusta leer novelas de ciencia ficción.",
+        "birth_date": "23 noviembre",
+        "order": 102
+    }
+  },
+  {
+    "model": "cards.card",
+    "pk": 104,
+    "fields":{
+        "fk_rarity": "4",
+        "photo": "",
+        "name": "Ana Cortés",
+        "true_department": "Soporte",
+        "fk_department": 11,
+        "charge": "Jefe de Ingeniería de Proyectos",
+        "arrival_date": 2016,
+        "is_badge": 0,
+        "active": true,
+        "wave": 1,
+        "description": "Le gusta visitar Pueblos Mágicos, su favorito es Tepoztlán (Morelos).",
+        "birth_date": "11 octubre",
+        "order": 103
+    }
+  },
+  {
+    "model": "cards.card",
+    "pk": 105,
+    "fields":{
+        "fk_rarity": "3",
+        "photo": "",
+        "name": "Angélica Girón",
+        "true_department": "Soporte",
+        "fk_department": 11,
+        "charge": "",
+        "arrival_date": "",
+        "is_badge": 0,
+        "active": true,
+        "wave": 1,
+        "description": "",
+        "birth_date": "4 mayo",
+        "order": 104
+    }
+  },
+  {
+    "model": "cards.card",
+    "pk": 106,
+    "fields":{
+        "fk_rarity": "4",
+        "photo": "",
+        "name": "Arturo López",
+        "true_department": "Soporte",
+        "fk_department": 11,
+        "charge": "Ingeniero de Servicio",
+        "arrival_date": 2016,
+        "is_badge": 0,
+        "active": true,
+        "wave": 1,
+        "description": "Le gusta y practica la carpintería: ha hecho algunos muebles para su casa.",
+        "birth_date": "13 septiembre",
+        "order": 105
+    }
+  },
+  {
+    "model": "cards.card",
+    "pk": 107,
+    "fields":{
+        "fk_rarity": "4",
+        "photo": "",
+        "name": "Arturo Ríos",
+        "true_department": "Soporte",
+        "fk_department": 11,
+        "charge": "Ingeniero de servicio",
+        "arrival_date": 2018,
+        "is_badge": 0,
+        "active": true,
+        "wave": 1,
+        "description": "Le gusta ir a correr a parques y zonas verdes.",
+        "birth_date": "16 abril",
+        "order": 106
+    }
+  },
+  {
+    "model": "cards.card",
+    "pk": 108,
+    "fields":{
+        "fk_rarity": "4",
+        "photo": "",
+        "name": "Carlos Benítez",
+        "true_department": "Soporte",
+        "fk_department": 11,
+        "charge": "Ingeniero de Soporte Técnico en Sistemas",
+        "arrival_date": 2007,
+        "is_badge": 0,
+        "active": true,
+        "wave": 1,
+        "description": "Toma las cosas literales, el divertido del grupo.",
+        "birth_date": "29 junio",
+        "order": 107
+    }
+  },
+  {
+    "model": "cards.card",
+    "pk": 109,
+    "fields":{
+        "fk_rarity": "4",
+        "photo": "",
+        "name": "Daniel Ayala",
+        "true_department": "Soporte",
+        "fk_department": 11,
+        "charge": "Ingeniero de servicio",
+        "arrival_date": 2018,
+        "is_badge": 0,
+        "active": true,
+        "wave": 1,
+        "description": "Sus series favoritas son \"Dark\" y \"Stranger Things\", le gusta ver anime.",
+        "birth_date": "12 febrero",
+        "order": 108
+    }
+  },
+  {
+    "model": "cards.card",
+    "pk": 110,
+    "fields":{
+        "fk_rarity": "4",
+        "photo": "",
+        "name": "Eduardo Sánchez",
+        "true_department": "Soporte",
+        "fk_department": 11,
+        "charge": "Asesor Técnico Laboratorio",
+        "arrival_date": 2020,
+        "is_badge": 0,
+        "active": true,
+        "wave": 1,
+        "description": "Le gustan las artes marciales, practicaba Taekwondo.",
+        "birth_date": "11 mayo",
+        "order": 109
+    }
+  },
+  {
+    "model": "cards.card",
+    "pk": 111,
+    "fields":{
+        "fk_rarity": "4",
+        "photo": "",
+        "name": "Griselda López",
+        "true_department": "Soporte",
+        "fk_department": 11,
+        "charge": "Asesor Técnico Molecular",
+        "arrival_date": 2017,
+        "is_badge": 0,
+        "active": true,
+        "wave": 1,
+        "description": "Le gustan las películas de terror, su favorita es \"Cuando Las Luces Se Apagan\".",
+        "birth_date": "8 octubre",
+        "order": 110
+    }
+  },
+  {
+    "model": "cards.card",
+    "pk": 112,
+    "fields":{
+        "fk_rarity": "4",
+        "photo": "",
+        "name": "Jairsiño López",
+        "true_department": "Soporte",
+        "fk_department": 11,
+        "charge": "Coordinador de Asesoría Técnica Laboratorio",
+        "arrival_date": 2016,
+        "is_badge": 0,
+        "active": true,
+        "wave": 1,
+        "description": "Practicó fútbol americano en el Poli y la UNAM, era corredor.",
+        "birth_date": "18 febrero",
+        "order": 111
+    }
+  },
+  {
+    "model": "cards.card",
+    "pk": 113,
+    "fields":{
+        "fk_rarity": "4",
+        "photo": "",
+        "name": "Jesús Rodríguez",
+        "true_department": "Soporte",
+        "fk_department": 11,
+        "charge": "Coordinador de Ingenieria Molecular",
+        "arrival_date": 2016,
+        "is_badge": 0,
+        "active": true,
+        "wave": 1,
+        "description": "Le gusta el automovilismo.",
+        "birth_date": "2 diciembre",
+        "order": 112
+    }
+  },
+  {
+    "model": "cards.card",
+    "pk": 114,
+    "fields":{
+        "fk_rarity": "4",
+        "photo": "",
+        "name": "Jorge Calderón",
+        "true_department": "Soporte",
+        "fk_department": 11,
+        "charge": "Coordinador de Ingenieria - Laboratorio",
+        "arrival_date": 2012,
+        "is_badge": 0,
+        "active": true,
+        "wave": 1,
+        "description": "Aficionado al cine y el teatro.",
+        "birth_date": "20 agosto",
+        "order": 113
+    }
+  },
+  {
+    "model": "cards.card",
+    "pk": 115,
+    "fields":{
+        "fk_rarity": "2",
+        "photo": "",
+        "name": "Josefina Reyes",
+        "true_department": "Soporte",
+        "fk_department": 11,
+        "charge": "Asesor Técnico Molecular",
+        "arrival_date": 2018,
+        "is_badge": 0,
+        "active": true,
+        "wave": 1,
+        "description": "Le gusta ir a correr y ver películas de Quentin Tarantino (Kill Bill es su favorita).",
+        "birth_date": "29 octubre",
+        "order": 114
+    }
+  },
+  {
+    "model": "cards.card",
+    "pk": 116,
+    "fields":{
+        "fk_rarity": "2",
+        "photo": "",
+        "name": "Karen Hernández",
+        "true_department": "Soporte",
+        "fk_department": 11,
+        "charge": "Asesor Técnico Laboratorio",
+        "arrival_date": 2021,
+        "is_badge": 0,
+        "active": true,
+        "wave": 1,
+        "description": "Le gusta jugar fútbol con su familia y su equipo favorito es el América.",
+        "birth_date": "7 julio",
+        "order": 115
+    }
+  },
+  {
+    "model": "cards.card",
+    "pk": 117,
+    "fields":{
+        "fk_rarity": "2",
+        "photo": "",
+        "name": "Moisés Sánchez",
+        "true_department": "Soporte",
+        "fk_department": 11,
+        "charge": "Ingeniero de proyectos",
+        "arrival_date": 2017,
+        "is_badge": 0,
+        "active": true,
+        "wave": 1,
+        "description": "Le gusta la pesca deportiva.",
+        "birth_date": "4 septiembre",
+        "order": 116
+    }
+  },
+  {
+    "model": "cards.card",
+    "pk": 118,
+    "fields":{
+        "fk_rarity": "2",
+        "photo": "",
+        "name": "Montserrat Rodríguez",
+        "true_department": "Soporte",
+        "fk_department": 11,
+        "charge": "Administrativa de Soporte Técnico",
+        "arrival_date": 2018,
+        "is_badge": 0,
+        "active": true,
+        "wave": 1,
+        "description": "Le gusta aprender mediante la lectura.",
+        "birth_date": "30 abril",
+        "order": 117
+    }
+  },
+  {
+    "model": "cards.card",
+    "pk": 119,
+    "fields":{
+        "fk_rarity": "2",
+        "photo": "",
+        "name": "Óscar García",
+        "true_department": "Soporte",
+        "fk_department": 11,
+        "charge": "Ingeniero de servicio",
+        "arrival_date": 2011,
+        "is_badge": 0,
+        "active": true,
+        "wave": 1,
+        "description": "Es una persona extrovertida y amigable.",
+        "birth_date": "17 octubre",
+        "order": 118
+    }
+  },
+  {
+    "model": "cards.card",
+    "pk": 120,
+    "fields":{
+        "fk_rarity": "2",
+        "photo": "",
+        "name": "Paloma Zamora",
+        "true_department": "Soporte",
+        "fk_department": 11,
+        "charge": "Asesor Técnico Molecular",
+        "arrival_date": 2020,
+        "is_badge": 0,
+        "active": true,
+        "wave": 1,
+        "description": "Le gusta y práctica el basquetbol.",
+        "birth_date": "30 agosto",
+        "order": 119
+    }
+  },
+  {
+    "model": "cards.card",
+    "pk": 121,
+    "fields":{
+        "fk_rarity": "2",
+        "photo": "",
+        "name": "Rafael Orihuela",
+        "true_department": "Soporte",
+        "fk_department": 11,
+        "charge": "Ingeniero de proyectos",
+        "arrival_date": 2019,
+        "is_badge": 0,
+        "active": true,
+        "wave": 1,
+        "description": "Le gustan los videojuegos (Gamer), su juego favorito es Halo.",
+        "birth_date": "30 abril",
+        "order": 120
+    }
+  },
+  {
+    "model": "cards.card",
+    "pk": 122,
+    "fields":{
+        "fk_rarity": "2",
+        "photo": "",
+        "name": "Rogelio Durán",
+        "true_department": "Soporte",
+        "fk_department": 11,
+        "charge": "Asesor Técnico Laboratorio",
+        "arrival_date": 2017,
+        "is_badge": 0,
+        "active": true,
+        "wave": 1,
+        "description": "Su pasatiempo es cocinar y la repostería.",
+        "birth_date": "17 septiembre",
+        "order": 121
+    }
+  },
+  {
+    "model": "cards.card",
+    "pk": 123,
+    "fields":{
+        "fk_rarity": "2",
+        "photo": "",
+        "name": "Adriana Alvarado",
+        "true_department": "Soporte",
+        "fk_department": 11,
+        "charge": "",
+        "arrival_date": "",
+        "is_badge": 0,
+        "active": true,
+        "wave": 1,
+        "description": "",
+        "birth_date": "27 junio",
+        "order": 122
+    }
+  },
+  {
+    "model": "cards.card",
+    "pk": 124,
+    "fields":{
+        "fk_rarity": "2",
+        "photo": "",
+        "name": "Emmanuel Salado",
+        "true_department": "Soporte",
+        "fk_department": 11,
+        "charge": "",
+        "arrival_date": "",
+        "is_badge": 0,
+        "active": true,
+        "wave": 1,
+        "description": "",
+        "birth_date": "23 julio",
+        "order": 123
+    }
+  },
+  {
+    "model": "cards.card",
+    "pk": 125,
+    "fields":{
+        "fk_rarity": "2",
+        "photo": "",
+        "name": "Ethel Salazar",
+        "true_department": "Soporte",
+        "fk_department": 11,
+        "charge": "",
+        "arrival_date": "",
+        "is_badge": 0,
+        "active": true,
+        "wave": 1,
+        "description": "",
+        "birth_date": "27 abril",
+        "order": 124
+    }
+  },
+  {
+    "model": "cards.card",
+    "pk": 126,
+    "fields":{
+        "fk_rarity": "4",
+        "photo": "",
+        "name": "Gerardo Álvarez",
+        "true_department": "Soporte",
+        "fk_department": 11,
+        "charge": "",
+        "arrival_date": "",
+        "is_badge": 0,
+        "active": true,
+        "wave": 1,
+        "description": "",
+        "birth_date": "23 junio",
+        "order": 125
+    }
+  },
+  {
+    "model": "cards.card",
+    "pk": 127,
+    "fields":{
+        "fk_rarity": "4",
+        "photo": "",
+        "name": "Ismael Argumedo",
+        "true_department": "Soporte",
+        "fk_department": 11,
+        "charge": "",
+        "arrival_date": "",
+        "is_badge": 0,
+        "active": true,
+        "wave": 1,
+        "description": "",
+        "birth_date": "16 junio",
+        "order": 126
+    }
+  },
+  {
+    "model": "cards.card",
+    "pk": 128,
+    "fields":{
+        "fk_rarity": "3",
+        "photo": "",
+        "name": "Jesús Castillo",
+        "true_department": "Soporte",
+        "fk_department": 11,
+        "charge": "",
+        "arrival_date": "",
+        "is_badge": 0,
+        "active": true,
+        "wave": 1,
+        "description": "",
+        "birth_date": "23 octubre",
+        "order": 127
+    }
+  },
+  {
+    "model": "cards.card",
+    "pk": 129,
+    "fields":{
+        "fk_rarity": "4",
+        "photo": "",
+        "name": "Paola Rivera",
+        "true_department": "Soporte",
+        "fk_department": 11,
+        "charge": "",
+        "arrival_date": "",
+        "is_badge": 0,
+        "active": true,
+        "wave": 1,
+        "description": "",
+        "birth_date": "24 febrero",
+        "order": 128
+    }
+  },
+  {
+    "model": "cards.card",
+    "pk": 130,
+    "fields":{
+        "fk_rarity": "4",
+        "photo": "",
+        "name": "Violeta Vera",
+        "true_department": "Soporte",
+        "fk_department": 11,
+        "charge": "",
+        "arrival_date": "",
+        "is_badge": 0,
+        "active": true,
+        "wave": 1,
+        "description": "",
+        "birth_date": "2 marzo",
+        "order": 129
+    }
+  },
+  {
+    "model": "cards.card",
+    "pk": 131,
+    "fields":{
+        "fk_rarity": "3",
+        "photo": "",
+        "name": "Laura Canuto",
+        "true_department": "Soporte",
+        "fk_department": 11,
+        "charge": "",
+        "arrival_date": "",
+        "is_badge": 0,
+        "active": true,
+        "wave": 1,
+        "description": "",
+        "birth_date": "20 febrero",
+        "order": 130
+    }
+  },
+  {
+    "model": "cards.card",
+    "pk": 132,
+    "fields":{
+        "fk_rarity": "4",
+        "photo": "",
+        "name": "Ventas",
+        "true_department": "",
+        "fk_department": 12,
+        "charge": "badge",
+        "arrival_date": "",
+        "is_badge": 1,
+        "active": true,
+        "wave": 1,
+        "description": "",
+        "birth_date": "",
+        "order": 131
+    }
+  },
+  {
+    "model": "cards.card",
+    "pk": 133,
+    "fields":{
+        "fk_rarity": "4",
+        "photo": "",
+        "name": "Edmundo Salinas",
+        "true_department": "Ventas",
+        "fk_department": 12,
+        "charge": "Asesor Comercial",
+        "arrival_date": 2017,
+        "is_badge": 0,
+        "active": true,
+        "wave": 1,
+        "description": "Su pasatiempo favorito es el futbol y su equipo favorito es el Chivas.",
+        "birth_date": "3 agosto",
+        "order": 132
+    }
+  },
+  {
+    "model": "cards.card",
+    "pk": 134,
+    "fields":{
+        "fk_rarity": "4",
+        "photo": "",
+        "name": "Eduardo Mora",
+        "true_department": "Ventas",
+        "fk_department": 12,
+        "charge": "Asesor Comercial",
+        "arrival_date": 2020,
+        "is_badge": 0,
+        "active": true,
+        "wave": 1,
+        "description": "Le gusta la música electrónica y disfrutar de festivales musicales \"Underground\".",
+        "birth_date": "15 junio",
+        "order": 133
+    }
+  },
+  {
+    "model": "cards.card",
+    "pk": 135,
+    "fields":{
+        "fk_rarity": "4",
+        "photo": "",
+        "name": "Eliana Silva",
+        "true_department": "Ventas",
+        "fk_department": 12,
+        "charge": "Asesor Comercial",
+        "arrival_date": 2020,
+        "is_badge": 0,
+        "active": true,
+        "wave": 1,
+        "description": "Sus pasatiempos favoritos son ejercitarse y bailar.",
+        "birth_date": "7 julio",
+        "order": 134
+    }
+  },
+  {
+    "model": "cards.card",
+    "pk": 136,
+    "fields":{
+        "fk_rarity": "3",
+        "photo": "",
+        "name": "Emmanuel Molina",
+        "true_department": "Ventas",
+        "fk_department": 12,
+        "charge": "Asesor Comercial",
+        "arrival_date": 2019,
+        "is_badge": 0,
+        "active": true,
+        "wave": 1,
+        "description": "Le gusta hacer ejercicio y el futbol.",
+        "birth_date": "10 noviembre",
+        "order": 135
+    }
+  },
+  {
+    "model": "cards.card",
+    "pk": 137,
+    "fields":{
+        "fk_rarity": "3",
+        "photo": "",
+        "name": "Erika Reyes",
+        "true_department": "Ventas",
+        "fk_department": 12,
+        "charge": "Asesor Comercial",
+        "arrival_date": 2019,
+        "is_badge": 0,
+        "active": true,
+        "wave": 1,
+        "description": "Le encantan las fiestas e ir a la playa.",
+        "birth_date": "24 abril",
+        "order": 136
+    }
+  },
+  {
+    "model": "cards.card",
+    "pk": 138,
+    "fields":{
+        "fk_rarity": "4",
+        "photo": "",
+        "name": "José de Jesús Pantoja",
+        "true_department": "Ventas",
+        "fk_department": 12,
+        "charge": "Lider de Proyectos Especiales",
+        "arrival_date": 2019,
+        "is_badge": 0,
+        "active": true,
+        "wave": 1,
+        "description": "Se considera alguien optimista, positivo y persistente. Le gusta viajar y el basquetbol.",
+        "birth_date": "17 didiembre",
+        "order": 137
+    }
+  },
+  {
+    "model": "cards.card",
+    "pk": 139,
+    "fields":{
+        "fk_rarity": "4",
+        "photo": "",
+        "name": "Karina Abarca",
+        "true_department": "Licitaciones",
+        "fk_department": 12,
+        "charge": "Asistente de Licitaciones",
+        "arrival_date": 2021,
+        "is_badge": 0,
+        "active": true,
+        "wave": 1,
+        "description": "Su color favorito es el rosa.",
+        "birth_date": "13 septiembre",
+        "order": 138
+    }
+  },
+  {
+    "model": "cards.card",
+    "pk": 140,
+    "fields":{
+        "fk_rarity": "3",
+        "photo": "",
+        "name": "Luis Martínez",
+        "true_department": "Ventas",
+        "fk_department": 12,
+        "charge": "Asesor Comercial",
+        "arrival_date": 2015,
+        "is_badge": 0,
+        "active": true,
+        "wave": 1,
+        "description": "Su deporte favorito es el futbol y su equipo favorito es el América.",
+        "birth_date": "28 agosto",
+        "order": 139
+    }
+  },
+  {
+    "model": "cards.card",
+    "pk": 141,
+    "fields":{
+        "fk_rarity": "4",
+        "photo": "",
+        "name": "Maricruz Pineda",
+        "true_department": "Ventas",
+        "fk_department": 12,
+        "charge": "Asesor Comercial",
+        "arrival_date": 2018,
+        "is_badge": 0,
+        "active": true,
+        "wave": 1,
+        "description": "Su genero de música favorito es el pop.",
+        "birth_date": "3 mayo",
+        "order": 140
+    }
+  },
+  {
+    "model": "cards.card",
+    "pk": 142,
+    "fields":{
+        "fk_rarity": "3",
+        "photo": "",
+        "name": "Norma Hernández",
+        "true_department": "Ventas",
+        "fk_department": 12,
+        "charge": "Asesor Comercial",
+        "arrival_date": 2020,
+        "is_badge": 0,
+        "active": true,
+        "wave": 1,
+        "description": "Le gusta y practica la natación.",
+        "birth_date": "7 junio",
+        "order": 141
+    }
+  },
+  {
+    "model": "cards.card",
+    "pk": 143,
+    "fields":{
+        "fk_rarity": "3",
+        "photo": "",
+        "name": "Paola Fernández",
+        "true_department": "Ventas",
+        "fk_department": 12,
+        "charge": "Coordinadora de Licitaciones",
+        "arrival_date": 2019,
+        "is_badge": 0,
+        "active": true,
+        "wave": 1,
+        "description": "Su pasatiempo favorito es ver películas y se considera cinéfila.",
+        "birth_date": "20 agosto",
+        "order": 142
+    }
+  },
+  {
+    "model": "cards.card",
+    "pk": 144,
+    "fields":{
+        "fk_rarity": "3",
+        "photo": "",
+        "name": "Reyes Poblano",
+        "true_department": "Ventas",
+        "fk_department": 12,
+        "charge": "Asesor Comercial",
+        "arrival_date": 2015,
+        "is_badge": 0,
+        "active": true,
+        "wave": 1,
+        "description": "Sus películas favoritas son \"El Padrino II\" y \"Star Wars V - El Imperio Contraataca\".",
+        "birth_date": "14 julio",
+        "order": 143
+    }
+  },
+  {
+    "model": "cards.card",
+    "pk": 145,
+    "fields":{
+        "fk_rarity": "4",
+        "photo": "",
+        "name": "Ilse Torres",
+        "true_department": "Ventas",
+        "fk_department": 12,
+        "charge": "",
+        "arrival_date": "",
+        "is_badge": 0,
+        "active": true,
+        "wave": 1,
+        "description": "",
+        "birth_date": "23 noviembre",
+        "order": 144
+    }
+  },
+  {
+    "model": "cards.card",
+    "pk": 146,
+    "fields":{
+        "fk_rarity": "4",
+        "photo": "",
+        "name": "Irais Borja",
+        "true_department": "Ventas",
+        "fk_department": 12,
+        "charge": "",
+        "arrival_date": 2020,
+        "is_badge": 0,
+        "active": true,
+        "wave": 1,
+        "description": "",
+        "birth_date": "21 septiembre",
+        "order": 145
+    }
+  },
+  {
+    "model": "cards.card",
+    "pk": 147,
+    "fields":{
+        "fk_rarity": "4",
+        "photo": "",
+        "name": "Mayra de la Cruz",
+        "true_department": "Ventas",
+        "fk_department": 12,
+        "charge": "",
+        "arrival_date": "",
+        "is_badge": 0,
+        "active": true,
+        "wave": 1,
+        "description": "",
+        "birth_date": "3o moviembre",
+        "order": 146
+    }
+  },
+  {
+    "model": "cards.card",
+    "pk": 148,
+    "fields":{
+        "fk_rarity": "3",
+        "photo": "",
+        "name": "Paola Chiprés",
+        "true_department": "Ventas",
+        "fk_department": 12,
+        "charge": "",
+        "arrival_date": "",
+        "is_badge": 0,
+        "active": true,
+        "wave": 1,
+        "description": "",
+        "birth_date": "18 julio",
+        "order": 147
+    }
+  },
+  {
+    "model": "cards.card",
+    "pk": 149,
+    "fields":{
+        "fk_rarity": "4",
+        "photo": "",
+        "name": "Placido Pérez",
+        "true_department": "Ventas",
+        "fk_department": 12,
+        "charge": "",
+        "arrival_date": "",
+        "is_badge": 0,
+        "active": true,
+        "wave": 1,
+        "description": "",
+        "birth_date": "11 diciembre",
+        "order": 148
+    }
+  },
+  {
+    "model": "cards.card",
+    "pk": 150,
+    "fields":{
+        "fk_rarity": "4",
+        "photo": "",
+        "name": "Ulises Cayetano",
+        "true_department": "Ventas",
+        "fk_department": 12,
+        "charge": "",
+        "arrival_date": "",
+        "is_badge": 0,
+        "active": true,
+        "wave": 1,
+        "description": "",
+        "birth_date": "6 octubre",
+        "order": 149
+    }
+  },
+  {
+    "model": "cards.card",
+    "pk": 151,
+    "fields":{
+        "fk_rarity": "4",
+        "photo": "",
+        "name": "Violeta Franco",
+        "true_department": "Ventas",
+        "fk_department": 12,
+        "charge": "",
+        "arrival_date": "",
+        "is_badge": 0,
+        "active": true,
+        "wave": 1,
+        "description": "",
+        "birth_date": "21 enero",
+        "order": 150
+    }
+  }
+]
