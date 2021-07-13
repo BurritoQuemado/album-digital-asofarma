@@ -4,8 +4,8 @@
         "pk": 1,
         "fields": {
             "name": "Asuntos regulatorios",
-            "description": "Dentro de este equipo se encuentran 17 colaboradores, quienes se enfocan en realizar distintas tareas administrativas, legales, y financieras con el objetivo de tener un orden y control monetario en nuestra compa\u00f1\u00eda, para que de esta manera CWT alcance  los resultados propuestos a fin el a\u00f1o. \nUn logro importante dentro del \u00e1rea, fue un excelente manejo del flujo del efectivo y control de presupuesto durante 2017.    ",
-            "head": "ROMERO GUTIERREZ ADRIANA",
+            "description": "Los profesionales del área de Asuntos Regulatorios se dedican a desarrollar las estrategias regulatorias globales para los productos nuevos y originales, colaborar con los organismos reguladores del mundo para establecer las normas que rigen las nuevas tecnologías, apoyar actividades de desarrollo clínico y garantizar el cumplimiento de las normas en todo el ciclo de vida de un producto.",
+            "head": "",
             "slug": "asuntos-regulatorios"
         }
     },
@@ -13,9 +13,9 @@
         "model": "cards.department",
         "pk": 2,
         "fields": {
-            "name": "bonus",
-            "description": "Esta \u00e1rea se encuentra liderada por Charly, quien ha permanecido en CWT desde el 2000.\nDurante 2017 el equipo de IT hizo posible activar nuestro BCP y mitigar los contratiempos que el terremoto de Septiembre ocasion\u00f3 en M\u00e9xico, instal\u00e1ndonos a nueva oficina temporal. \nAs\u00ed mismo Charly se encarg\u00f3 de la migraci\u00f3n que se realizada del sistema de TMA a Nevada, EUA durante 2017.\nActualmente Charly y su equipo tienen el reto de mudar e instalar a todos los empleados en Latitud nuestra nueva oficina de CWT M\u00e9xico para mediados del 2018.",
-            "head": "GARCIA DIAZ CARLOS MANUEL",
+            "name": "Bonus",
+            "description": "",
+            "head": "",
             "slug": "bonus"
         }
     },
@@ -24,8 +24,8 @@
         "pk": 3,
         "fields": {
             "name": "Calidad y Cumplimiento",
-            "description": "Gerardo es el capit\u00e1n del equipo, que, auxiliado por todas y cada una de las distintas \u00e1reas de la organizaci\u00f3n tiene la responsabilidad de guiar y ejecutar  las estrategias y planes, para llegar a los objetivos establecidos en M\u00e9xico, desde su llegada hace dos a\u00f1os  todo el equipo ha adoptado cambios muy positivos, siempre guiados por  los valores corporativos fundamentales y enfocado en  las nuevas tendencias del mercado que recaen en nuestra estrategia digital 3.0.\nEn los \u00faltimo a\u00f1os Gerardo ha permitido que la organizaci\u00f3n  cumpla con los objetivos globales  y se mantenga la alineaci\u00f3n del equipo. \u00c9l trabaja diariamente comprometido y motivado,  confiando en cada una de las personas que conforman esta gran organizaci\u00f3n. ",
-            "head": "VERA PRENDES GERARDO",
+            "description": "Éste departamento es responsable de conformar los sistemas y procesos que garantizan los dispositivos médicos que se proporcionan. Se aseguran que la compañía cumpla con los requisitos regulatorios para brindar productos que generan la preferencia del cliente, su retención y lealtad.",
+            "head": "",
             "slug": "calidad-y-cumplimiento"
         }
     },
@@ -33,79 +33,89 @@
         "model": "cards.department",
         "pk": 4,
         "fields": {
-            "name": "Implementaci\u00f3n",
-            "description": "El equipo que se encarga de ejecutar el proceso operativo, el cual puede ser para nuevos clientes, fusi\u00f3n de clientes o separaci\u00f3n de los mismos. El \u00e1rea es intermediaria entre el proceso de ventas y la asignaci\u00f3n del Program Manager. El equipo tiene 7 personas quienes son las responsables del mismo, y se encargan de ejecutar el proceso y comenzar instruyendo a nuestros clientes para mantener la mejor atenci\u00f3n con los mismos. \n",
-            "head": "7 personas",
-            "slug": "implementacion"
+            "name": "Contabilidad y Finanzas",
+            "description": "Son aquellas que comprenden el entorno comercial donde se desenvuelve la compañía, emplean estrategias financieras para evaluar las oportunidades de negocios. Estas capacidades, en combinación con el acceso que tienen a los datos financieros, son integrales a la capacidad para tomar decisiones comerciales clave.",
+            "head": "",
+            "slug": "contabilidad-y-finanzas"
         }
     },
     {
         "model": "cards.department",
         "pk": 5,
         "fields": {
-            "name": "Marketing",
-            "description": "Ren\u00e9 es el l\u00edder de Marketing de productos para la regi\u00f3n de habla hispana. A partir de su llegada se han estandarizado procesos relevantes en la imagen de CWT M\u00e9xico, as\u00ed como propuesto ideas y estrategias que han permitido reposicionar a CWT M\u00e9xico. Rene ha participado en la organizaci\u00f3n de varios eventos tanto externos como internos, quien nos ha representado como embajador de marca. Su \u00e1rea est\u00e1 en constante movimiento y \u00e9l es el responsable para que la imagen, mensajes clave, productos y estrategia de marca de M\u00e9xico se encuentre alineada para distinguirnos con nuestros clientes.",
-            "head": "MEDELLIN FARIAS RENE",
-            "slug": "marketing"
+            "name": "Gerencias y Direcciones",
+            "description": "Los directivos se ocupan de la estrategia corporativa de alto nivel y las decisiones importantes de la empresa, elaboran un plan de negocios, con metas organizativas y conocimientos de la organización en su conjunto que usará para la toma de decisiones en situaciones críticas.",
+            "head": "",
+            "slug": "gerencias-y-direcciones"
         }
     },
     {
         "model": "cards.department",
         "pk": 6,
         "fields": {
-            "name": "Meeting & Events",
-            "description": "M&E es una de las dos  divisiones del negocio y  es la parte creativa de la organizaci\u00f3n. M&E son los encargados de convertir las ideas en resultados tangibles. El \u00e1rea se encarga de planear, organizar y ejecutar eventos, convenciones, viajes de incentivo, etc. para nuestros clientes y demostrar el lado innovador de la organizaci\u00f3n.\nEl \u00e1rea de M&E operaciones est\u00e1 liderada por dos elementos clave: Amalia, qui\u00e9n  guiada en su experiencia, es la encargada de toda la operaci\u00f3n y ejecuci\u00f3n de eventos y convenciones.\n Ricardo, quien se enfoca en la prospecci\u00f3n, b\u00fasqueda  y diversificaci\u00f3n de nuevos clientes para M&E.",
-            "head": "OLVERA DIAZ AMALIA, CEBALLOS ESTRADA RICARDO",
-            "slug": "meeting-events"
+            "name": "Importaciones",
+            "description": "La importación es todo bien y/o servicio legítimo que un país compra a otro país para su utilización. Esta acción comercial tiene como objetivo de adquirir productos que hay en el extranjero que no encontramos en nuestro territorio nacional. Las importaciones suelen estar sujetas a restricciones económicas y reguladas por todos los países para la entrada de productos.",
+            "head": "",
+            "slug": "importaciones"
         }
     },
     {
         "model": "cards.department",
         "pk": 7,
         "fields": {
-            "name": "Program Management",
-            "description": "Alberto y su equipo tienen la responsabilidad de mantener la relaci\u00f3n 1:1 con el Cliente.  Program Management es el encargado de escuchar las sugerencias y necesidades que el cliente tiene respecto a los servicios que ofrecemos, para de esta manera mantenerlo satisfecho y en sinton\u00eda con todas las \u00e1reas que integran a la organizaci\u00f3n.\nEl objetivo del PM es apoyar a nuestros Clientes en la optimizaci\u00f3n de sus programas de viaje mediante el an\u00e1lisis de su pol\u00edtica, compartiendo mejores pr\u00e1cticas e implementando nuestra tecnolog\u00eda y servicios de excelencia. \nDurante el  2017 PM mantuvo una relaci\u00f3n sobresaliente con 200 + clientes y obtuvo un porcentaje de retenci\u00f3n  de 99.8% para M\u00e9xico. \n",
-            "head": "PALMA CORTES ALBERTO",
-            "slug": "program-management"
+            "name": "Logistica",
+            "description": "El departamento de logística es considerado uno de los más importantes, dado que es el motor esencial para la competitividad de la organización y su desarrollo económico. La logística se asegura de que el producto pueda llegar a su destinatario, ya sea a través de un servicio especial de reparto o mediante otras empresas especializadas.",
+            "head": "",
+            "slug": "logistica"
         }
     },
     {
         "model": "cards.department",
         "pk": 8,
         "fields": {
-            "name": "Recursos Humanos",
-            "description": "Recursos Humanos se preocupa por el bienestar de la gente analizando nuestro talento interno, proporcionando programas de formaci\u00f3n a la medida, atrayendo y reteniendo talentos, desarrollando al personal y analizando nuestros programas y pol\u00edticas de compensaci\u00f3n para que tengamos el mejor equipo. \nAdem\u00e1s, acompa\u00f1amos la estrategia de negocio con certificaciones y programas que consiguen el alcance de los objetivos. Todo esto en un marco de comunicaci\u00f3n efectiva con campa\u00f1as que mantengan informado a todos nuestros jugadores.\nLu, junto con su staff global de Compensaciones, Talent Aquisition y el Shared Service de Recursos Humanos, est\u00e1n para brindar ayuda y apoyo!\n",
-            "head": "GOMEZ PE\u00d1A  LUCIANA",
-            "slug": "recursos-humanos"
+            "name": "Mantenimiento",
+            "description": "Son los encargados de proporcionar oportuna y eficientemente los servicios que requiera la compañía en cuanto a mantenimiento preventivo y correctivo a las instalaciones, así como el fortalecimiento y desarrollo de las instalaciones.",
+            "head": "",
+            "slug": "Mantenimiento"
         }
     },
     {
         "model": "cards.department",
         "pk": 9,
         "fields": {
-            "name": "Supplier Management",
-            "description": "Leo se encarga de representar a CWT con nuestros proveedores preferenciales. Leo es el responsable de que internamente el equipo  Comercial y de Traveler sevices conozcan cuales son nuestros primary suppliers para que la negociaciones con \u00e9stos sean las \u00f3ptimas. \n Leo desarrolla y ejecuta el cumplimiento de los porcentajes que tienen que ver con el revenue de suppliers y se enfocan en la fidelizaci\u00f3n que CWT tiene con \u00e9stos, llegando a los n\u00fameros establecidos. Para mantener al personal motivado y con nuestros suppliers preferenciales en su top of mind, Leo internamente realiza eventos para todos los empleados, as\u00ed como distintas din\u00e1micas al o largo del a\u00f1o.",
-            "head": "BORTOLIN  LEONARDO ROBERTO",
-            "slug": "supplier-management"
+            "name": "Operaciones",
+            "description": "En operaciones llevamos la gestión relacionada al proceso de control de las entradas y salidas de la mercancía en nuestro almacén así como la planificación de las rutas para la entrega de nuestros equipos, manteniendo un contacto permanente con el cliente para verificar la recepción del pedido.",
+            "head": "",
+            "slug": "operaciones"
         }
     },
     {
         "model": "cards.department",
         "pk": 10,
         "fields": {
-            "name": "Traveler Services",
-            "description": "Traveler Services (TS) es uno de los motores dentro de la organizaci\u00f3n. TS est\u00e1 orientado a ofrecer una experiencia excepcional a nuestros clientes. \nDebido a la experiencia del equipo y el servicio personalizado que ofrecen, permiten que CWT sea un referente sobresaliente dentro del mercado nacional, apoyando a nuestros clientes y el crecimiento de nuestro negocio.\nEliseo D es responsable de TS en la regi\u00f3n de LATAM y su principal funci\u00f3n es liderar la operaci\u00f3n, dirigiendo la ejecuci\u00f3n de estrategias y la implementaci\u00f3n de las diversas herramientas tecnol\u00f3gicas que nos permitan ser los mejores en lo que hacemos. \nPor su parte Bertha S cuenta con la experiencia para acompa\u00f1ar de cerca al equipo, viviendo nuestros valores y desarrollando nuestro potencial para lograr el \u00e9xito.\n",
-            "head": "DUNO CARRILLO ELISEO JESUS, SOSA MELENDEZ BERTHA ESPERANZA",
-            "slug": "traveler-services"
+            "name": "Recursos Humanos",
+            "description": "Se preocupa por el bienestar de muestra gente analizando nuestro talento interno, proporcionando programas de formación a la medida, atrayendo y reteniendo talentos, desarrollando al personal y analizando nuestros programas y políticas de compensación para que tengamos al mejor equipo.",
+            "head": "",
+            "slug": "recursos-humanos"
         }
     },
     {
         "model": "cards.department",
         "pk": 11,
         "fields": {
+            "name": "Soporte Técnico",
+            "description": "Nuestros especialistas en éste departamento son los encargados de la atención de fallas a los equipos, realización de los mantenimientos preventivos y correctivos de estos, dando el diagnóstico y la solución a los problemas que presenten los equipos. Planeación, administración, supervisión y ejecución de proyectos de equipamiento.",
+            "head": "",
+            "slug": "soporte-tecnico"
+        }
+    },
+    {
+        "model": "cards.department",
+        "pk": 12,
+        "fields": {
             "name": "Ventas",
-            "description": "El equipo de ventas para Business Travel (BT)  tiene un gran reto a\u00f1o con a\u00f1o que es llegar a la meta comercial. En 2017 se cerraron  m\u00e1s de 30+ clientes y se sobrepas\u00f3 el objetivo de ventas, alcanzando $130MUSD. 2018 no es la excepci\u00f3n, y se tendr\u00e1 que llegar al n\u00famero planteado para cumplir con los objetivos anuales.\nLo pilares de nuestro equipo de ventas son:\nGabriela, quien es la encargada de las cuentas GPS. Gaby reporta a CWT Am\u00e9ricas y las principales cuentas que ella busca, tienen con requisitos especiales para ser clasificadas en este rubro (volumen, n\u00famero de pa\u00edses que participan, TRX)\nA su vez Atziri, quien nos representa en M\u00e9xico en  BT, en 2017  obtuvo un reconocimiento por ser una de las vendedoras m\u00e1s comprometidas a nivel global en CWT durante 2017.",
-            "head": "ACEVES LOPEZ GABRIELA, RANGEL AGUILERA ATZIRI",
+            "description": "Nuestro departamento de ventas tiene la labor de diseñar y llevar a cabo las estrategias para convertir inversiones y esfuerzos comerciales en ganancias, logrando alcanzar nuestros objetivos en ventas.",
+            "head": "",
             "slug": "ventas"
         }
     }
