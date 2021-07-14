@@ -86,7 +86,7 @@ class Card(models.Model):
         return 'cards/types/%s.html' % (self.fk_department.slug)
 
     def img_template(self):
-        return 'assets/badges/%s.png' % (self.fk_department.slug)
+        return 'assets/badges/%s.jpg' % (self.fk_department.slug)
 
 
 
