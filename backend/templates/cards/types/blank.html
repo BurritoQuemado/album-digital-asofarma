@@ -1,10 +1,11 @@
 <style>
     table{
-        border: 3px black;
-        border-radius: 3px;
+        border: 2px solid black;
+        border-radius: 10px;
         width: auto;
         height: auto;
         padding: 20px;
+        margin: 20px;
     }
     h1{
         padding-left: 3%;
@@ -17,6 +18,7 @@
     }
     th, td {
         border: 0px;
+        text-align: left;
     }
     hr {
         border: 1.5px solid black;
@@ -33,16 +35,13 @@
 <h4>{{card.true_department}}</h4>
 <table>
 <tbody>
-<tr >
+<tr>
     <th>Cumpleaños:</th>
-    <th>Ingreso a Abalat:</th>
-</tr>
-<tr>
     <td>{{card.birth_date}}</td>
-    <td>{{card.arrival_date}}</td>
 </tr>
 <tr>
-    <td colspan="2"></td>
+    <th>Ingreso a Abalat:</th>
+    <td>{{card.arrival_date}}</td>
 </tr>
 <tr>
     <th colspan="2">Gustos e intereses:</th>
