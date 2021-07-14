@@ -917,7 +917,7 @@
     "fields":{
         "fk_rarity": "2",
         "photo": "",
-        "name": "María del Carmen Velázquez",
+        "name": "Pamela González",
         "true_department": "Calidad",
         "fk_department": 5,
         "charge": "",
@@ -2502,7 +2502,7 @@
         "is_badge": 0,
         "active": true,
         "wave": 1,
-        "description": "Su pasatiempo favorito es el futbol y su equipo favorito es el Chivas.",
+        "description": "Su pasatiempo favorito es el futbol y su equipo favorito es el Guadalajara.",
         "birth_date": "3 agosto",
         "order": 132
     }
@@ -2598,7 +2598,7 @@
         "active": true,
         "wave": 1,
         "description": "Se considera alguien optimista, positivo y persistente. Le gusta viajar y el basquetbol.",
-        "birth_date": "17 didiembre",
+        "birth_date": "17 diciembre",
         "order": 137
     }
   },
