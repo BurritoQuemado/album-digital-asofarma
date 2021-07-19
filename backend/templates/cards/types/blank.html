@@ -1,3 +1,4 @@
+{% load bootstrap4 %}
 <style>
     table{
         width: auto;
@@ -25,32 +26,87 @@
         border: 1.5px solid black;
         border-radius: 3px;
         width: 80%;
+        margin-bottom: 4px;
+        margin-top: 3px;
+    }
+
+    @media (max-width: 768px){
+        table{
+            margin: 15px;
+        }
+        h1{
+        font-size: 16px;
+        }
+        h2{
+            font-size: 14px;
+        }
+        h4{
+            font-size: 12px;
+        }
+        th, td {
+            font-size: 10px;
+        }
+        hr {
+            border: 1.5px solid black;
+            border-radius: 3px;
+            width: 80%;
+        }
+    }
+
+    @media (max-width: 667px){
+        table{
+            margin: 10px;
+        }
+        h1{
+        font-size: 16px;
+        margin-bottom: 3px;
+        }
+        h2{
+            font-size: 14px;
+        }
+        h4{
+            font-size: 12px;
+        }
+        th, td {
+            font-size: 7.5px;
+        }
+
+        hr {
+            border: 1px solid black;
+            border-radius: 3px;
+            width: 80%;
+            margin-top: 2px;
+            margin-bottom: 2px;
+        }
     }
 </style>
 <h1>{{card.order}}</h1>
-<br />
-<h2 >{{card.name}}</h2>
+<h2>{{card.name}}</h2>
 {% if card.charge != 'badge'%}
-<h4>{{card.charge}}</h4>
-<hr />
-<h4>{{card.true_department}}</h4>
-<hr />
-<table>
-<tbody>
-<tr>
-    <th>Cumpleaños:</th>
-    <td>{{card.birth_date}}</td>
-</tr>
-<tr>
-    <th>Ingreso a Abalat:</th>
-    <td>{{card.arrival_date}}</td>
-</tr>
-<tr>
-    <th colspan="2">Gustos e intereses:</th>
-</tr>
-<tr>
-    <td colspan="2">{{card.description}}</td>
-</tr>
-</tbody>
-</table>
+<div>
+    <h4>{{card.charge}}</h4>
+    <hr />
+    <h4>{{card.true_department}}</h4>
+    <hr />
+    <table>
+    <tbody>
+    <tr>
+        <th>Cumpleaños:</th>
+        <td>{{card.birth_date}}</td>
+    </tr>
+    <tr>
+        <th>Ingreso a Abalat:</th>
+        <td class="arrival_date">{{card.arrival_date}}</td>
+    </tr>
+    <tr>
+        <th colspan="2">Gustos e intereses:</th>
+    </tr>
+    <tr>
+        <td colspan="2">{{card.description}}</td>
+    </tr>
+    </tbody>
+    </table>
+</div>
+{% else %}
+<h4>ESCUDO</h4>
 {% endif %}
