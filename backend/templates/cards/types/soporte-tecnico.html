@@ -136,7 +136,6 @@
             .cls-32,
             .cls-36,
             .cls-42 {
-                font-family: Gotham-Bold, Gotham;
                 font-weight: 700;
             }
 
@@ -176,7 +175,7 @@
             }
 
             .cls-40 {
-                font-family: Gotham-Book, Gotham;
+                font-family: antenna;
             }
 
             .cls-41 {
@@ -684,11 +683,18 @@
             <polygon class="cls-29" points="51.73 39.77 50.14 38.85 50.14 38.13 51.73 39.04 51.73 39.77" />
             <polygon class="cls-29" points="53.03 45.35 50.36 43.81 50.36 43.08 53.03 44.63 53.03 45.35" />
             <polygon class="cls-29" points="54.87 46.41 53.81 45.8 53.81 45.07 54.87 45.68 54.87 46.41" />
-            <line class="cls-31" x1="12" y1="316.38" x2="191.62" y2="316.38" /><text class="cls-32"
-                transform="translate(11.32 312.83)">{{card.name}}
-            </text><text class="cls-36" transform="translate(11.32 326.85)">{{card.fk_department}}
-            </text><text class="cls-40" transform="translate(11.32 335.6)">{{card.charge|title}}
-            </text><text class="cls-42" transform="translate(222.48 323.68)">{{card.arrival_date}}
+            <line class="cls-31" x1="12" y1="316.38" x2="191.62" y2="316.38" />
+            <text class="cls-32" transform="translate(11.32 312.83)">
+                {{card.name}}
+            </text>
+            <text class="cls-36" transform="translate(11.32 326.85)">
+                {{card.fk_department}}
+            </text>
+            <text class="cls-40" transform="translate(11.32 335.6)">
+                {{card.charge|title}}
+            </text>
+            <text class="cls-42" transform="translate(222.48 323.68)">
+                {{card.arrival_date}}
             </text>
         </g>
     </g>
