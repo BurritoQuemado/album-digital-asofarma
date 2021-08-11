@@ -5,6 +5,7 @@ from .models import Card, Department, Rarity, Code
 from import_export import fields, resources
 from import_export.admin import ImportExportModelAdmin
 from import_export.widgets import ForeignKeyWidget
+
 # from imagekit.admin import AdminThumbnail
 from imagekit import ImageSpec
 from imagekit.processors import ResizeToFill
@@ -14,23 +15,39 @@ from django.db.models import Count
 
 class CardResource(resources.ModelResource):
     fk_department = fields.Field(
-        column_name='fk_department',
-        attribute='fk_department',
-        widget=ForeignKeyWidget(Department, 'name'))
+        column_name="fk_department",
+        attribute="fk_department",
+        widget=ForeignKeyWidget(Department, "name"),
+    )
     fk_rarity = fields.Field(
-        column_name='fk_rarity',
-        attribute='fk_rarity',
-        widget=ForeignKeyWidget(Rarity, 'description'))
+        column_name="fk_rarity",
+        attribute="fk_rarity",
+        widget=ForeignKeyWidget(Rarity, "description"),
+    )
 
     class Meta:
         model = Card
-        fields = ('id', 'order', 'fk_rarity', 'name','charge', 'birth_date', 'true_department', 'fk_department', 'description', 'arrival_date', 'is_badge', 'active', 'wave',)
+        fields = (
+            "id",
+            "order",
+            "fk_rarity",
+            "name",
+            "charge",
+            "birth_date",
+            "true_department",
+            "fk_department",
+            "description",
+            "arrival_date",
+            "is_badge",
+            "active",
+            "wave",
+        )
 
 
 class AdminThumbnailSpec(ImageSpec):
     processors = [ResizeToFill(120, 149)]
-    format = 'JPEG'
-    options = {'quality': 60}
+    format = "JPEG"
+    options = {"quality": 60}
 
 
 def cached_admin_thumb(instance):
@@ -42,8 +59,8 @@ def cached_admin_thumb(instance):
 
 
 class HasPhotoFilter(SimpleListFilter):
-    title = 'tiene foto'
-    parameter_name = 'photo'
+    title = "tiene foto"
+    parameter_name = "photo"
 
     def lookups(self, request, model_admin):
         """
@@ -53,23 +70,20 @@ class HasPhotoFilter(SimpleListFilter):
         human-readable name for the option that will appear
         in the right sidebar.
         """
-        return (
-            ('no_photo', 'No tiene foto'),
-            ('has_photo', 'Tiene foto'),
-        )
+        return (("no_photo", "No tiene foto"), ("has_photo", "Tiene foto"))
 
     def queryset(self, request, queryset):
-        if self.value() == 'no_photo':
-            return queryset.filter(photo='')
-        if self.value() == 'has_photo':
-            return queryset.all().exclude(photo='')
+        if self.value() == "no_photo":
+            return queryset.filter(photo="")
+        if self.value() == "has_photo":
+            return queryset.all().exclude(photo="")
 
 
 class CodeInline(admin.StackedInline):
     model = Code
     can_delete = False
     extra = 0
-    readonly_fields = ['fk_user', 'code']
+    readonly_fields = ["fk_user", "code"]
 
     def has_add_permission(self, request, obj=None):
         return False
@@ -78,21 +92,42 @@ class CodeInline(admin.StackedInline):
 @admin.register(Card)
 class CardAdmin(ImportExportModelAdmin):
     inlines = [CodeInline]
-    list_display = ('name', 'show_codes_count', 'id', 'order','charge','birth_date', 'fk_rarity', 'fk_department', 'wave', 'is_badge', 'active', 'page', )
-    list_filter = ('active', HasPhotoFilter, 'wave', 'is_badge', 'fk_department', 'fk_rarity', )
-    fields = ('photo', 'active', 'fk_department', 'fk_rarity', 'wave',)
+    list_display = (
+        "name",
+        "show_codes_count",
+        "id",
+        "order",
+        "charge",
+        "birth_date",
+        "fk_rarity",
+        "fk_department",
+        "wave",
+        "is_badge",
+        "active",
+        "page",
+    )
+    list_filter = (
+        "active",
+        HasPhotoFilter,
+        "wave",
+        "is_badge",
+        "fk_department",
+        "fk_rarity",
+    )
+    fields = ("photo", "active", "fk_department", "fk_rarity", "wave")
     resource_class = CardResource
     # admin_thumbnail = AdminThumbnail(image_field=cached_admin_thumb)
 
     def get_queryset(self, request):
         qs = super(CardAdmin, self).get_queryset(request)
-        qs = qs.annotate(codes_count=Count('card_code'))
+        qs = qs.annotate(codes_count=Count("card_code"))
         return qs
 
     def show_codes_count(self, obj):
         return obj.codes_count
-    show_codes_count.short_description = 'Códigos'
-    show_codes_count.admin_order_field = 'codes_count'
+
+    show_codes_count.short_description = "Códigos"
+    show_codes_count.admin_order_field = "codes_count"
 
     def import_action(self, request, *args, **kwargs):
         response = super().import_action(request, *args, **kwargs)
@@ -110,11 +145,11 @@ class CardAdmin(ImportExportModelAdmin):
 
 @admin.register(Department)
 class DepartmentAdmin(admin.ModelAdmin):
-    list_display = ('id', 'name', 'slug',)
-    fields = ('name', 'description', 'head',)
+    list_display = ("id", "name", "slug")
+    fields = ("name", "description", "head")
 
 
 @admin.register(Rarity)
 class RarityAdmin(admin.ModelAdmin):
-    list_display = ('id', 'description', 'slug',)
-    fields = ('description',)
+    list_display = ("id", "description", "slug")
+    fields = ("description",)
