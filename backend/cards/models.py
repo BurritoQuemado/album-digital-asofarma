@@ -74,7 +74,7 @@ class Card(models.Model):
     fk_department = models.ForeignKey(Department, on_delete=models.CASCADE)
     wave = models.IntegerField(default=1)
     active = models.BooleanField(default=True)
-    arrival_date = models.CharField(max_length=4)
+    arrival_date = models.CharField(max_length=100)
     birth_date = models.CharField(max_length=100, default='No info')
     true_department = models.CharField(max_length=100, default='No info')
     page = models.IntegerField(default=1)
