@@ -9,13 +9,15 @@ from cards.functions import new_cards_save
 
 
 class Command(BaseCommand):
-    help = 'Send card packet to all active userses'
+    help = "Send card packet to all active userses"
 
     def handle(self, *args, **options):
-        list_users = User.objects.filter(is_staff=False, is_superuser=False, is_active=True)
+        list_users = User.objects.filter(
+            is_staff=False, is_superuser=False, is_active=True
+        )
 
         for user in list_users:
-            email = base64.b64encode(bytes(user.email, 'utf-8'))
+            email = base64.b64encode(bytes(user.email, "utf-8"))
             email = email.decode("utf-8")
 
             codes = new_cards_save(5)
@@ -23,17 +25,17 @@ class Command(BaseCommand):
             now = datetime.datetime.now()
 
             send_templated_mail(
-                template_name='send_pack',
+                template_name="send_pack",
                 from_email=settings.DEFAULT_FROM_EMAIL,
                 recipient_list=[user.email],
                 context={
-                    'name': user.full_name,
-                    'codes': codes,
-                    'email': email,
-                    'site': site,
-                    'time': now,
-                    'text': 'Este es tu sobre de %s cartas del día: ' % (len(codes)),
-                    'subject': 'Este es tu paquete de cartas'
+                    "name": user.full_name,
+                    "codes": codes,
+                    "email": email,
+                    "site": site,
+                    "time": now,
+                    "text": "Este es tu sobre de %s cartas del día: " % (len(codes)),
+                    "subject": "Este es tu paquete de cartas",
                 },
                 # cc=['cc@example.com'],
                 # bcc=['bcc@example.com'],
@@ -41,4 +43,4 @@ class Command(BaseCommand):
                 template_prefix="email/",
                 template_suffix="html",
             )
-        self.stdout.write(self.style.SUCCESS('Successfully send emails'))
+        self.stdout.write(self.style.SUCCESS("Successfully send emails"))
