@@ -59,10 +59,16 @@ class Card(models.Model):
         verbose_name_plural = 'Cartas'
 
     is_badge = models.BooleanField(default=False)
-    name = models.CharField(max_length=100)
     order = models.IntegerField(default=0, null=True, blank=True)
-    description = models.CharField(max_length=300, default='No info')
-    charge = models.CharField(max_length=100, default='No info')
+    name = models.CharField(max_length=100)
+    position = models.CharField(max_length=100, default='No info')
+    jersey = models.CharField(max_length=100, default='No info')
+    age = models.CharField(max_length=100, default='No info')
+    nationality = models.CharField(max_length=100, default='No info')
+    birth_date = models.CharField(max_length=100, default='No info')
+    birth_place = models.CharField(max_length=100, default='No info')
+    height = models.CharField(max_length=100, default='No info')
+    weight = models.CharField(max_length=100, default='No info')
     photo = models.ImageField(upload_to=get_file_path, null=True, blank=True)
     photo_thumbnail = ImageSpecField(
         source='photo',
@@ -74,9 +80,6 @@ class Card(models.Model):
     fk_department = models.ForeignKey(Department, on_delete=models.CASCADE)
     wave = models.IntegerField(default=1)
     active = models.BooleanField(default=True)
-    arrival_date = models.CharField(max_length=100)
-    birth_date = models.CharField(max_length=100, default='No info')
-    true_department = models.CharField(max_length=100, default='No info')
     page = models.IntegerField(default=1)
 
     def __str__(self):

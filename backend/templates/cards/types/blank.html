@@ -107,19 +107,33 @@
 <h2>{{card.name}}</h2>
 {% if card.charge != 'badge'%}
 <div>
-    <h4>{{card.charge}}</h4>
+    <h4>{{card.position}}</h4>
     <hr />
     <table>
     <tbody>
     <tr>
-        <th>Correo:</th>
-        <td class="arrival_date">{{card.arrival_date}}</td>
+        <th>Edad:</th>
+        <td class="arrival_date">{{card.age}}</td>
     </tr>
     <tr>
-        <th colspan="2">Gustos e intereses:</th>
+        <th>Fecha de nacimiento:</th>
+        <td>{{card.birth_date}}</td>
     </tr>
     <tr>
-        <td colspan="2">{{card.description}}</td>
+        <th>Lugar de nacimiento:</th>
+        <td>{{card.birth_place}}</td>
+    </tr>
+    <tr>
+        <th>Nacionalidad:</th>
+        <td>{{card.nationality}}</td>
+    </tr>
+    <tr>
+        <th>Altura:</th>
+        <td>{{card.height}}</td>
+    </tr>
+    <tr>
+        <th>Peso:</th>
+        <td>{{card.weight}}</td>
     </tr>
     </tbody>
     </table>
