@@ -34,7 +34,7 @@ class CardResource(resources.ModelResource):
             "name",
             "position",
             "jersey",
-            "age"
+            "age",
             "birth_date",
             "birth_place",
             "fk_department",
