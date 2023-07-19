@@ -83,7 +83,7 @@ class Card(models.Model):
     page = models.IntegerField(default=1)
 
     def __str__(self):
-        return self.name + ' - ' + self.description
+        return self.name + ' - ' + self.position
 
     def html_template(self):
         return 'cards/types/%s.html' % (self.fk_department.slug)
