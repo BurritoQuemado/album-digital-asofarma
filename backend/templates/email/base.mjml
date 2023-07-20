@@ -1,5 +1,5 @@
 <mjml version="3.3.3">
-  <mj-body background-color="#D91F26" color="#55575d" font-family="Arial, sans-serif">
+  <mj-body background-color="#CC0066" color="#55575d" font-family="Arial, sans-serif">
     <mj-section background-color="#FFFFFF" background-repeat="repeat" padding="20px 0" text-align="center" vertical-align="top">
       <mj-column>
         <mj-image align="center" padding="10px 25px" src="https://s3.amazonaws.com/album-polar/flag-asofarma.png" width="134px"></mj-image>
