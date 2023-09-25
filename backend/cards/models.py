@@ -65,7 +65,7 @@ class Card(models.Model):
     email = models.CharField(max_length=100, default='No info')
     charge = models.CharField(max_length=100, default='No info')
     direction = models.CharField(max_length=100, default='No info')
-    birth_date = models.CharField(max_length=100, default='No info')
+    arrival_date = models.CharField(max_length=100, default='No info')
     photo = models.ImageField(upload_to=get_file_path, null=True, blank=True)
     photo_thumbnail = ImageSpecField(
         source='photo',
