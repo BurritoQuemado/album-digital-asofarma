@@ -61,14 +61,11 @@ class Card(models.Model):
     is_badge = models.BooleanField(default=False)
     order = models.IntegerField(default=0, null=True, blank=True)
     name = models.CharField(max_length=100)
-    position = models.CharField(max_length=100, default='No info')
-    jersey = models.CharField(max_length=100, default='No info')
-    age = models.CharField(max_length=100, default='No info')
-    nationality = models.CharField(max_length=100, default='No info')
+    location = models.CharField(max_length=100, default='No info')
+    email = models.CharField(max_length=100, default='No info')
+    charge = models.CharField(max_length=100, default='No info')
+    direction = models.CharField(max_length=100, default='No info')
     birth_date = models.CharField(max_length=100, default='No info')
-    birth_place = models.CharField(max_length=100, default='No info')
-    height = models.CharField(max_length=100, default='No info')
-    weight = models.CharField(max_length=100, default='No info')
     photo = models.ImageField(upload_to=get_file_path, null=True, blank=True)
     photo_thumbnail = ImageSpecField(
         source='photo',
