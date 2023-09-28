@@ -10,7 +10,7 @@
             {% for user_object in object_list %}
             <div class="card mb-3">
                 <div class="card-body">
-                    <h5 class="card-title mb-1"><a href="{% url 'cards:card_list' pk=user_object.id slug='portada' %}">{{user_object.full_name}}</a></h5>
+                    <h5 class="card-title mb-1"><a href="{% url 'cards:card_list' pk=user_object.id slug='portada' %}">{{user_object.full_name}} - {{user_object.email}}</a></h5>
                     <p class="card-text text-muted">Avance: {{user_object.progress}}/{{cards}}</p>
                 </div>
             </div>

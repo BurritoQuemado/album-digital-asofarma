@@ -105,39 +105,31 @@
 </style>
 <h1>{{card.order}}</h1>
 <h2>{{card.name}}</h2>
-{% if card.position != 'badge'%}
+{% if card.name != 'badge'%}
 <div>
-    <h4>{{card.position}}</h4>
+    <h4>{{card.charge}}</h4>
     <hr />
     <table>
     <tbody>
     <tr>
-        <th>Edad:</th>
-        <td>{{card.age}}</td>
+        <th>Antigüedad:</th>
+        <td>{{card.arrival_date}}</td>
     </tr>
     <tr>
-        <th>Fecha de nacimiento:</th>
-        <td>{{card.birth_date}}</td>
+        <th>Cargo:</th>
+        <td>{{card.charge}}</td>
     </tr>
     <tr>
-        <th>Lugar de nacimiento:</th>
-        <td>{{card.birth_place}}</td>
+        <th>Email:</th>
+        <td>{{card.email}}</td>
     </tr>
     <tr>
-        <th>Nacionalidad:</th>
-        <td>{{card.nationality}}</td>
-    </tr>
-    <tr>
-        <th>Altura:</th>
-        <td>{{card.height}}</td>
-    </tr>
-    <tr>
-        <th>Peso:</th>
-        <td>{{card.weight}}</td>
+        <th>Ubicación:</th>
+        <td>{{card.location}}</td>
     </tr>
     </tbody>
     </table>
 </div>
 {% else %}
-<h4>ESCUDO</h4>
+<h4>EMBLEMA</h4>
 {% endif %}
