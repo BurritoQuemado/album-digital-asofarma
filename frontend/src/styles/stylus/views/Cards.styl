@@ -93,7 +93,7 @@
             text-align: center
             font-family: 'din'
             font-weight: bold
-            color: $primary
+            color: $white
             text-transform: uppercase
             +mobile()
                 margin 0 auto 0 auto
@@ -103,7 +103,7 @@
                 font-size 2em
             .Progress
                 font-size 1.2em
-                color $primary
+                color $white
             p
                 margin 0
         &--Logos
@@ -111,9 +111,11 @@
             margin 20px auto
             img
                 width 100%
-                max-width 400px
+                max-width 650px
                 display: block
                 margin 0 auto
+                +mobile()
+                    max-width: 400px
         &--Aeromexico
             lost-utility clearfix
             margin 0px auto
